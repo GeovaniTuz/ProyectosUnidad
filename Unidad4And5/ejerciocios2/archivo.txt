@@ -1,0 +1,20 @@
+primero = 534.789 / 234.88
+segundo = 434 + 122
+multiplicacion 4543534.789 * 3445645.54453
+residuo= 454%655
+resta = 98-50
+suma = 54 + 67
+division =   78/9
+
+
+de dichos operadores, y a continuaci�n su significado mediante un ejemplo.
+
+Operador	nombre	ejemplo	significado
+<	menor que	a<b	a es menor que b
+>	mayor que	a>b	a es mayor que b
+==	igual a	a==b	a es igual a b
+!=	no igual a	a!=b	a no es igual a b
+<=	menor que o igual a	a<=5	a es menor que o igual a b
+>=	mayor que o igual a	a>=b	a es menor que o igual a b
+Se debe tener especial cuidado en no confundir el operador asignaci�n con el operador
+relacional igual a. Las asignaciones se realizan con el s�mbolo =, las comparaciones con ==.

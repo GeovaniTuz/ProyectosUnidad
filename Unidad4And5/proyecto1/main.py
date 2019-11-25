@@ -2,7 +2,7 @@
 # desarollo de aanalizardor lexico
 
 #inportacion de librerias necesarias
-import ply.lex as lex
+#import ply.lex as lex
 import re
 import codecs
 import os
@@ -13,3 +13,12 @@ import sys
 tokens = ['',
 
 ]
+
+#lista de palabras reservadas
+
+reservadas = {
+
+
+}
+
+print ("termino de ejecucion")
