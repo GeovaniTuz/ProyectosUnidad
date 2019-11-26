@@ -59,7 +59,7 @@ print ("")
 
 # Operadores aritméticos (suma, resta, multiplicación, división, etc.)
 
-patronARITMETICO = r'[\d+]+?[\s+,\-,*,/]+?[\d+]+'
+patronARITMETICO = r'[\d+]+\s*[\+|\-|\*|\/]+\s*[\d+]+'
 resultadoARITMETICO = re.findall(patronARITMETICO, texto)
 print("Los operadores aritmeticos del archivo son: ", resultadoARITMETICO)
 print ("")

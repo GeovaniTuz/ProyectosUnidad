@@ -43,6 +43,7 @@ resultadoBOOLEANO = re.findall(patronBOOLEANO, texto)
 print("En las operaciones booleanas son:", resultadoBOOLEANO)
 print ("")
 
+
 # Formulas más complejas del tipo c = a op ( b op d)
 #([A-Za-z0-9-_]=+\s*[A-Za-z0-9-_]+\s*[<,>,!,<=,>=,*,+,/,-]=+\s*([A-Za-z0-9-_]+\s*[<,>,!,<=,>=,*,+,/,-]+\s*[A-Za-z0-9-_]+\s*)+)
 patronCOMPLEJO = r'([A-Za-z0-9]+\s*=+\s*[A-Za-z0-9]+\s*[|<|>|!|<=|>=|\+|\-\*\/]\s*[(]+\s*[A-Za-z0-9]+\s*[|<|>|!|<=|>=|\+|\-\*\/]+\s*[A-Za-z0-9]+\s*[)])'
