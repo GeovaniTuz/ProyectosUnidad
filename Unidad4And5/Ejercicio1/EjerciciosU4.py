@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
-import re
+import re # importacion expresion regular
 
+#inicio del archivo que se debe de usar para aplicar la expresion regular
 path = "archivo.txt"
 codigo = "codigobasico.txt"
 
+# manejo de error para si no se encuentra el archivo
 try:
     archivo1 = open(codigo, 'r')
 except:
-    print("no se encuentra el archivo codigo")
+    print("no se encuentra el archivo codigo")# por si no se encuentra el archivo 
     quit()
 
 muestracodigo = ""
@@ -28,40 +30,48 @@ for linea in archivo:
     texto += linea
 
 
+#
+# para mas informacion de expresion regular se puede buscar en este apartado.7
+# link de consulta: https://www.guru99.com/python-regular-expressions-complete-tutorial.html
+#
 # Variables válidas. Ejemplo: suma, i, cont7, etc.
-patronVARIABLES = r'(\b[A-Za-z0-9-_]+\s*[=])+'
-resultadoVARIABLES = re.findall(patronVARIABLES, muestracodigo)
-print("\n Las variables que estan declaradas son:\n", resultadoVARIABLES)
+patronVARIABLES = r'(\b[A-Za-z0-9-_]+\s*[=])+' 
+# 'r' de espresion regular
+# buscar variablas de A-Za-z asi mismo como los numero de 0-9
+# '+' diciendole que debe  agregar el otro complento a la primera expresion regular
+resultadoVARIABLES = re.findall(patronVARIABLES, muestracodigo) # asina los resultado a 'resultadoVariables  usnando el patro
+# de la expresion anterior que se analiza
+# rindall: Re.findall() module is used when you want to iterate over the lines of the file,
+# it will return a list of all the matches in a single step. For example, here we have a list of e-mail addresses, 
+# and we want all the e-mail addresses to be fetched out from the list, we use the re.findall method. It will find
+#  all the e-mail addresses from the list.
+print("Las variables que estan declaradas son: ", resultadoVARIABLES) # se imprimero los resultados
+print ("")# espacio para hacer el salto de linea 
 
 # Enteros y decimales. 2.7, 3.1416, 0.2, etc.
 patronENTERO = r'[+,-]?[0-9]+'
 patronDECIMAL = r'[+,-]?[[0-9]*[.]]?[0-9]+'
 resultadoENTERO = re.findall(patronENTERO, texto)
 resultadoDECIMAL = re.findall(patronDECIMAL, texto)
-print("\n Los numeros enteros del archivo son:\n", resultadoENTERO)
-print("\nLos numeros decimales del archivo son:\n", resultadoDECIMAL)
+print("Los numeros enteros del archivo son: ", resultadoENTERO)
+print("Los numeros decimales del archivo son: ", resultadoDECIMAL)
+print ("")
 
 # Operadores aritméticos (suma, resta, multiplicación, división, etc.)
 
 patronARITMETICO = r'[\d+]+?[\s+,\-,*,/]+?[\d+]+'
 resultadoARITMETICO = re.findall(patronARITMETICO, texto)
-print("\nLos operadores aritmeticos del archivo son:\n", resultadoARITMETICO)
+print("Los operadores aritmeticos del archivo son: ", resultadoARITMETICO)
+print ("")
 
 # Operadores relacionales. (mayor, menor, igual, diferente, etc.)
 patronRELACIONAL = r'([A-Za-z0-9|a-z0-9]+\s*[|<|>|!=|<=|>=]=+\s*[A-Za-z0-9|a-z0-9])+'
 resultadoRELACIONAL = re.findall(patronRELACIONAL, texto)
-print("\n Los operadores relacionales identificados son:\n", resultadoRELACIONAL)
+print("Los operadores relacionales identificados son: ", resultadoRELACIONAL)
+print ("")
 
 # Palabras reservadas.
 PatronRESERVADAS = r'\b(False|def|if|raise|None|del|import|return|True|elif|in|try|and|else|is|while|as|except|lambda|with|assert|finally|nonlocal|yield|break|for|not|class|from|or|continue|global|pass\s)+|\s[:]+'
 resultadoRESERVADAS = re.findall(PatronRESERVADAS, muestracodigo)
-print("\nLAS PALABRAS RESERVADAS SON:\n", resultadoRESERVADAS)
-
-
-# numeros enteros r"[+,-]?[0-9]+"
-# numero decimal [+-]?([0-9]*[.])?[0-9]+
-# operaciones aritmeticas (-)?N+(.N+)? (‘+’|’-‘|’*’|’/’) (-)?N+(.N+)? ((‘+’|’-‘|’*’|’/’) (-)?N+(.N+)?)*
-# operadores relacionales [A-Za-z0-9]\s+(==|<|>|!=|<=|>=)\s+[A-Za-z0-9]|[A-Za-z0-9]\S+(==|<|>|!=|<=|>=)\S+[A-Za-z0-9]
-# PALABRAS RESERVADAS
-# (False|def|if|raise|None|del|import|return|True|elif|in|try|and|else|is|while|as|except|lambda|with|assert|finally|nonlocal|yield|break|for|not|class|from|or|continue|global|pass\b\w\S)+
-#['False', 'None', 'True', 'and', 'as', 'assert', 'async', 'await', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while', 'with', 'yield']
+print("LAS PALABRAS RESERVADAS SON: ", resultadoRESERVADAS)
+print ("")
