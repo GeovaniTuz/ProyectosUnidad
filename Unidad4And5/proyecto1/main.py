@@ -2,11 +2,12 @@
 # desarollo de aanalizardor lexico
 
 import ply.lex as lex  # inportacion de librerias necesarias
+import re
 
 resultado_lexema = []
 
 
-tokens = {
+tokens = [
     'IDENTIFICADOR','ENTERO', 'ASIGNAR','SUMA','RESTA','MULT','DIV','POTENCIA','MODULO',
     'MINUSMINUS','PLUSPLUS',
     #Condiones
@@ -17,7 +18,7 @@ tokens = {
     'AND','OR','NOT','MENORQUE','MENORIGUAL','MAYORQUE','MAYORIGUAL','IGUAL','DISTINTO',
     # Symbolos
     'NUMERAL','PARIZQ','PARDER','CORIZQ','CORDER','LLAIZQ','LLADER'
-}
+]
 
 # Reglas de Expresiones Regualres para token de Contexto simple
 t_SUMA = r'\+'
@@ -36,15 +37,12 @@ t_OR = r'\|{2}'
 t_NOT = r'\!'
 t_MENORQUE = r'<'
 t_MAYORQUE = r'>'
-t_PUNTOCOMA = ';'
-t_COMA = r','
 t_PARIZQ = r'\('
 t_PARDER = r'\)'
 t_CORIZQ = r'\['
 t_CORDER = r'\]'
 t_LLAIZQ = r'{'
 t_LLADER = r'}'
-t_COMDOB = r'\"'
 
 
 def t_SINO(t):
@@ -138,7 +136,7 @@ def t_error(t):
                                                                                     str(t.lexpos))
     resultado_lexema.append(estado)
     t.lexer.skip(1)
-    
+
 
 # Prueba de ingreso
 
