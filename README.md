@@ -1,4 +1,8 @@
 # PythonU4and5
+
+https://github.com/maryito/Analisis-lexico-sintactico-Python/blob/master/analizador_lexico.py
+
+
 actividad individual de compilador de php hechon python
 importacions de las librerias y creacion de las listas de tokens
 

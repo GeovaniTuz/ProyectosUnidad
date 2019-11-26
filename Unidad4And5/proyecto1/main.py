@@ -130,7 +130,6 @@ def t_comments_ONELine(t):
 
 t_ignore = ' \t'
 
-
 def t_error(t):
     global resultado_lexema
     estado = "** Token no valido en la Linea {:4} Valor {:16} Posicion {:4}".format(str(t.lineno), str(t.value),
