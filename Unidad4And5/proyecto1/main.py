@@ -3,6 +3,8 @@
 
 import ply.lex as lex  # inportacion de librerias necesarias
 
+resultado_lexema = []
+
 tokens = {
     'IDENTIFICADOR','ENTERO', 'ASIGNAR','SUMA','RESTA','MULT','DIV','POTENCIA','MODULO',
     'MINUSMINUS','PLUSPLUS',
@@ -17,9 +19,6 @@ tokens = {
 }
 
 # Reglas de Expresiones Regualres para token de Contexto simple
-
-# Reglas de Expresiones Regualres para token de Contexto simple
-
 t_SUMA = r'\+'
 t_RESTA = r'-'
 t_MINUSMINUS = r'\-\-'
@@ -28,7 +27,6 @@ t_MULT = r'\*'
 t_DIV = r'/'
 t_MODULO = r'\%'
 t_POTENCIA = r'(\*{2} | \^)'
-
 t_ASIGNAR = r'='
 # Expresiones Logicas
 t_AND = r'\&\&'
@@ -51,104 +49,84 @@ def t_SINO(t):
     r'else'
     return t
 
-
 def t_SI(t):
     r'if'
     return t
-
 
 def t_RETURN(t):
    r'return'
    return t
 
-
 def t_VOID(t):
    r'void'
    return t
-
 
 def t_MIENTRAS(t):
     r'while'
     return t
 
-
 def t_PARA(t):
     r'for'
     return t
-
 
 def t_ENTERO(t):
     r'\d+'
     t.value = int(t.value)
     return t
 
-
 def t_IDENTIFICADOR(t):
     r'\w+(_\d\w)*'
     return t
-
 
 def t_CADENA(t):
    r'\"?(\w+ \ *\w*\d* \ *)\"?'
    return t
 
-
 def t_NUMERAL(t):
     r'\#'
     return t
-
 
 def t_PLUSPLUS(t):
     r'\+\+'
     return t
 
-
 def t_MENORIGUAL(t):
     r'<='
     return t
-
 
 def t_MAYORIGUAL(t):
     r'>='
     return t
 
-
 def t_IGUAL(t):
     r'=='
     return t
-
 
 def t_MAYORDER(t):
     r'<<'
     return t
 
-
 def t_MAYORIZQ(t):
     r'>>'
     return t
-
 
 def t_DISTINTO(t):
     r'!='
     return t
 
-
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
-
 
 def t_comments(t):
     r'/\*(.|\n)*?\*/'
     t.lexer.lineno += t.value.count('\n')
     print("Comentario de multiple linea")
 
-
 def t_comments_ONELine(t):
      r'\/\/(.)*\n'
      t.lexer.lineno += 1
      print("Comentario de una linea")
-
 
 t_ignore = ' \t'
 
@@ -160,4 +138,4 @@ def t_error(t):
     resultado_lexema.append(estado)
     t.lexer.skip(1)
 
-print("termino de ejecucion", tokens)
+print("termino de ejecucion")
