@@ -1,0 +1,31 @@
+#LA SANGRIA ES IMPORTANTE PARA EL CODIGO
+import re #LIBRERIA DE EXPRESIONES REGULARES
+
+path45 = "cuento.txt"
+
+try:
+	archivo = open(path,'r') #r --> modo lectura para el texto
+except:
+	print("el archivo que intentas abrir no existe")
+	quit()
+
+texto = ""
+
+for linea in archivo:
+	texto += linea
+
+print(texto)
+
+
+patron = r"\w+"
+result = re.findall(patron,texto) # la re --> identifica una expresion regular
+print("\n resultado de busqueda ", result)
+
+patron = "\n"
+result = re.split(patron,texto) #split --> divide un texto, en este caso
+#por los espacios
+print("\n resultado de busqueda ", result)
+
+patron = "arquitectura"
+result = re.sub(patron,"puerco araña", texto) #sub --> reemplaza
+print("\n resultado de busqueda ", result)
