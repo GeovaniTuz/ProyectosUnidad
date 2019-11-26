@@ -5,6 +5,7 @@ import ply.lex as lex  # inportacion de librerias necesarias
 
 resultado_lexema = []
 
+
 tokens = {
     'IDENTIFICADOR','ENTERO', 'ASIGNAR','SUMA','RESTA','MULT','DIV','POTENCIA','MODULO',
     'MINUSMINUS','PLUSPLUS',
@@ -29,6 +30,7 @@ t_MODULO = r'\%'
 t_POTENCIA = r'(\*{2} | \^)'
 t_ASIGNAR = r'='
 # Expresiones Logicas
+
 t_AND = r'\&\&'
 t_OR = r'\|{2}'
 t_NOT = r'\!'
