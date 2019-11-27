@@ -152,7 +152,7 @@ def prueba(data):
         if not tok:
             break
         # print("lexema de "+tok.type+" valor "+tok.value+" linea "tok.lineno)
-        estado = "Linea {:4} Tipo {:16} Valor {:16} Posicion {:4}".format(
+        estado = "Linea {:4} Tipo {:4} Valor {:4} Posicion {:4}".format(
             str(tok.lineno), str(tok.type), str(tok.value), str(tok.lexpos))
         resultado_lexema.append(estado)
     return resultado_lexema
@@ -163,8 +163,8 @@ analizador = lex.lex()
 
 if __name__ == '__main__':
     while True:
-        data = input("ingrese: ")
+        data = input("Ingrese lenguaje: ")
         prueba(data)
         print(resultado_lexema)
 
-print("termino de ejecucion")
+print("")
