@@ -6,7 +6,7 @@ import ply.lex as lex  # inportacion de librerias necesarias
 resultado_lexema = []
 
 
-tokens = {
+tokens = [
     'IDENTIFICADOR','ENTERO', 'ASIGNAR','SUMA','RESTA','MULT','DIV','POTENCIA','MODULO',
     'MINUSMINUS','PLUSPLUS',
     #Condiones
@@ -17,7 +17,7 @@ tokens = {
     'AND','OR','NOT','MENORQUE','MENORIGUAL','MAYORQUE','MAYORIGUAL','IGUAL','DISTINTO',
     # Symbolos
     'NUMERAL','PARIZQ','PARDER','CORIZQ','CORDER','LLAIZQ','LLADER'
-}
+]
 
 # Reglas de Expresiones Regualres para token de Contexto simple
 t_SUMA = r'\+'
