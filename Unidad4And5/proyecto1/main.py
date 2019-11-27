@@ -4,7 +4,7 @@
 import ply.lex as lex  # inportacion de librerias necesarias
 
 resultado_lexema = []
-#Prueba comentario
+
 
 tokens = {
     'IDENTIFICADOR','ENTERO', 'ASIGNAR','SUMA','RESTA','MULT','DIV','POTENCIA','MODULO',
