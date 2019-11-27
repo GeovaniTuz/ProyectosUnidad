@@ -30,6 +30,7 @@ t_MODULO = r'\%'
 t_POTENCIA = r'(\*{2} | \^)'
 t_ASIGNAR = r'='
 # Expresiones Logicas
+
 t_AND = r'\&\&'
 t_OR = r'\|{2}'
 t_NOT = r'\!'
