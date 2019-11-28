@@ -16,7 +16,7 @@ for linea in archivo:
 
 print(texto)
 
-
+2.3
 patron = r"\w+"
 result = re.findall(patron,texto) # la re --> identifica una expresion regular
 print("\n resultado de busqueda ", result)
@@ -27,5 +27,5 @@ result = re.split(patron,texto) #split --> divide un texto, en este caso
 print("\n resultado de busqueda ", result)
 
 patron = "arquitectura"
-result = re.sub(patron,"puerco araña", texto) #sub --> reemplaza
+result = re.sub(patron,"puerco araï¿½a", texto) #sub --> reemplaza
 print("\n resultado de busqueda ", result)
