@@ -1,7 +1,8 @@
 # PythonU4and5
 
-
------------"se termino de hacer el analizador lexico, ahora de debe abrir un archivo y mostrar de forma ordenado"---------------
+#checar detalles
+#hacer tokens de inicio(<php>) y final de php
+#ordenar salida 
 
 
 
