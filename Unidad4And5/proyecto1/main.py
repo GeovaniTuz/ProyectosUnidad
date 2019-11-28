@@ -9,10 +9,10 @@ resultado_lexema = []
 
 tokens = [
     # inicio y final
-    'TAGINCION', 'TAG_FINAL',
+    'TAGINICIO', 'TAG_FINAL',
 
     'IDENTIFICADOR', 'ENTERO', 'ASIGNAR', 'SUMA', 'RESTA', 'MULT', 'DIV', 'POTENCIA', 'MODULO',
-    'MINUSMINUS', 'PLUSPLUS',
+    'MINUSMINUS', 'PLUSPLUS','PUNTOYCOMA','PUNTO','COMA','DECIMAL','VARIABLE',
     # Condiones
     'SI', 'SINO',
     # Ciclos
@@ -24,10 +24,13 @@ tokens = [
 ]
 
 # Reglas de Expresiones Regualres para token de Contexto simple
+#t_PUNTO = r'[+,-]?[[0-9]*[.]]?[0-9]+'
+#[+,-]?[[0-9]*[.]]?[0-9]+t__COMA = r'\,'
+t_PUNTOYCOMA = r';'
 t_SUMA = r'\+'
 t_RESTA = r'-'
 t_MINUSMINUS = r'\-\-'
-# t_PUNTO = r'\.'
+#t_PUNTO = r'\.'
 t_MULT = r'\*'
 t_DIV = r'/'
 t_MODULO = r'\%'
@@ -57,6 +60,21 @@ t_LLADER = r'}'
 # tag final
 # --------------------------------------------------
 
+def t_TAGINICIO(t):
+    r'(<+[\?+php]+)'
+    return t
+
+def t_TAG_FINAL(t):
+    r'([\?>]+)'
+    return t
+
+def t_DECIMAL(t):
+    r'([0-9][.]]?[0-9]+)'
+    return t
+
+def t_VARIABLE(t):
+    r'([\$]+[A-Za-z]+)'
+    return t
 
 def t_SINO(t):
     r'else'
@@ -166,7 +184,7 @@ t_ignore = ' \t'
 
 def t_error(t):
     global resultado_lexema
-    estado = "** Token no valido en la Linea {:4} Valor {:16}".format(str(t.lineno), str(t.value)
+    estado = "** Token no valido en la Linea {:4} Valor {:4}".format(str(t.lineno), str(t.value)
                                                                       )
     resultado_lexema.append(estado)
     t.lexer.skip(1)
@@ -184,9 +202,10 @@ def prueba(data):
         if not tok:
             break
         # print("lexema de "+tok.type+" valor "+tok.value+" linea "tok.lineno)
-        estado = "Linea {:4} Tipo {:4} Valor {:4} ".format(
+        estado = "Linea {:4} Tipo {:4} Valor {:4}".format(
             str(tok.lineno), str(tok.type), str(tok.value))
         resultado_lexema.append(estado)
+
     return resultado_lexema
 
 
@@ -203,6 +222,5 @@ except:
 text = ""
 for linea in archivo:
     text += linea
-
 prueba(text)
-print(resultado_lexema)
+print('\n'.join(list(map(''.join, resultado_lexema)))) #AL IMPRIMIR LOS DATOS, ESTO LO ORDENA DE MANERA ESTRUCTURADA
