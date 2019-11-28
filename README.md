@@ -1,7 +1,11 @@
 # PythonU4and5
 
-https://github.com/maryito/Analisis-lexico-sintactico-Python/blob/master/analizador_lexico.py
 
+-----------"se termino de hacer el analizador lexico, ahora de debe abrir un archivo y mostrar de forma ordenado"---------------
+
+
+
+https://github.com/maryito/Analisis-lexico-sintactico-Python/blob/master/analizador_lexico.py
 
 actividad individual de compilador de php hechon python
 importacions de las librerias y creacion de las listas de tokens
