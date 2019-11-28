@@ -8,6 +8,7 @@ resultado_lexema = []
 
 
 tokens = [
+    'INCION', 'FINAL',
     'IDENTIFICADOR','ENTERO', 'ASIGNAR','SUMA','RESTA','MULT','DIV','POTENCIA','MODULO',
     'MINUSMINUS','PLUSPLUS',
     #Condiones
@@ -30,8 +31,7 @@ t_DIV = r'/'
 t_MODULO = r'\%'
 t_POTENCIA = r'(\*{2} | \^)'
 t_ASIGNAR = r'='
-# Expresiones Logicas
-
+# Expresiones 
 t_AND = r'\&\&'
 t_OR = r'\|{2}'
 t_NOT = r'\!'
@@ -43,6 +43,7 @@ t_CORIZQ = r'\['
 t_CORDER = r'\]'
 t_LLAIZQ = r'{'
 t_LLADER = r'}'
+
 
 
 def t_SINO(t):
@@ -145,8 +146,6 @@ def prueba(data):
 
     analizador = lex.lex()
     analizador.input(data)
-
-    resultado_lexema.clear()
     while True:
         tok = analizador.token()
         if not tok:
@@ -158,13 +157,21 @@ def prueba(data):
     return resultado_lexema
 
 
- # instanciamos el analizador lexico
+
+# abrir archivo
 analizador = lex.lex()
+path = "index.php"
 
-if __name__ == '__main__':
-    while True:
-        data = input("Ingrese lenguaje: ")
-        prueba(data)
-        print(resultado_lexema)
+try:
+    archivo = open(path, 'r')
+except:
+    print("el archivo no se encontro")
+    quit()
 
-print("")
+text = ""
+for linea in archivo:
+    text += linea
+
+prueba(text)
+print(resultado_lexema)
+        
