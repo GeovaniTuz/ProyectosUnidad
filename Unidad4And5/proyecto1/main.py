@@ -12,7 +12,7 @@ tokens = [
     'TAGINICIO', 'TAG_FINAL',
 
     'IDENTIFICADOR', 'ENTERO', 'ASIGNAR', 'SUMA', 'RESTA', 'MULT', 'DIV', 'POTENCIA', 'MODULO',
-    'MINUSMINUS', 'PLUSPLUS','PUNTOYCOMA','PUNTO','COMA','DECIMAL','VARIABLE',
+    'MINUSMINUS', 'PLUSPLUS','PUNTOYCOMA','PUNTO','COMA','DECIMAL','VARIABLE','COMENTARIO',
     # Condiones
     'SI', 'SINO',
     # Ciclos
@@ -167,7 +167,7 @@ def t_newline(t):
     t.lexer.lineno += len(t.value)
 
 
-def t_comments(t):
+def t_COMENTARIO(t):
     r'/\*(.|\n)*?\*/'
     t.lexer.lineno += t.value.count('\n')
     print("Comentario de multiple linea")
