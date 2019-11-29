@@ -6,7 +6,7 @@ de �l o los n�meros que quieren mostrarse como peri�dicos, pudiendo estos 
 Ejemplos de n�meros enteros
 Aqu� se listan varios n�meros enteros a modo de ejemplo, aclarando tambi�n la forma en la que se los debe nombrar con palabras en espa�ol:
 
-int a = b - 2*(c + 4);
+int edo = b - (c + 4);
 
 430 (cuatrocientos treinta)
 12 (doce)
