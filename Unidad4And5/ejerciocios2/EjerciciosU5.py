@@ -30,7 +30,10 @@ print("")
 # Ejemplo: suma = 2.7 + 3, cont = cont + 1, etc.
 # ([a-z0-9-_]+\s*[=]+\s*[a-z0-9-_]+\s*[+,-,*,/,%]+\s*[a-z0-9-_]+)
 
-patronARITMETICO = r'([A-Za-z0-9-_]+\s*[=]+\s*[A-Za-z0-9-_|0-9.0-9]+\s*[\+,\-,\*,\/,\%]+\s*[A-Za-z0-9-_|0-9.0-9]+)'
+#patronARITMETICO = r'([A-Za-z0-9-_]+\s*[=]+\s*[A-Za-z0-9-_|0-9.0-9]+\s*[\+,\-,\*,\/,\%]+\s*[A-Za-z0-9-_|0-9.0-9]+)'
+
+patronARITMETICO = r'([a-z0-9]+\s*[=]\s*[a-z0-9|\d.\d]+\s*[\+\-\*\/]\s*[a-z0-9|\d.\d]+)'
+
 resultadoARITMETICO = re.findall(patronARITMETICO, texto)
 print(" Las operaciones aritmeticas son:", resultadoARITMETICO)
 print("")
