@@ -8,6 +8,9 @@ Aqu� se listan varios n�meros enteros a modo de ejemplo, aclarando tambi�n
 
 int edo = b - (c + 4);
 
+suma = 2.7 + 3
+cont = cont1 + 1
+
 430 (cuatrocientos treinta)
 12 (doce)
 2.711 (dos mil setecientos once)
