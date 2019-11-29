@@ -1,10 +1,12 @@
-Este tiene una particularidad, puesto que a diferencia de los enteros en donde la neutralidad del 0 es hacia la izquierda,
+ï»¿Este tiene una particularidad, puesto que a diferencia de los enteros en donde la neutralidad del 0 es hacia la izquierda,
 n los decimales se asume la neutralidad del 0 a la derecha: 0.4 es igual a 0.40 y a 0.400, y por su puesto mayor a 0,39 y
-a 0,399. Si se quisiera aclarar la periodicidad de un número debería colocarse un signo por arriba
-de él o los números que quieren mostrarse como periódicos, pudiendo estos no ser los finales de las cifras decimales.
+a 0,399. Si se quisiera aclarar la periodicidad de un nï¿½mero deberï¿½a colocarse un signo por arriba
+de ï¿½l o los nï¿½meros que quieren mostrarse como periï¿½dicos, pudiendo estos no ser los finales de las cifras decimales.
 
-Ejemplos de números enteros
-Aquí se listan varios números enteros a modo de ejemplo, aclarando también la forma en la que se los debe nombrar con palabras en español:
+Ejemplos de nï¿½meros enteros
+Aquï¿½ se listan varios nï¿½meros enteros a modo de ejemplo, aclarando tambiï¿½n la forma en la que se los debe nombrar con palabras en espaï¿½ol:
+
+int a = b - 2*(c + 4);
 
 430 (cuatrocientos treinta)
 12 (doce)
@@ -12,43 +14,43 @@ Aquí se listan varios números enteros a modo de ejemplo, aclarando también la fo
 1 (uno)
 -32 (menos treinta y dos)
 1.000 (mil)
-1.500.040 (un millón quinientos mil cuarenta)
+1.500.040 (un millï¿½n quinientos mil cuarenta)
 -1 (menos uno)
 932 (novecientos treinta y dos)
 88 (ochenta y ocho)
-1.000.000.000.000 (un billón)
+1.000.000.000.000 (un billï¿½n)
 52 (cincuenta y dos
--1.000.000 (menos un millón)
+-1.000.000 (menos un millï¿½n)
 666 (seiscientos sesenta y seis)
 7.412 (siete mil cuatrocientos doce)
 4 (cuatro)
--326 (menos trescientos veintiséis)
+-326 (menos trescientos veintisï¿½is)
 15 (quince)
 0 (cero)
 99 (noventa y nueve)
 
 
 
-Java tiene cinco operadores aritméticos cuyo significado se muestra en la tabla adjunta
+Java tiene cinco operadores aritmï¿½ticos cuyo significado se muestra en la tabla adjunta
 Operador	Nombre	Ejemplo
 +	Suma	453+ 354
 -	Diferencia	123-434
 *	Producto	673*904
 /	Cociente	290/770
-%	Módulo	20%7
+%	Mï¿½dulo	20%7
 El cociente entre dos enteros da como resultado un entero. Por ejemplo, al dividir 20 entre 7 nos da como resultado 2.
-El operador módulo da como resultado el resto de la división entera. Por ejemplo 20%7 da como resultado 6 que es el resto
-de la división entre 20 y 7.
-El operador módulo también se puede emplear con números reales. Por ejemplo, el cociente entre 7.5 y 3.0 es 2.5 y el resto
-es cero, es decir, 7.5=3.0 x 2.5+ 0. El operador módulo, funciona de la siguiente forma 7.5=3.0 x 2+1.5, calcula la
+El operador mï¿½dulo da como resultado el resto de la divisiï¿½n entera. Por ejemplo 20%7 da como resultado 6 que es el resto
+de la divisiï¿½n entre 20 y 7.
+El operador mï¿½dulo tambiï¿½n se puede emplear con nï¿½meros reales. Por ejemplo, el cociente entre 7.5 y 3.0 es 2.5 y el resto
+es cero, es decir, 7.5=3.0 x 2.5+ 0. El operador mï¿½dulo, funciona de la siguiente forma 7.5=3.0 x 2+1.5, calcula la
 diferencia entre el dividendo (7.5)  y el producto del divisor (3.0) por la parte entera (2) del cociente, devolviendo
-1.5. Así pues, la operación 7.5%3.0 da como resultado 1.5.
+1.5. Asï¿½ pues, la operaciï¿½n 7.5%3.0 da como resultado 1.5.
 
-Los operadores relacionales son símbolos que se usan para comparar dos valores. Si el resultado de la comparación es
-correcto la expresión considerada es verdadera, en caso contrario es falsa. Por ejemplo, 8>4 (ocho mayor que cuatro) es
-verdadera, se representa por el valor true del tipo básico boolean, en cambio, 8<4 (ocho menor que cuatro) es falsa,
-false. En la primera columna de la tabla, se dan los símbolos de los operadores relacionales, el la segunda, el nombre
-de dichos operadores, y a continuación su significado mediante un ejemplo.
+Los operadores relacionales son sï¿½mbolos que se usan para comparar dos valores. Si el resultado de la comparaciï¿½n es
+correcto la expresiï¿½n considerada es verdadera, en caso contrario es falsa. Por ejemplo, 8>4 (ocho mayor que cuatro) es
+verdadera, se representa por el valor true del tipo bï¿½sico boolean, en cambio, 8<4 (ocho menor que cuatro) es falsa,
+false. En la primera columna de la tabla, se dan los sï¿½mbolos de los operadores relacionales, el la segunda, el nombre
+de dichos operadores, y a continuaciï¿½n su significado mediante un ejemplo.
 
 Operador	nombre	ejemplo	significado
 <	menor que	a<b	a es menor que b
@@ -57,11 +59,11 @@ Operador	nombre	ejemplo	significado
 !=	no igual a	a!=b	a no es igual a b
 <=	menor que o igual a	a<=5	a es menor que o igual a b
 >=	mayor que o igual a	a>=b	a es menor que o igual a b
-Se debe tener especial cuidado en no confundir el operador asignación con el operador
-relacional igual a. Las asignaciones se realizan con el símbolo =, las comparaciones con ==.
+Se debe tener especial cuidado en no confundir el operador asignaciï¿½n con el operador
+relacional igual a. Las asignaciones se realizan con el sï¿½mbolo =, las comparaciones con ==.
 
 En el programa RelacionApp, se compara la variable i que guarda un 8, con un conjunto de valores, el resultado de la
-comparación es verdadero (true), o falso (false).
+comparaciï¿½n es verdadero (true), o falso (false).
 
 PALABRAS RESERVADAS
 ['False', 'None', 'True', 'and', 'as', 'assert', 'async', 'await', 'break', 'class',
@@ -72,7 +74,7 @@ PALABRAS RESERVADAS
 VARIABLES VALIDAS
 
  x = 2.5
-La variable se escribe siempre a la izquierda de la igualdad. Si se escribe al revés, Python genera un mensaje de error:
+La variable se escribe siempre a la izquierda de la igualdad. Si se escribe al revï¿½s, Python genera un mensaje de error:
 
  2.5 = x
 SyntaxError: can't assign to literal
@@ -117,11 +119,11 @@ result = re.split(patron,texto) #split --> divide un texto, en este caso
 print("\n resultado de busqueda ", result)
 
 patron = "arquitectura"
-result = re.sub(patron,"puerco araña", texto) #sub --> reemplaza
+result = re.sub(patron,"puerco araï¿½a", texto) #sub --> reemplaza
 print("\n resultado de busqueda ", result)
 
 3.5. Operadores relacionales
-Los valores booleanos son además el resultado de expresiones que utilizan operadores relacionales (comparaciones entre valores):
+Los valores booleanos son ademï¿½s el resultado de expresiones que utilizan operadores relacionales (comparaciones entre valores):
 
 3.5.1. Operador ==
 El operador == evalua que los valores sean iguales para varios tipos de datos.
@@ -166,12 +168,12 @@ El operador >= evalua si el valor del lado izquierdo es mayor o igual que el val
 >>> 5 >= 3
 True
 3.5.7. Ejemplos
-A continuación, se presentan algunos ejemplos de su uso:
+A continuaciï¿½n, se presentan algunos ejemplos de su uso:
 
-Ejemplo de definir variables numéricas
+Ejemplo de definir variables numï¿½ricas
 
 a, b, a1, b1, c1 = 5, 5, 7, 3, 3
-cadena1, cadena2 = 'Hola', 'Adiós'
+cadena1, cadena2 = 'Hola', 'Adiï¿½s'
 lista1, lista2 = [1, 'Lista Python', 23], [11, 'Lista Python', 23]
 Ejemplo de operador relacional Igual
 
