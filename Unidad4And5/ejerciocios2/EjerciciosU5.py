@@ -46,7 +46,9 @@ print("")
 
 # Formulas más complejas del tipo c = a op ( b op d)
 # ([A-Za-z0-9-_]=+\s*[A-Za-z0-9-_]+\s*[<,>,!,<=,>=,*,+,/,-]=+\s*([A-Za-z0-9-_]+\s*[<,>,!,<=,>=,*,+,/,-]+\s*[A-Za-z0-9-_]+\s*)+)
-patronCOMPLEJO = r'([A-Za-z0-9]+\s*=+\s*[A-Za-z0-9]+\s*[|<|>|!|<=|>=|\+|\-\*\/]\s*[(]+\s*[A-Za-z0-9]+\s*[|<|>|!|<=|>=|\+|\-\*\/]+\s*[A-Za-z0-9]+\s*[)])'
+#patronCOMPLEJO = r'([A-Za-z0-9]+\s*=+\s*[A-Za-z0-9]+\s*[|<|>|!|<=|>=|\+|\-\*\/]\s*[(]+\s*[A-Za-z0-9]+\s*[|<|>|!|<=|>=|\+|\-\*\/]+\s*[A-Za-z0-9]+\s*[)])'
+patronCOMPLEJO = r'([a-z0-9]+\s*[=]+\s*\(*\s*[a-z0-9]+\s*\)*\s*\(*\)*\s*[\+\-\*\/]\s*\(*\)*\s*[a-z0-9]+\s*[\+\-\*\/]\s*[a-z0-9]+\s*\(*\)*)'
+
 resultadoCOMPLEJO = re.findall(patronCOMPLEJO, texto)
 print("\n ENTRADA DE CUALQUIER OPERADOR, formula compleja:\n", resultadoCOMPLEJO)
 print("")
