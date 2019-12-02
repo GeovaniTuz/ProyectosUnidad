@@ -1,212 +1,191 @@
 # -*- coding: utf-8 -*-
-# desarollo de aanalizardor lexico
+import ply.yacc as yacc
+from mainlex import tokens
+#from mainlex import analizador
 
-import ply.lex as lex  # inportacion de librerias necesarias
-import re
+# resultado del analisis
+resultado_gramatica = []
 
-resultado_lexema = []
-
-
-tokens = [
-    # inicio y final
-    'TAGINICIO', 'TAG_FINAL',
-
-    'IDENTIFICADOR', 'ENTERO', 'ASIGNAR', 'SUMA', 'RESTA', 'MULT', 'DIV', 'POTENCIA', 'MODULO',
-    'MINUSMINUS', 'PLUSPLUS','PUNTOYCOMA','PUNTO','COMA','DECIMAL','VARIABLE','COMENTARIO',
-    # Condiones
-    'SI', 'SINO',
-    # Ciclos
-    'MIENTRAS', 'PARA',
-    # logica
-    'AND', 'OR', 'NOT', 'MENORQUE', 'MENORIGUAL', 'MAYORQUE', 'MAYORIGUAL', 'IGUAL', 'DISTINTO',
-    # Symbolos
-    'NUMERAL', 'PARIZQ', 'PARDER', 'CORIZQ', 'CORDER', 'LLAIZQ', 'LLADER'
-]
-
-# Reglas de Expresiones Regualres para token de Contexto simple
-#t_PUNTO = r'[+,-]?[[0-9]*[.]]?[0-9]+'
-#[+,-]?[[0-9]*[.]]?[0-9]+t__COMA = r'\,'
-t_PUNTOYCOMA = r';'
-t_SUMA = r'\+'
-t_RESTA = r'-'
-t_MINUSMINUS = r'\-\-'
-#t_PUNTO = r'\.'
-t_MULT = r'\*'
-t_DIV = r'/'
-t_MODULO = r'\%'
-t_POTENCIA = r'(\*{2} | \^)'
-t_ASIGNAR = r'='
-# Expresiones
-t_AND = r'\&\&'
-t_OR = r'\|{2}'
-t_NOT = r'\!'
-t_MENORQUE = r'<'
-t_MAYORQUE = r'>'
-t_PARIZQ = r'\('
-t_PARDER = r'\)'
-t_CORIZQ = r'\['
-t_CORDER = r'\]'
-t_LLAIZQ = r'{'
-t_LLADER = r'}'
-
-# --------------------------------------------------
-# desarrollo de tag_inicio y final
-# no solucionado
-
-# def t_TAGINICIO(t):
-#  r'(<+[php]>)'
-# return t
-
-# tag final
-# --------------------------------------------------
-
-def t_TAGINICIO(t):
-    r'(<+[\?+php]+)'
-    return t
-
-def t_TAG_FINAL(t):
-    r'([\?>]+)'
-    return t
-
-def t_DECIMAL(t):
-    r'([0-9][.]]?[0-9]+)'
-    return t
-
-def t_VARIABLE(t):
-    r'([\$]+[A-Za-z]+)'
-    return t
-
-def t_SINO(t):
-    r'else'
-    return t
+precedence = (
+    ('right', 'ASIGNAR'),
+    ('left', 'SUMA', 'RESTA'),
+    ('left', 'MULT', 'DIV'),
+    ('right', 'UMINUS'),
+)
+nombres = {}
 
 
-def t_SI(t):
-    r'if'
-    return t
+def p_declaracion_asignar(t):
+    'declaracion : IDENTIFICADOR ASIGNAR expresion PUNTOCOMA'
+    nombres[t[1]] = t[3]
 
 
-def t_RETURN(t):
-    r'return'
-    return t
+def p_declaracion_expr(t):
+    'declaracion : expresion'
+    # print("Resultado: " + str(t[1]))
+    t[0] = t[1]
 
 
-def t_VOID(t):
-    r'void'
-    return t
+def p_expresion_operaciones(t):
+    '''
+    expresion  :   expresion SUMA expresion
+                |   expresion RESTA expresion
+                |   expresion MULT expresion
+                |   expresion DIV expresion
+                |   expresion POTENCIA expresion
+                |   expresion MODULO expresion
+    '''
+    if t[2] == '+':
+        t[0] = t[1] + t[3]
+    elif t[2] == '-':
+        t[0] = t[1] - t[3]
+    elif t[2] == '*':
+        t[0] = t[1] * t[3]
+    elif t[2] == '/':
+        t[0] = t[1] / t[3]
+    elif t[2] == '%':
+        t[0] = t[1] % t[3]
+    elif t[2] == '**':
+        i = t[3]
+        t[0] = t[1]
+        while i > 1:
+            t[0] *= t[1]
+            i -= 1
 
 
-def t_MIENTRAS(t):
-    r'while'
-    return t
+def p_expresion_uminus(t):
+    'expresion : RESTA expresion %prec UMINUS'
+    t[0] = -t[2]
 
 
-def t_PARA(t):
-    r'for'
-    return t
+def p_expresion_grupo(t):
+    '''
+    expresion  : PARIZQ expresion PARDER
+                | LLAIZQ expresion LLADER
+                | CORIZQ expresion CORDER
+    '''
+    t[0] = t[2]
+# sintactico de expresiones logicas
 
 
-def t_ENTERO(t):
-    r'\d+'
-    t.value = int(t.value)
-    return t
+def p_expresion_logicas(t):
+    '''
+    expresion   :  expresion MENORQUE expresion 
+                |  expresion MAYORQUE expresion 
+                |  expresion MENORIGUAL expresion 
+                |   expresion MAYORIGUAL expresion 
+                |   expresion IGUAL expresion 
+                |   expresion DISTINTO expresion
+                |  PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+                |  PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+                |  PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER 
+                |  PARIZQ  expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+                |  PARIZQ  expresion PARDER IGUAL PARIZQ expresion PARDER
+                |  PARIZQ  expresion PARDER DISTINTO PARIZQ expresion PARDER
+    '''
+    if t[2] == "<":
+        t[0] = t[1] < t[3]
+    elif t[2] == ">":
+        t[0] = t[1] > t[3]
+    elif t[2] == "<=":
+        t[0] = t[1] <= t[3]
+    elif t[2] == ">=":
+        t[0] = t[1] >= t[3]
+    elif t[2] == "==":
+        t[0] = t[1] is t[3]
+    elif t[2] == "!=":
+        t[0] = t[1] != t[3]
+    elif t[3] == "<":
+        t[0] = t[2] < t[4]
+    elif t[2] == ">":
+        t[0] = t[2] > t[4]
+    elif t[3] == "<=":
+        t[0] = t[2] <= t[4]
+    elif t[3] == ">=":
+        t[0] = t[2] >= t[4]
+    elif t[3] == "==":
+        t[0] = t[2] is t[4]
+    elif t[3] == "!=":
+        t[0] = t[2] != t[4]
+
+    # print('logica ',[x for x in t])
+
+# gramatica de expresiones booleanadas
 
 
-def t_IDENTIFICADOR(t):
-    r'\w+(_\d\w)*'
-    return t
+def p_expresion_booleana(t):
+    '''
+    expresion   :   expresion AND expresion 
+                |   expresion OR expresion 
+                |   expresion NOT expresion 
+                |  PARIZQ expresion AND expresion PARDER
+                |  PARIZQ expresion OR expresion PARDER
+                |  PARIZQ expresion NOT expresion PARDER
+    '''
+    if t[2] == "&&":
+        t[0] = t[1] and t[3]
+    elif t[2] == "||":
+        t[0] = t[1] or t[3]
+    elif t[2] == "!":
+        t[0] = t[1] is not t[3]
+    elif t[3] == "&&":
+        t[0] = t[2] and t[4]
+    elif t[3] == "||":
+        t[0] = t[2] or t[4]
+    elif t[3] == "!":
+        t[0] = t[2] is not t[4]
 
 
-def t_CADENA(t):
-    r'\"?(\w+ \ *\w*\d* \ *)\"?'
-    return t
+def p_expresion_numero(t):
+    'expresion : ENTERO'
+    t[0] = t[1]
 
 
-def t_NUMERAL(t):
-    r'\#'
-    return t
+def p_expresion_cadena(t):
+    'expresion : COMDOB expresion COMDOB'
+    t[0] = t[2]
 
 
-def t_PLUSPLUS(t):
-    r'\+\+'
-    return t
+def p_expresion_nombre(t):
+    'expresion : IDENTIFICADOR'
+    try:
+        t[0] = nombres[t[1]]
+    except LookupError:
+        print("Nombre desconocido ", t[1])
+        t[0] = 0
 
 
-def t_MENORIGUAL(t):
-    r'<='
-    return t
+def p_error(t):
+    global resultado_gramatica
+    if t:
+        resultado = "Error sintactico de tipo {} en el valor {}".format(
+            str(t.type), str(t.value))
+        print(resultado)
+    else:
+        resultado = "Error sintactico {}".format(t)
+        print(resultado)
+    resultado_gramatica.append(resultado)
 
 
-def t_MAYORIGUAL(t):
-    r'>='
-    return t
+# instanciamos el analizador sistactico
+parser = yacc.yacc()
 
 
-def t_IGUAL(t):
-    r'=='
-    return t
+def prueba_sintactica(data):
+    global resultado_gramatica
 
 
-def t_MAYORDER(t):
-    r'<<'
-    return t
+    for item in data.splitlines():
+        if item:
+            gram = parser.parse(item)
+            if gram:
+                resultado_gramatica.append(str(gram))
+        else:
+            print("data vacia")
 
+    print("result: ", resultado_gramatica)
+    return resultado_gramatica
 
-def t_MAYORIZQ(t):
-    r'>>'
-    return t
-
-
-def t_DISTINTO(t):
-    r'!='
-    return t
-
-
-def t_newline(t):
-    r'\n+'
-    t.lexer.lineno += len(t.value)
-
-
-def t_COMENTARIO(t):
-    r'/\*(.|\n)*?\*/'
-    t.lexer.lineno += t.value.count('\n')
-    print("Comentario de multiple linea")
-
-
-def t_comments_ONELine(t):
-    r'\/\/(.)*\n'
-    t.lexer.lineno += 1
-    print("Comentario de una linea")
-
-
-t_ignore = ' \t'
-
-
-def t_error(t):
-    global resultado_lexema
-    estado = "** Token no valido en la Linea {:4} Valor {:4}".format(str(t.lineno), str(t.value)
-                                                                      )
-    resultado_lexema.append(estado)
-    t.lexer.skip(1)
-
-
-# Prueba de ingreso
-
-def prueba(data):
-    global resultado_lexema
-
-    analizador = lex.lex()
-    analizador.input(data)
-    while True:
-        tok = analizador.token()
-        if not tok:
-            break
-        # print("lexema de "+tok.type+" valor "+tok.value+" linea "tok.lineno)
-        estado = "Linea {:4} Tipo {:4} Valor {:4}".format(
-            str(tok.lineno), str(tok.type), str(tok.value))
-        resultado_lexema.append(estado)
-
-    return resultado_lexema
 
 
 # abrir archivo
@@ -222,6 +201,5 @@ except:
 text = ""
 for linea in archivo:
     text += linea
-prueba(text)
-print('\n'.join(list(map(''.join, resultado_lexema)))) #AL IMPRIMIR LOS DATOS, ESTO LO ORDENA DE MANERA ESTRUCTURADA
-
+prueba_sintactica(text)
+print('\n'.join(list(map(''.join, resultado_gramatica))))

@@ -1,0 +1,107 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    PARA
+    TAG_FINAL
+    SINO
+    NUMERAL
+    COMENTARIO
+    TAGINICIO
+    PUNTO
+    PLUSPLUS
+    DECIMAL
+    MIENTRAS
+    PUNTOYCOMA
+    COMA
+    MINUSMINUS
+    VARIABLE
+    SI
+
+Grammar
+
+Rule 0     S' -> declaracion
+Rule 1     declaracion -> IDENTIFICADOR ASIGNAR expresion PUNTOCOMA
+Rule 2     declaracion -> expresion
+Rule 3     expresion -> expresion SUMA expresion
+Rule 4     expresion -> expresion RESTA expresion
+Rule 5     expresion -> expresion MULT expresion
+Rule 6     expresion -> expresion DIV expresion
+Rule 7     expresion -> expresion POTENCIA expresion
+Rule 8     expresion -> expresion MODULO expresion
+Rule 9     expresion -> RESTA expresion
+Rule 10    expresion -> PARIZQ expresion PARDER
+Rule 11    expresion -> LLAIZQ expresion LLADER
+Rule 12    expresion -> CORIZQ expresion CORDER
+Rule 13    expresion -> expresion MENORQUE expresion
+Rule 14    expresion -> expresion MAYORQUE expresion
+Rule 15    expresion -> expresion MENORIGUAL expresion
+Rule 16    expresion -> expresion MAYORIGUAL expresion
+Rule 17    expresion -> expresion IGUAL expresion
+Rule 18    expresion -> expresion DISTINTO expresion
+Rule 19    expresion -> PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+Rule 20    expresion -> PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+Rule 21    expresion -> PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER
+Rule 22    expresion -> PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+Rule 23    expresion -> PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER
+Rule 24    expresion -> PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER
+Rule 25    expresion -> expresion AND expresion
+Rule 26    expresion -> expresion OR expresion
+Rule 27    expresion -> expresion NOT expresion
+Rule 28    expresion -> PARIZQ expresion AND expresion PARDER
+Rule 29    expresion -> PARIZQ expresion OR expresion PARDER
+Rule 30    expresion -> PARIZQ expresion NOT expresion PARDER
+Rule 31    expresion -> ENTERO
+Rule 32    expresion -> COMDOB expresion COMDOB
+Rule 33    expresion -> IDENTIFICADOR
+
+Terminals, with rules where they appear
+
+AND                  : 25 28
+ASIGNAR              : 1
+COMA                 : 
+COMENTARIO           : 
+CORDER               : 12
+CORIZQ               : 12
+DECIMAL              : 
+DISTINTO             : 18 24
+DIV                  : 6
+ENTERO               : 31
+IDENTIFICADOR        : 1 33
+IGUAL                : 17 23
+LLADER               : 11
+LLAIZQ               : 11
+MAYORIGUAL           : 16 22
+MAYORQUE             : 14 20
+MENORIGUAL           : 15 21
+MENORQUE             : 13 19
+MIENTRAS             : 
+MINUSMINUS           : 
+MODULO               : 8
+MULT                 : 5
+NOT                  : 27 30
+NUMERAL              : 
+OR                   : 26 29
+PARA                 : 
+PARDER               : 10 19 19 20 20 21 21 22 22 23 23 24 24 28 29 30
+PARIZQ               : 10 19 19 20 20 21 21 22 22 23 23 24 24 28 29 30
+PLUSPLUS             : 
+POTENCIA             : 7
+PUNTO                : 
+PUNTOYCOMA           : 
+RESTA                : 4 9
+SI                   : 
+SINO                 : 
+SUMA                 : 3
+TAGINICIO            : 
+TAG_FINAL            : 
+VARIABLE             : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+COMDOB               : 32 32
+PUNTOCOMA            : 1
+declaracion          : 0
+expresion            : 1 2 3 3 4 4 5 5 6 6 7 7 8 8 9 10 11 12 13 13 14 14 15 15 16 16 17 17 18 18 19 19 20 20 21 21 22 22 23 23 24 24 25 25 26 26 27 27 28 28 29 29 30 30 32
+
