@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import ply.yacc as yacc
 from mainlex import tokens
+
 #from mainlex import analizador
 
 # resultado del analisis
@@ -168,12 +169,11 @@ def p_error(t):
 
 
 # instanciamos el analizador sistactico
-parser = yacc.yacc()
+    parser = yacc.yacc()
 
 
 def prueba_sintactica(data):
     global resultado_gramatica
-
 
     for item in data.splitlines():
         if item:
@@ -187,9 +187,8 @@ def prueba_sintactica(data):
     return resultado_gramatica
 
 
-
 # abrir archivo
-analizador = lex.lex()
+#analizador = lex.lex()
 path = "index.php"
 
 try:
@@ -199,7 +198,8 @@ except:
     quit()
 
 text = ""
-for linea in archivo:
-    text += linea
+# for linea in archivo:
+#   text += linea
+
 prueba_sintactica(text)
 print('\n'.join(list(map(''.join, resultado_gramatica))))
