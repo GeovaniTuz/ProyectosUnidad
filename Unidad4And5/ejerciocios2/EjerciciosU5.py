@@ -58,9 +58,9 @@ print("")
 
 # El encabezado de estructura de control. if, while, for, etc.
 patronFOR = r'(for+\s*[A-Za-z0-9-_]+\s*[in]+\s*[A-Za-z0-9-_]+\s*:)'
-patronWHILE = r'(while+\s*[A-Za-z0-9-_]+\s*[|<|>|!|<=|>=]=+\s*[A-Za-z0-9-_]+\s*:)'
+patronWHILE = r'(while+\s*[A-Za-z0-9-_]+\s*[=|<|>|!|<=|>=]+\s*[A-Za-z0-9-_]+\s*:)'
 patronIF = r'(if+\s*[A-Za-z0-9-_]+\s*[|<|>|!|<=|>=]=+\s*[A-Za-z0-9-_]+\s*:)'
-patronTRY = r'(try:+\s*[A-Za-z0-9-_]+\s*except+\s*[A-Za-z0-9-_]+\s*:)'
+patronTRY = r'(try:\n+\s*[A-Za-z0-9-_\(\)]+\n+\s*except:\n+\s*[A-Za-z0-9-_\(\)\"]+\s*)'
 resultadoFOR = re.findall(patronFOR, texto)
 resultadoWHILE = re.findall(patronWHILE, texto)
 resultadoIF = re.findall(patronIF, texto)

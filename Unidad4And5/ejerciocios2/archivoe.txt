@@ -91,6 +91,10 @@ Si una variable no se ha definido previamente, escribir su nombre genera un mens
  x = -10
  y = 13
 
+while patata >= zanahoria:
+
+
+
 
 
 #LA SANGRIA ES IMPORTANTE PARA EL CODIGO
@@ -111,6 +115,9 @@ for linea in archivo:
 
 print(texto)
 
+if calificacion == 10:
+
+
 
 patron = r"\w+"
 result = re.findall(patron,texto) # la re --> identifica una expresion regular
@@ -130,6 +137,11 @@ Los valores booleanos son adem�s el resultado de expresiones que utilizan oper
 
 3.5.1. Operador ==
 El operador == evalua que los valores sean iguales para varios tipos de datos.
+
+try:
+  print(x)
+except:
+  print("Error")
 
 >>> 5 == 3
 False
