@@ -21,6 +21,22 @@ def p_declaracion_asignar(t):
     'declaracion : IDENTIFICADOR ASIGNAR expresion PUNTOCOMA'
     nombres[t[1]] = t[3]
 
+def p_declaraxion_taginicio(p):
+    'declaracion : TAGINICIO'
+    print("Inicio de sintaxis PHP")
+
+def p_declaraxion_aribasis(p):
+    'declaracion : ARIBASIS'
+    print("basico")
+
+
+def p_declaraxion_ARIAVANZ(p):
+    'declaracion : ARIAVANZ'
+    print("avanzado")
+
+def p_declaraxion_tag_final(p):
+    'declaracion : TAG_FINAL'
+    print("Final de sintaxis")
 
 def p_declaracion_expr(t):
     'declaracion : expresion'
@@ -75,11 +91,13 @@ def p_expresion_numero(t):
     'expresion : ENTERO'
     t[0] = t[1]
 
+def p_expresion_decimal(t):
+    'expresion : DECIMAL expresion DECIMAL'
+    t[0] = t[1]
 
 def p_expresion_cadena(t):
     'expresion : COMDOB expresion COMDOB'
     t[0] = t[2]
-
 
 def p_expresion_nombre(t):
     'expresion : IDENTIFICADOR'
@@ -114,6 +132,10 @@ def prueba_sintactica(data):
     global resultado_gramatica
    # resultado_gramatica.clear()
 
+    print('-------------------------------------------------')
+    print('-----Resultado del patron encontrado-------------')
+    print('-------------------------------------------------')
+    print('')
     for item in data.splitlines():
         if item:
             gram = parser.parse(item)
@@ -122,7 +144,7 @@ def prueba_sintactica(data):
         else:
             print("")
 
-   # print("result: ", resultado_gramatica)
+    #print("result: ", resultado_gramatica)
     return resultado_gramatica
 path = "index.php"
 
@@ -139,7 +161,7 @@ for linea in archivo:
 prueba_sintactica(text)
 
 ## agregamos un pratron
-patronsin = r'09'
+patronsin = r'[a-zA-Z]'
 #se analiza con el patron
 resultadoCOMPLEJO = re.findall(patronsin, text)
 
@@ -149,12 +171,26 @@ resultadoCOMPLEJO = re.findall(patronsin, text)
 #print(''.join(list(map(''.join, text))))
 
 # se imprime el patron 
-print("", resultadoCOMPLEJO)
+print('-------------------------------------------------')
+print('------------Patron encontrado--------------------')
+print('-------------------------------------------------')
+print('')
+print("Avanzado", resultadoCOMPLEJO)
+print('')
+print("Basico", resultadoCOMPLEJO)
 print('')
 
 # aqui se imprime los resultados de la operacion
+print('-------------------------------------------------')
+print('-----contenido del archivo index.php-------------')
+print('-------------------------------------------------')
+print('')
 print(''.join(list(map(''.join, text))))
 print('')
+
+print('-------------------------------------------------')
+print('--------resultados de la operaciones-------------')
+print('-------------------------------------------------')
 print('\n'.join(list(map(''.join, resultado_gramatica))))
 
 
@@ -162,6 +198,6 @@ print('\n'.join(list(map(''.join, resultado_gramatica))))
 
 #2.-falta: la estrutura de control {if}{else}
 
-#3.-ver detalles que acepte el lenguaje php, ahora solo hace operaciones arimeticas{termino de hacer esto}
+#3.-solo falta resta
 
 #solo faltan estos tres puntos, agaren uno para terminar

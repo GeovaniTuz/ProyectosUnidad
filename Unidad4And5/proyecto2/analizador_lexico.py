@@ -22,6 +22,7 @@ tokens = reservada + (
     'IDENTIFICADOR',
     'ENTERO',
     'ASIGNAR',
+    'TAGINICIO', 'TAG_FINAL', 'ARIBASIS', 'ARIAVANZ',
 
     'SUMA',
     'RESTA',
@@ -32,6 +33,7 @@ tokens = reservada + (
 
    'MINUSMINUS',
    'PLUSPLUS',
+   'DECIMAL',
 
     #Condiones
    'SI',
@@ -95,10 +97,31 @@ t_LLAIZQ = r'{'
 t_LLADER = r'}'
 t_COMDOB = r'\"'
 
+#'ARIBASIS', 'ARIAVANZ',
 
+def t_ARIBASIS(t):
+    r'\$[a-zA-Z]+\s*\=\s*\w+.?\d*\s*[*|+|/|-]\s*\w+.?\d*'
+    return t
+
+def t_ARIAVANZ(t):
+    r'\$\w+\s*\=\s*\w+.?\d*\s*[*|+|/|-]\s*[(]{1}\w+.?\d*\s*[*|+|/|-]\s*\w+.?\d*[)]'
+    return t
+
+def t_TAGINICIO(t):
+    r'(<+[\?+php]+)'
+    return t
+
+
+def t_TAG_FINAL(t):
+    r'([\?>]+)'
+    return t
 
 def t_INCLUDE(t):
     r'include'
+    return t
+
+def t_DECIMAL(t):
+    r'([0-9][.]]?[0-9]+)'
     return t
 
 def t_USING(t):
