@@ -16,6 +16,9 @@ precedence = (
 )
 nombres = {}
 
+def p_declaracion_decimal(p):
+    'declaracion : DECIMAL'
+    print("decimal")
 
 def p_declaracion_asignar(t):
     'declaracion : IDENTIFICADOR ASIGNAR expresion PUNTOCOMA'
@@ -24,15 +27,6 @@ def p_declaracion_asignar(t):
 def p_declaraxion_taginicio(p):
     'declaracion : TAGINICIO'
     print("Inicio de sintaxis PHP")
-
-def p_declaraxion_aribasis(p):
-    'declaracion : ARIBASIS'
-    print("basico")
-
-
-def p_declaraxion_ARIAVANZ(p):
-    'declaracion : ARIAVANZ'
-    print("avanzado")
 
 def p_declaraxion_tag_final(p):
     'declaracion : TAG_FINAL'

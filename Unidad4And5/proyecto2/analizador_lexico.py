@@ -99,18 +99,17 @@ t_COMDOB = r'\"'
 
 #'ARIBASIS', 'ARIAVANZ',
 
-def t_ARIBASIS(t):
-    r'\$[a-zA-Z]+\s*\=\s*\w+.?\d*\s*[*|+|/|-]\s*\w+.?\d*'
-    return t
+#def t_ARIBASIS(t):
+ #   r'\$[a-zA-Z]+\s*\=\s*\w+.?\d*\s*[*|+|/|-]\s*\w+.?\d*'
+    #return t
 
-def t_ARIAVANZ(t):
-    r'\$\w+\s*\=\s*\w+.?\d*\s*[*|+|/|-]\s*[(]{1}\w+.?\d*\s*[*|+|/|-]\s*\w+.?\d*[)]'
-    return t
+#def t_ARIAVANZ(t):
+   # r'\$\w+\s*\=\s*\w+.?\d*\s*[*|+|/|-]\s*[(]{1}\w+.?\d*\s*[*|+|/|-]\s*\w+.?\d*[)]'
+   # return t
 
 def t_TAGINICIO(t):
     r'(<+[\?+php]+)'
     return t
-
 
 def t_TAG_FINAL(t):
     r'([\?>]+)'
