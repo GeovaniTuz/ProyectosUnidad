@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 import ply.yacc as yacc
-from mainlex import tokens
-
-#from mainlex import analizador
+from analizador_lexico import tokens
+from analizador_lexico import analizador
+import ply.lex as lex  # inportacion de librerias necesarias
+import re
 
 # resultado del analisis
 resultado_gramatica = []
@@ -35,6 +36,7 @@ def p_expresion_operaciones(t):
                 |   expresion DIV expresion
                 |   expresion POTENCIA expresion
                 |   expresion MODULO expresion
+
     '''
     if t[2] == '+':
         t[0] = t[1] + t[3]
@@ -69,74 +71,6 @@ def p_expresion_grupo(t):
 # sintactico de expresiones logicas
 
 
-def p_expresion_logicas(t):
-    '''
-    expresion   :  expresion MENORQUE expresion 
-                |  expresion MAYORQUE expresion 
-                |  expresion MENORIGUAL expresion 
-                |   expresion MAYORIGUAL expresion 
-                |   expresion IGUAL expresion 
-                |   expresion DISTINTO expresion
-                |  PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
-                |  PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
-                |  PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER 
-                |  PARIZQ  expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
-                |  PARIZQ  expresion PARDER IGUAL PARIZQ expresion PARDER
-                |  PARIZQ  expresion PARDER DISTINTO PARIZQ expresion PARDER
-    '''
-    if t[2] == "<":
-        t[0] = t[1] < t[3]
-    elif t[2] == ">":
-        t[0] = t[1] > t[3]
-    elif t[2] == "<=":
-        t[0] = t[1] <= t[3]
-    elif t[2] == ">=":
-        t[0] = t[1] >= t[3]
-    elif t[2] == "==":
-        t[0] = t[1] is t[3]
-    elif t[2] == "!=":
-        t[0] = t[1] != t[3]
-    elif t[3] == "<":
-        t[0] = t[2] < t[4]
-    elif t[2] == ">":
-        t[0] = t[2] > t[4]
-    elif t[3] == "<=":
-        t[0] = t[2] <= t[4]
-    elif t[3] == ">=":
-        t[0] = t[2] >= t[4]
-    elif t[3] == "==":
-        t[0] = t[2] is t[4]
-    elif t[3] == "!=":
-        t[0] = t[2] != t[4]
-
-    # print('logica ',[x for x in t])
-
-# gramatica de expresiones booleanadas
-
-
-def p_expresion_booleana(t):
-    '''
-    expresion   :   expresion AND expresion 
-                |   expresion OR expresion 
-                |   expresion NOT expresion 
-                |  PARIZQ expresion AND expresion PARDER
-                |  PARIZQ expresion OR expresion PARDER
-                |  PARIZQ expresion NOT expresion PARDER
-    '''
-    if t[2] == "&&":
-        t[0] = t[1] and t[3]
-    elif t[2] == "||":
-        t[0] = t[1] or t[3]
-    elif t[2] == "!":
-        t[0] = t[1] is not t[3]
-    elif t[3] == "&&":
-        t[0] = t[2] and t[4]
-    elif t[3] == "||":
-        t[0] = t[2] or t[4]
-    elif t[3] == "!":
-        t[0] = t[2] is not t[4]
-
-
 def p_expresion_numero(t):
     'expresion : ENTERO'
     t[0] = t[1]
@@ -159,8 +93,12 @@ def p_expresion_nombre(t):
 def p_error(t):
     global resultado_gramatica
     if t:
-        resultado = "Error sintactico de tipo {} en el valor {}".format(
-            str(t.type), str(t.value))
+        #type: es para el tipo
+        #value:valor que hace que falle
+        #lineno: es para que linea pertenece
+        #lexpos: para la posicion donde se encuentra
+        resultado = "Error sintactico de tipo {} en el valor {} de linea {}".format(
+            str(t.type), str(t.value), str(t.lineno))
         print(resultado)
     else:
         resultado = "Error sintactico {}".format(t)
@@ -169,11 +107,12 @@ def p_error(t):
 
 
 # instanciamos el analizador sistactico
-    parser = yacc.yacc()
+parser = yacc.yacc()
 
 
 def prueba_sintactica(data):
     global resultado_gramatica
+   # resultado_gramatica.clear()
 
     for item in data.splitlines():
         if item:
@@ -181,14 +120,10 @@ def prueba_sintactica(data):
             if gram:
                 resultado_gramatica.append(str(gram))
         else:
-            print("data vacia")
+            print("")
 
-    print("result: ", resultado_gramatica)
+   # print("result: ", resultado_gramatica)
     return resultado_gramatica
-
-
-# abrir archivo
-#analizador = lex.lex()
 path = "index.php"
 
 try:
@@ -198,8 +133,35 @@ except:
     quit()
 
 text = ""
-# for linea in archivo:
-#   text += linea
+for linea in archivo:
+   text += linea
 
 prueba_sintactica(text)
+
+## agregamos un pratron
+patronsin = r'09'
+#se analiza con el patron
+resultadoCOMPLEJO = re.findall(patronsin, text)
+
+
+
+#print ("avanzado", text)
+#print(''.join(list(map(''.join, text))))
+
+# se imprime el patron 
+print("", resultadoCOMPLEJO)
+print('')
+
+# aqui se imprime los resultados de la operacion
+print(''.join(list(map(''.join, text))))
+print('')
 print('\n'.join(list(map(''.join, resultado_gramatica))))
+
+
+#1.-agregar patrones para saber si es una operacion basica o avanzada
+
+#2.-falta: la estrutura de control {if}{else}
+
+#3.-ver detalles que acepte el lenguaje php, ahora solo hace operaciones arimeticas{termino de hacer esto}
+
+#solo faltan estos tres puntos, agaren uno para terminar
