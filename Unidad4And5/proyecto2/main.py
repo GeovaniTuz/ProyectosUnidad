@@ -79,7 +79,75 @@ def p_expresion_grupo(t):
     '''
     t[0] = t[2]
 # sintactico de expresiones logicas
+# sintactico de expresiones logicas
 
+
+def p_expresion_logicas(t):
+    '''
+    expresion   :  expresion MENORQUE expresion 
+                |  expresion MAYORQUE expresion 
+                |  expresion MENORIGUAL expresion 
+                |   expresion MAYORIGUAL expresion 
+                |   expresion IGUAL expresion 
+                |   expresion DISTINTO expresion
+                |  PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+                |  PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+                |  PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER 
+                |  PARIZQ  expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+                |  PARIZQ  expresion PARDER IGUAL PARIZQ expresion PARDER
+                |  PARIZQ  expresion PARDER DISTINTO PARIZQ expresion PARDER
+    '''
+    if t[2] == "<":
+        t[0] = t[1] < t[3]
+    elif t[2] == ">":
+        t[0] = t[1] > t[3]
+    elif t[2] == "<=":
+        t[0] = t[1] <= t[3]
+    elif t[2] == ">=":
+        t[0] = t[1] >= t[3]
+    elif t[2] == "==":
+        t[0] = t[1] is t[3]
+    elif t[2] == "!=":
+        t[0] = t[1] != t[3]
+    elif t[3] == "<":
+        t[0] = t[2] < t[4]
+    elif t[2] == ">":
+        t[0] = t[2] > t[4]
+    elif t[3] == "<=":
+        t[0] = t[2] <= t[4]
+    elif t[3] == ">=":
+        t[0] = t[2] >= t[4]
+    elif t[3] == "==":
+        t[0] = t[2] is t[4]
+    elif t[3] == "!=":
+        t[0] = t[2] != t[4]
+
+    # print('logica ',[x for x in t])
+
+# gramatica de expresiones booleanadas
+
+
+def p_expresion_booleana(t):
+    '''
+    expresion   :   expresion AND expresion 
+                |   expresion OR expresion 
+                |   expresion NOT expresion 
+                |  PARIZQ expresion AND expresion PARDER
+                |  PARIZQ expresion OR expresion PARDER
+                |  PARIZQ expresion NOT expresion PARDER
+    '''
+    if t[2] == "&&":
+        t[0] = t[1] and t[3]
+    elif t[2] == "||":
+        t[0] = t[1] or t[3]
+    elif t[2] == "!":
+        t[0] = t[1] is not t[3]
+    elif t[3] == "&&":
+        t[0] = t[2] and t[4]
+    elif t[3] == "||":
+        t[0] = t[2] or t[4]
+    elif t[3] == "!":
+        t[0] = t[2] is not t[4]
 
 def p_expresion_numero(t):
     'expresion : ENTERO'
