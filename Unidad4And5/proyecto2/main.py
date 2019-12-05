@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import ply.yacc as yacc
 from analizador_lexico import tokens
-from analizador_lexico import analizador
+#from analizador_lexico import analizador
 import ply.lex as lex  # inportacion de librerias necesarias
 import re
 
@@ -12,13 +12,9 @@ precedence = (
     ('right', 'ASIGNAR'),
     ('left', 'SUMA', 'RESTA'),
     ('left', 'MULT', 'DIV'),
-    ('right', 'UMINUS'),
+    ('right', 'UMINUS',),
 )
 nombres = {}
-
-def p_declaracion_decimal(t):
-    'declaracion : DECIMAL'
-    print("decimal")
 
 def p_declaracion_asignar(t):
     'declaracion : IDENTIFICADOR ASIGNAR expresion PUNTOCOMA'
@@ -153,6 +149,10 @@ def p_expresion_numero(t):
     'expresion : ENTERO'
     t[0] = t[1]
 
+def p_expresion_decimal(t):
+    'expresion : DECIMAL'
+    t[0] = t[1]
+
 def p_expresion_cadena(t):
     'expresion : COMDOB expresion COMDOB'
     t[0] = t[2]
@@ -221,24 +221,23 @@ prueba_sintactica(text)
 ## agregamos un pratron
 #ESTA TOMANDO LOS VALORES QUE ENCUENTRE COMO UNA EXPRESION BASICA DE DOS NUMEROS REALIZANDO UNA OPERACION
 #([\$?][a-z0-9|0-9.0-9]+\s*[\+|\-|\*|\/]+\s*[\$]?[a-z0-9-_|0-9.0-9]+)
-
-# BUSQUEDA DE LETRAS DE PATRON BASICO
+#LOS DOS FUNCIONAN PERO DETALLES ES --> SEPARACION DE LETRAS Y NUMEROS
 patronbasico = r'[\$?][a-z|0-9.0-9]+\s*[\+|\-|\*|\/]+\s*[\$]?[a-z|0-9.0-9]+'
-# BUSQUEDA DE NUMEROS DE PATRON BASICO
-patronbasicoN = r'[[1-9]\s[+|\-|\*|\/\][1-9]\s[+|\-|\*|\/]*[1-9]'
-
-
-# BUSQUEDA DE LETRAS DE PATRON AVANZADO 
-patronavanzado = r'[0-9*\+|\-|\*|\/0-9\+|\-|\*|\/\*0-9]'
-#[0-9\s*\+|\-|\*|\/\s*0-9]+\s*[(?][0-9\s*\+|\-|\*|\/\s*0-9]+[)?]
-# BUSQUEDA DE NUMEROS DE PATRON AVANZADO
-patronavanzadoN = r''
-
+patronBLetra = r'[\$?][a-z]+\s*[\+|\-|\*|\/]+\s*[\$]?[a-z]+'
+patronBNum = r'[0-9.0-9]+\s*[\+|\-|\*|\/]+\s*[0-9.0-9]+'
+#funciona pero tiene detalles --> SEPARACION DE NUMEROS CON LETRAS
+patronavanzado = r'[\$?][a-z|0-9.0-9\s*\+|\-|\*|\/\s*\$?a-z|0-9.0-9]+\s*[(?][\$?a-z|0-9.0-9\s*\+|\-|\*|\/\s*\$?a-z|0-9.0-9]+[)?]'
+patronALetra = r'[\$?][a-z\s*\+|\-|\*|\/\s*\$?a-z|]+\s*[(?][\$?a-z\s*\+|\-|\*|\/\s*\$?a-z]+[)?]'
+patronANum = r'[0-9.0-9\s*\+|\-|\*|\/\s*0-9.0-9]+\s*[(?][0-9.0-9\s*\+|\-|\*|\/\s*0-9.0-9]+[)?]'
+patrooo  = r'\d+\.\d+'
 #se analiza con el patron
-resultadobasico = re.findall(patronbasico, text)#basico letra
-resultadoavanzado = re.findall(patronavanzado,text)# avanzado letras
-resultadoavanzadoN = re.findall(patronavanzadoN,text)# avanzado  numeros
-resultadobasicoN = re.findall(patronbasicoN, text)# basico numeros
+resultadobasico = re.findall(patronbasico, text)
+resultadoBLetra = re.findall(patronBLetra, text)
+resultadoBNum = re.findall(patronBNum, text)
+resultadoavanzado = re.findall(patronavanzado,text)
+resultadoALetra = re.findall(patronALetra, text)
+resultadoANum = re.findall(patronANum, text)
+resultado = re.findall(patrooo, text)
 
 
 #print ("avanzado", text)
@@ -249,10 +248,11 @@ print('-------------------------------------------------')
 print('------------Patron encontrado--------------------')
 print('-------------------------------------------------')
 print('')
-print("Avanzado",resultadoavanzado, resultadoavanzadoN)
+print("Avanzado", resultadoavanzado, resultadoALetra, resultadoANum)
 print('')
-print("Basico", resultadobasico ,resultadobasicoN)
+print("Basico", resultadobasico, resultadoBLetra, resultadoBNum)
 print('')
+print(resultado)
 
 # aqui se imprime los resultados de la operacion
 print('-------------------------------------------------')

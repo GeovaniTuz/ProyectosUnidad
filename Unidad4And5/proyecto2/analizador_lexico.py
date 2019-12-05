@@ -119,9 +119,7 @@ def t_INCLUDE(t):
     r'include'
     return t
 
-def t_DECIMAL(t):
-    r'([0-9][.]?[0-9]+)'
-    return t
+
 
 def t_USING(t):
     r'using'
@@ -179,6 +177,12 @@ def t_ENTERO(t):
     r'\d+'
     t.value = int(t.value)
     return t
+
+def t_DECIMAL(t):
+    r'\d+\.\d+'
+    t.value = float(t.value)
+    return t
+
 
 def t_IDENTIFICADOR(t):
     r'\w+(_\d\w)*'
@@ -262,8 +266,3 @@ def prueba(data):
  # instanciamos el analizador lexico
 analizador = lex.lex()
 
-if __name__ == '__main__':
-    while True:
-        data = input("ingrese: ")
-        prueba(data)
-        print(resultado_lexema)
