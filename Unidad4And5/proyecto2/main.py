@@ -153,13 +153,24 @@ prueba_sintactica(text)
 ## agregamos un pratron
 #ESTA TOMANDO LOS VALORES QUE ENCUENTRE COMO UNA EXPRESION BASICA DE DOS NUMEROS REALIZANDO UNA OPERACION
 #([\$?][a-z0-9|0-9.0-9]+\s*[\+|\-|\*|\/]+\s*[\$]?[a-z0-9-_|0-9.0-9]+)
-#LOS DOS FUNCIONAN PERO DETALLES ES --> SEPARACION DE LETRAS Y NUMEROS
+
+# BUSQUEDA DE LETRAS DE PATRON BASICO
 patronbasico = r'[\$?][a-z|0-9.0-9]+\s*[\+|\-|\*|\/]+\s*[\$]?[a-z|0-9.0-9]+'
-#funciona pero tiene detalles --> SEPARACION DE NUMEROS CON LETRAS
-patronavanzado = r'[\$?][a-z|0-9.0-9\s*\+|\-|\*|\/\s*\$?a-z|0-9.0-9]+\s*[(?][\$?a-z|0-9.0-9\s*\+|\-|\*|\/\s*\$?a-z|0-9.0-9]+[)?]'
+# BUSQUEDA DE NUMEROS DE PATRON BASICO
+patronbasicoN = r'[[1-9]\s[+|\-|\*|\/\][1-9]\s[+|\-|\*|\/]*[1-9]'
+
+
+# BUSQUEDA DE LETRAS DE PATRON AVANZADO 
+patronavanzado = r'[0-9*\+|\-|\*|\/0-9\+|\-|\*|\/\*0-9]'
+#[0-9\s*\+|\-|\*|\/\s*0-9]+\s*[(?][0-9\s*\+|\-|\*|\/\s*0-9]+[)?]
+# BUSQUEDA DE NUMEROS DE PATRON AVANZADO
+patronavanzadoN = r''
+
 #se analiza con el patron
-resultadobasico = re.findall(patronbasico, text)
-resultadoavanzado = re.findall(patronavanzado,text)
+resultadobasico = re.findall(patronbasico, text)#basico letra
+resultadoavanzado = re.findall(patronavanzado,text)# avanzado letras
+resultadoavanzadoN = re.findall(patronavanzadoN,text)# avanzado  numeros
+resultadobasicoN = re.findall(patronbasicoN, text)# basico numeros
 
 
 #print ("avanzado", text)
@@ -170,9 +181,9 @@ print('-------------------------------------------------')
 print('------------Patron encontrado--------------------')
 print('-------------------------------------------------')
 print('')
-print("Avanzado", resultadoavanzado)
+print("Avanzado",resultadoavanzado, resultadoavanzadoN)
 print('')
-print("Basico", resultadobasico)
+print("Basico", resultadobasico ,resultadobasicoN)
 print('')
 
 # aqui se imprime los resultados de la operacion
