@@ -16,7 +16,7 @@ precedence = (
 )
 nombres = {}
 
-def p_declaracion_decimal(p):
+def p_declaracion_decimal(t):
     'declaracion : DECIMAL'
     print("decimal")
 
@@ -85,10 +85,6 @@ def p_expresion_numero(t):
     'expresion : ENTERO'
     t[0] = t[1]
 
-def p_expresion_decimal(t):
-    'expresion : DECIMAL expresion DECIMAL'
-    t[0] = t[1]
-
 def p_expresion_cadena(t):
     'expresion : COMDOB expresion COMDOB'
     t[0] = t[2]
@@ -155,10 +151,16 @@ for linea in archivo:
 prueba_sintactica(text)
 
 ## agregamos un pratron
-patronsin = r'[a-zA-Z]'
+#ESTA TOMANDO LOS VALORES QUE ENCUENTRE COMO UNA EXPRESION BASICA DE DOS NUMEROS REALIZANDO UNA OPERACION
+#[\$?][a-z0-9|0-9.0-9]+\s*[\+|\-|\*|\/]+\s*[\$?][a-z0-9-_|0-9.0-9]+
+#TOMA
+patronbasico = r'[\$]?[a-z0-9|0-9.0-9]+\s*[\+|\-|\*|\/]+\s*[\$]?[a-z0-9-_|0-9.0-9]+'
+#$a - $b * ( $c + $d)
+#reconoce las variables y numeros pero no parentesis --> ([\$?]+[a-z]+|[0-9]+\[\+|\-|\*|\/]+)
+patronavanzado = r'[\$]?[a-z|0-9.0-9]+\[\+|\-|\*|\/]+[(][\$]?[a-z|0-9.0-9]+\[\+|\-|\*|\/]+[\$]?[a-z|0-9.0-9][)]+'
 #se analiza con el patron
-resultadoCOMPLEJO = re.findall(patronsin, text)
-
+resultadobasico = re.findall(patronbasico, text)
+resultadoavanzado = re.findall(patronavanzado,text)
 
 
 #print ("avanzado", text)
@@ -169,9 +171,9 @@ print('-------------------------------------------------')
 print('------------Patron encontrado--------------------')
 print('-------------------------------------------------')
 print('')
-print("Avanzado", resultadoCOMPLEJO)
+print("Avanzado", resultadoavanzado)
 print('')
-print("Basico", resultadoCOMPLEJO)
+print("Basico", resultadobasico)
 print('')
 
 # aqui se imprime los resultados de la operacion

@@ -120,7 +120,7 @@ def t_INCLUDE(t):
     return t
 
 def t_DECIMAL(t):
-    r'([0-9][.]]?[0-9]+)'
+    r'([0-9][.]?[0-9]+)'
     return t
 
 def t_USING(t):
