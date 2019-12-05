@@ -152,12 +152,11 @@ prueba_sintactica(text)
 
 ## agregamos un pratron
 #ESTA TOMANDO LOS VALORES QUE ENCUENTRE COMO UNA EXPRESION BASICA DE DOS NUMEROS REALIZANDO UNA OPERACION
-#[\$?][a-z0-9|0-9.0-9]+\s*[\+|\-|\*|\/]+\s*[\$?][a-z0-9-_|0-9.0-9]+
-#TOMA
-patronbasico = r'[\$]?[a-z0-9|0-9.0-9]+\s*[\+|\-|\*|\/]+\s*[\$]?[a-z0-9-_|0-9.0-9]+'
-#$a - $b * ( $c + $d)
-#reconoce las variables y numeros pero no parentesis --> ([\$?]+[a-z]+|[0-9]+\[\+|\-|\*|\/]+)
-patronavanzado = r'[\$]?[a-z|0-9.0-9]+\[\+|\-|\*|\/]+[(][\$]?[a-z|0-9.0-9]+\[\+|\-|\*|\/]+[\$]?[a-z|0-9.0-9][)]+'
+#([\$?][a-z0-9|0-9.0-9]+\s*[\+|\-|\*|\/]+\s*[\$]?[a-z0-9-_|0-9.0-9]+)
+#LOS DOS FUNCIONAN PERO DETALLES ES --> SEPARACION DE LETRAS Y NUMEROS
+patronbasico = r'[\$?][a-z|0-9.0-9]+\s*[\+|\-|\*|\/]+\s*[\$]?[a-z|0-9.0-9]+'
+#funciona pero tiene detalles --> SEPARACION DE NUMEROS CON LETRAS
+patronavanzado = r'[\$?][a-z|0-9.0-9\s*\+|\-|\*|\/\s*\$?a-z|0-9.0-9]+\s*[(?][\$?a-z|0-9.0-9\s*\+|\-|\*|\/\s*\$?a-z|0-9.0-9]+[)?]'
 #se analiza con el patron
 resultadobasico = re.findall(patronbasico, text)
 resultadoavanzado = re.findall(patronavanzado,text)
