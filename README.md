@@ -4,7 +4,7 @@
 #hacer tokens de inicio(<php>) y final de php
 #ordenar salida 
 
-
+****** PATRON AVANZADO --> DETALLLES *****
 
 https://github.com/maryito/Analisis-lexico-sintactico-Python/blob/master/analizador_lexico.py
 
