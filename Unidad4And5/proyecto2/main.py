@@ -9,8 +9,12 @@ import re
 resultado_gramatica = []
 
 # se declara que se debe de hacer
+# ejemplo de uso
+# <-- --> -->
+# $a = 2 ;
 precedence = (
     ('right', 'ASIGNAR'),
+    ('right', 'PUNTOYCOMA'),
     ('left', 'SUMA', 'RESTA'),
     ('left', 'MULT', 'DIV'),
     ('right', 'UMINUS'),
@@ -24,7 +28,7 @@ nombres = {}
 
 # se definde como debe de funcionar
 def p_declaracion_asignar(t):
-    'declaracion : VARIABLE ASIGNAR expresion PUNTOYCOMA '
+    'declaracion : VARIABLE ASIGNAR expresion PUNTOYCOMA'
     nombres[t[1]] = t[3]
 
 # def p_declaracion_asignar(t):
@@ -49,7 +53,7 @@ def p_declaracion_taginicio(t):
 
 
 def p_declaracion_expr(t):
-    'declaracion : expresion'
+    'declaracion : expresion PUNTOYCOMA'
     # print("Resultado: " + str(t[1]))
     t[0] = t[1]
 
@@ -89,7 +93,7 @@ def p_expresion_uminus(t):
 
 def p_expresion_grupo(t):
     '''
-    expresion  : PARIZQ expresion PARDER
+    expresion  : PARIZQ expresion PARDER 
                 | LLAIZQ expresion LLADER
                 | CORIZQ expresion CORDER
     '''
@@ -129,12 +133,12 @@ def p_error(t):
         # value:valor que hace que falle
         # lineno: es para que linea pertenece
         # lexpos: para la posicion donde se encuentra
-        resultado = "Error sintactico de tipo {} en el valor {}".format(
+        resultado = "Error sintactico de tipo {:4} en el valor {:4}".format(
             str(t.type), str(t.value))
        # print("SINTAXIS ERROR")
        # print(resultado)
     else:
-        resultado = "Error sintactico {}".format(t)
+        resultado = "Error sintactico {:4}".format(t)
        # print(resultado)
     resultado_gramatica.append(resultado)
 
@@ -208,3 +212,20 @@ resultadoCOMPLEJO = re.findall(patronsin, text)
 
 print('\n'.join(list(map(''.join, resultado_gramatica))))
 #print("SINTAXIS CORRECTA")
+
+
+#if ( $a == $b ) {
+#$suma = 2 * ($c + $d);
+#echo $suma;
+
+#} else {
+
+#$suma = $a + $b / 2;
+
+#}
+
+#   for ($i=0; $i <$a; $i++)
+  #  {
+#echo $i;
+#}
+#?>
