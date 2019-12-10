@@ -14,6 +14,8 @@ resultado_gramatica = []
 # $a = 2 ;
 precedence = (
     ('right', 'ASIGNAR'),
+    ('left', 'TAGINICIO'),
+    ('right', 'TAG_FINAL'),
     ('right', 'PUNTOYCOMA'),
     ('left', 'SUMA', 'RESTA'),
     ('left', 'MULT', 'DIV'),
@@ -31,6 +33,8 @@ def p_declaracion_asignar(t):
     'declaracion : VARIABLE ASIGNAR expresion PUNTOYCOMA'
     nombres[t[1]] = t[3]
 
+
+
 # def p_declaracion_asignar(t):
  #   'declaracion : IDENTIFICADOR ASIGNAR expresion PUNTOCOMA'
   #  nombres[t[1]] = t[3]
@@ -38,9 +42,12 @@ def p_declaracion_asignar(t):
 
 # aqui la idea de como hacer la primera declaracion
 def p_declaracion_taginicio(t):
-    'declaracion : TAGINICIO ASIGNAR expresion TAG_FINAL'
-    inicio[t[1]] = t[3]
- #   print("no cumplio")
+    'declaracion : TAGINICIO expresion TAG_FINAL'
+
+
+def p_declaracion_tagfinal(t):
+    'declaracion :  TAG_FINAL expresion TAGINICIO'
+ #   
 
 # def p_declaracion_taginicio(p):
  #   'declaracion : TAGINICIO'
@@ -103,6 +110,10 @@ def p_expresion_grupo(t):
 
 def p_expresion_numero(t):
     'expresion : ENTERO'
+    t[0] = t[1]
+
+def p_expresion_decimal(t):
+    'expresion : DECIMAL'
     t[0] = t[1]
 
 

@@ -87,9 +87,9 @@ def t_TAG_FINAL(t):
     return t
 
 
-def t_DECIMAL(t):
-    r'([0-9][.]]?[0-9]+)'
-    return t
+#def t_DECIMAL(t):
+ #   r'([0-9][.]?[0-9]+)'
+  #  return t
 
 
 def t_VARIABLE(t):
@@ -129,6 +129,11 @@ def t_MIENTRAS(t):
 
 def t_PARA(t):
     r'for'
+    return t
+
+def t_DECIMAL(t):
+    r'([0-9][.]?[0-9]+)'
+    t.value = float(t.value)
     return t
 
 
