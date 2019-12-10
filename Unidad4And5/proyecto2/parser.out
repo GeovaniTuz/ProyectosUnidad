@@ -2,33 +2,33 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
-    PARA
-    SINO
-    MENORQUE
-    NUMERAL
+    AND
+    COMA
     COMENTARIO
-    PUNTO
-    PLUSPLUS
-    MAYORQUE
-    MAYORIGUAL
-    MENORIGUAL
     DISTINTO
     ECHO
-    MIENTRAS
-    COMA
-    MINUSMINUS
     IGUAL
-    AND
-    SI
+    MAYORIGUAL
+    MAYORQUE
+    MENORIGUAL
+    MENORQUE
+    MIENTRAS
+    MINUSMINUS
     NOT
+    NUMERAL
     OR
+    PARA
+    PLUSPLUS
+    PUNTO
+    SI
+    SINO
 
 Grammar
 
 Rule 0     S' -> declaracion
 Rule 1     declaracion -> VARIABLE ASIGNAR expresion PUNTOYCOMA
-Rule 2     declaracion -> TAGINICIO expresion TAG_FINAL
-Rule 3     declaracion -> TAG_FINAL expresion TAGINICIO
+Rule 2     declaracion -> TAGINICIO
+Rule 3     declaracion -> TAG_FINAL
 Rule 4     declaracion -> expresion PUNTOYCOMA
 Rule 5     expresion -> expresion SUMA expresion
 Rule 6     expresion -> expresion RESTA expresion
@@ -82,15 +82,15 @@ RESTA                : 6 11
 SI                   : 
 SINO                 : 
 SUMA                 : 5
-TAGINICIO            : 2 3
-TAG_FINAL            : 2 3
+TAGINICIO            : 2
+TAG_FINAL            : 3
 VARIABLE             : 1 17
 error                : 
 
 Nonterminals, with rules where they appear
 
 declaracion          : 0
-expresion            : 1 2 3 4 5 5 6 6 7 7 8 8 9 9 10 10 11 12 13 14
+expresion            : 1 4 5 5 6 6 7 7 8 8 9 9 10 10 11 12 13 14
 
 Parsing method: LALR
 
@@ -98,8 +98,8 @@ state 0
 
     (0) S' -> . declaracion
     (1) declaracion -> . VARIABLE ASIGNAR expresion PUNTOYCOMA
-    (2) declaracion -> . TAGINICIO expresion TAG_FINAL
-    (3) declaracion -> . TAG_FINAL expresion TAGINICIO
+    (2) declaracion -> . TAGINICIO
+    (3) declaracion -> . TAG_FINAL
     (4) declaracion -> . expresion PUNTOYCOMA
     (5) expresion -> . expresion SUMA expresion
     (6) expresion -> . expresion RESTA expresion
@@ -115,188 +115,31 @@ state 0
     (16) expresion -> . DECIMAL
     (17) expresion -> . VARIABLE
 
-    VARIABLE        shift and go to state 8
-    TAGINICIO       shift and go to state 6
+    VARIABLE        shift and go to state 2
+    TAGINICIO       shift and go to state 4
     TAG_FINAL       shift and go to state 5
-    RESTA           shift and go to state 9
-    PARIZQ          shift and go to state 10
-    LLAIZQ          shift and go to state 2
-    CORIZQ          shift and go to state 7
-    ENTERO          shift and go to state 3
-    DECIMAL         shift and go to state 4
+    RESTA           shift and go to state 6
+    PARIZQ          shift and go to state 7
+    LLAIZQ          shift and go to state 8
+    CORIZQ          shift and go to state 9
+    ENTERO          shift and go to state 10
+    DECIMAL         shift and go to state 11
 
-    expresion                      shift and go to state 1
-    declaracion                    shift and go to state 11
+    declaracion                    shift and go to state 1
+    expresion                      shift and go to state 3
 
 state 1
 
-    (4) declaracion -> expresion . PUNTOYCOMA
-    (5) expresion -> expresion . SUMA expresion
-    (6) expresion -> expresion . RESTA expresion
-    (7) expresion -> expresion . MULT expresion
-    (8) expresion -> expresion . DIV expresion
-    (9) expresion -> expresion . POTENCIA expresion
-    (10) expresion -> expresion . MODULO expresion
+    (0) S' -> declaracion .
 
-    PUNTOYCOMA      shift and go to state 14
-    SUMA            shift and go to state 13
-    RESTA           shift and go to state 15
-    MULT            shift and go to state 17
-    DIV             shift and go to state 16
-    POTENCIA        shift and go to state 18
-    MODULO          shift and go to state 12
 
 
 state 2
 
-    (13) expresion -> LLAIZQ . expresion LLADER
-    (5) expresion -> . expresion SUMA expresion
-    (6) expresion -> . expresion RESTA expresion
-    (7) expresion -> . expresion MULT expresion
-    (8) expresion -> . expresion DIV expresion
-    (9) expresion -> . expresion POTENCIA expresion
-    (10) expresion -> . expresion MODULO expresion
-    (11) expresion -> . RESTA expresion
-    (12) expresion -> . PARIZQ expresion PARDER
-    (13) expresion -> . LLAIZQ expresion LLADER
-    (14) expresion -> . CORIZQ expresion CORDER
-    (15) expresion -> . ENTERO
-    (16) expresion -> . DECIMAL
-    (17) expresion -> . VARIABLE
-
-    RESTA           shift and go to state 9
-    PARIZQ          shift and go to state 10
-    LLAIZQ          shift and go to state 2
-    CORIZQ          shift and go to state 7
-    ENTERO          shift and go to state 3
-    DECIMAL         shift and go to state 4
-    VARIABLE        shift and go to state 20
-
-    expresion                      shift and go to state 19
-
-state 3
-
-    (15) expresion -> ENTERO .
-
-    SUMA            reduce using rule 15 (expresion -> ENTERO .)
-    RESTA           reduce using rule 15 (expresion -> ENTERO .)
-    MULT            reduce using rule 15 (expresion -> ENTERO .)
-    DIV             reduce using rule 15 (expresion -> ENTERO .)
-    POTENCIA        reduce using rule 15 (expresion -> ENTERO .)
-    MODULO          reduce using rule 15 (expresion -> ENTERO .)
-    PUNTOYCOMA      reduce using rule 15 (expresion -> ENTERO .)
-    LLADER          reduce using rule 15 (expresion -> ENTERO .)
-    TAGINICIO       reduce using rule 15 (expresion -> ENTERO .)
-    TAG_FINAL       reduce using rule 15 (expresion -> ENTERO .)
-    CORDER          reduce using rule 15 (expresion -> ENTERO .)
-    PARDER          reduce using rule 15 (expresion -> ENTERO .)
-
-
-state 4
-
-    (16) expresion -> DECIMAL .
-
-    SUMA            reduce using rule 16 (expresion -> DECIMAL .)
-    RESTA           reduce using rule 16 (expresion -> DECIMAL .)
-    MULT            reduce using rule 16 (expresion -> DECIMAL .)
-    DIV             reduce using rule 16 (expresion -> DECIMAL .)
-    POTENCIA        reduce using rule 16 (expresion -> DECIMAL .)
-    MODULO          reduce using rule 16 (expresion -> DECIMAL .)
-    PUNTOYCOMA      reduce using rule 16 (expresion -> DECIMAL .)
-    LLADER          reduce using rule 16 (expresion -> DECIMAL .)
-    TAGINICIO       reduce using rule 16 (expresion -> DECIMAL .)
-    TAG_FINAL       reduce using rule 16 (expresion -> DECIMAL .)
-    CORDER          reduce using rule 16 (expresion -> DECIMAL .)
-    PARDER          reduce using rule 16 (expresion -> DECIMAL .)
-
-
-state 5
-
-    (3) declaracion -> TAG_FINAL . expresion TAGINICIO
-    (5) expresion -> . expresion SUMA expresion
-    (6) expresion -> . expresion RESTA expresion
-    (7) expresion -> . expresion MULT expresion
-    (8) expresion -> . expresion DIV expresion
-    (9) expresion -> . expresion POTENCIA expresion
-    (10) expresion -> . expresion MODULO expresion
-    (11) expresion -> . RESTA expresion
-    (12) expresion -> . PARIZQ expresion PARDER
-    (13) expresion -> . LLAIZQ expresion LLADER
-    (14) expresion -> . CORIZQ expresion CORDER
-    (15) expresion -> . ENTERO
-    (16) expresion -> . DECIMAL
-    (17) expresion -> . VARIABLE
-
-    RESTA           shift and go to state 9
-    PARIZQ          shift and go to state 10
-    LLAIZQ          shift and go to state 2
-    CORIZQ          shift and go to state 7
-    ENTERO          shift and go to state 3
-    DECIMAL         shift and go to state 4
-    VARIABLE        shift and go to state 20
-
-    expresion                      shift and go to state 21
-
-state 6
-
-    (2) declaracion -> TAGINICIO . expresion TAG_FINAL
-    (5) expresion -> . expresion SUMA expresion
-    (6) expresion -> . expresion RESTA expresion
-    (7) expresion -> . expresion MULT expresion
-    (8) expresion -> . expresion DIV expresion
-    (9) expresion -> . expresion POTENCIA expresion
-    (10) expresion -> . expresion MODULO expresion
-    (11) expresion -> . RESTA expresion
-    (12) expresion -> . PARIZQ expresion PARDER
-    (13) expresion -> . LLAIZQ expresion LLADER
-    (14) expresion -> . CORIZQ expresion CORDER
-    (15) expresion -> . ENTERO
-    (16) expresion -> . DECIMAL
-    (17) expresion -> . VARIABLE
-
-    RESTA           shift and go to state 9
-    PARIZQ          shift and go to state 10
-    LLAIZQ          shift and go to state 2
-    CORIZQ          shift and go to state 7
-    ENTERO          shift and go to state 3
-    DECIMAL         shift and go to state 4
-    VARIABLE        shift and go to state 20
-
-    expresion                      shift and go to state 22
-
-state 7
-
-    (14) expresion -> CORIZQ . expresion CORDER
-    (5) expresion -> . expresion SUMA expresion
-    (6) expresion -> . expresion RESTA expresion
-    (7) expresion -> . expresion MULT expresion
-    (8) expresion -> . expresion DIV expresion
-    (9) expresion -> . expresion POTENCIA expresion
-    (10) expresion -> . expresion MODULO expresion
-    (11) expresion -> . RESTA expresion
-    (12) expresion -> . PARIZQ expresion PARDER
-    (13) expresion -> . LLAIZQ expresion LLADER
-    (14) expresion -> . CORIZQ expresion CORDER
-    (15) expresion -> . ENTERO
-    (16) expresion -> . DECIMAL
-    (17) expresion -> . VARIABLE
-
-    RESTA           shift and go to state 9
-    PARIZQ          shift and go to state 10
-    LLAIZQ          shift and go to state 2
-    CORIZQ          shift and go to state 7
-    ENTERO          shift and go to state 3
-    DECIMAL         shift and go to state 4
-    VARIABLE        shift and go to state 20
-
-    expresion                      shift and go to state 23
-
-state 8
-
     (1) declaracion -> VARIABLE . ASIGNAR expresion PUNTOYCOMA
     (17) expresion -> VARIABLE .
 
-    ASIGNAR         shift and go to state 24
+    ASIGNAR         shift and go to state 12
     PUNTOYCOMA      reduce using rule 17 (expresion -> VARIABLE .)
     SUMA            reduce using rule 17 (expresion -> VARIABLE .)
     RESTA           reduce using rule 17 (expresion -> VARIABLE .)
@@ -306,7 +149,40 @@ state 8
     MODULO          reduce using rule 17 (expresion -> VARIABLE .)
 
 
-state 9
+state 3
+
+    (4) declaracion -> expresion . PUNTOYCOMA
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULT expresion
+    (8) expresion -> expresion . DIV expresion
+    (9) expresion -> expresion . POTENCIA expresion
+    (10) expresion -> expresion . MODULO expresion
+
+    PUNTOYCOMA      shift and go to state 13
+    SUMA            shift and go to state 14
+    RESTA           shift and go to state 15
+    MULT            shift and go to state 16
+    DIV             shift and go to state 17
+    POTENCIA        shift and go to state 18
+    MODULO          shift and go to state 19
+
+
+state 4
+
+    (2) declaracion -> TAGINICIO .
+
+    $end            reduce using rule 2 (declaracion -> TAGINICIO .)
+
+
+state 5
+
+    (3) declaracion -> TAG_FINAL .
+
+    $end            reduce using rule 3 (declaracion -> TAG_FINAL .)
+
+
+state 6
 
     (11) expresion -> RESTA . expresion
     (5) expresion -> . expresion SUMA expresion
@@ -323,17 +199,17 @@ state 9
     (16) expresion -> . DECIMAL
     (17) expresion -> . VARIABLE
 
-    RESTA           shift and go to state 9
-    PARIZQ          shift and go to state 10
-    LLAIZQ          shift and go to state 2
-    CORIZQ          shift and go to state 7
-    ENTERO          shift and go to state 3
-    DECIMAL         shift and go to state 4
-    VARIABLE        shift and go to state 20
+    RESTA           shift and go to state 6
+    PARIZQ          shift and go to state 7
+    LLAIZQ          shift and go to state 8
+    CORIZQ          shift and go to state 9
+    ENTERO          shift and go to state 10
+    DECIMAL         shift and go to state 11
+    VARIABLE        shift and go to state 21
 
-    expresion                      shift and go to state 25
+    expresion                      shift and go to state 20
 
-state 10
+state 7
 
     (12) expresion -> PARIZQ . expresion PARDER
     (5) expresion -> . expresion SUMA expresion
@@ -350,25 +226,19 @@ state 10
     (16) expresion -> . DECIMAL
     (17) expresion -> . VARIABLE
 
-    RESTA           shift and go to state 9
-    PARIZQ          shift and go to state 10
-    LLAIZQ          shift and go to state 2
-    CORIZQ          shift and go to state 7
-    ENTERO          shift and go to state 3
-    DECIMAL         shift and go to state 4
-    VARIABLE        shift and go to state 20
+    RESTA           shift and go to state 6
+    PARIZQ          shift and go to state 7
+    LLAIZQ          shift and go to state 8
+    CORIZQ          shift and go to state 9
+    ENTERO          shift and go to state 10
+    DECIMAL         shift and go to state 11
+    VARIABLE        shift and go to state 21
 
-    expresion                      shift and go to state 26
+    expresion                      shift and go to state 22
 
-state 11
+state 8
 
-    (0) S' -> declaracion .
-
-
-
-state 12
-
-    (10) expresion -> expresion MODULO . expresion
+    (13) expresion -> LLAIZQ . expresion LLADER
     (5) expresion -> . expresion SUMA expresion
     (6) expresion -> . expresion RESTA expresion
     (7) expresion -> . expresion MULT expresion
@@ -383,17 +253,110 @@ state 12
     (16) expresion -> . DECIMAL
     (17) expresion -> . VARIABLE
 
-    RESTA           shift and go to state 9
-    PARIZQ          shift and go to state 10
-    LLAIZQ          shift and go to state 2
-    CORIZQ          shift and go to state 7
-    ENTERO          shift and go to state 3
-    DECIMAL         shift and go to state 4
-    VARIABLE        shift and go to state 20
+    RESTA           shift and go to state 6
+    PARIZQ          shift and go to state 7
+    LLAIZQ          shift and go to state 8
+    CORIZQ          shift and go to state 9
+    ENTERO          shift and go to state 10
+    DECIMAL         shift and go to state 11
+    VARIABLE        shift and go to state 21
 
-    expresion                      shift and go to state 27
+    expresion                      shift and go to state 23
+
+state 9
+
+    (14) expresion -> CORIZQ . expresion CORDER
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULT expresion
+    (8) expresion -> . expresion DIV expresion
+    (9) expresion -> . expresion POTENCIA expresion
+    (10) expresion -> . expresion MODULO expresion
+    (11) expresion -> . RESTA expresion
+    (12) expresion -> . PARIZQ expresion PARDER
+    (13) expresion -> . LLAIZQ expresion LLADER
+    (14) expresion -> . CORIZQ expresion CORDER
+    (15) expresion -> . ENTERO
+    (16) expresion -> . DECIMAL
+    (17) expresion -> . VARIABLE
+
+    RESTA           shift and go to state 6
+    PARIZQ          shift and go to state 7
+    LLAIZQ          shift and go to state 8
+    CORIZQ          shift and go to state 9
+    ENTERO          shift and go to state 10
+    DECIMAL         shift and go to state 11
+    VARIABLE        shift and go to state 21
+
+    expresion                      shift and go to state 24
+
+state 10
+
+    (15) expresion -> ENTERO .
+
+    PUNTOYCOMA      reduce using rule 15 (expresion -> ENTERO .)
+    SUMA            reduce using rule 15 (expresion -> ENTERO .)
+    RESTA           reduce using rule 15 (expresion -> ENTERO .)
+    MULT            reduce using rule 15 (expresion -> ENTERO .)
+    DIV             reduce using rule 15 (expresion -> ENTERO .)
+    POTENCIA        reduce using rule 15 (expresion -> ENTERO .)
+    MODULO          reduce using rule 15 (expresion -> ENTERO .)
+    PARDER          reduce using rule 15 (expresion -> ENTERO .)
+    LLADER          reduce using rule 15 (expresion -> ENTERO .)
+    CORDER          reduce using rule 15 (expresion -> ENTERO .)
+
+
+state 11
+
+    (16) expresion -> DECIMAL .
+
+    PUNTOYCOMA      reduce using rule 16 (expresion -> DECIMAL .)
+    SUMA            reduce using rule 16 (expresion -> DECIMAL .)
+    RESTA           reduce using rule 16 (expresion -> DECIMAL .)
+    MULT            reduce using rule 16 (expresion -> DECIMAL .)
+    DIV             reduce using rule 16 (expresion -> DECIMAL .)
+    POTENCIA        reduce using rule 16 (expresion -> DECIMAL .)
+    MODULO          reduce using rule 16 (expresion -> DECIMAL .)
+    PARDER          reduce using rule 16 (expresion -> DECIMAL .)
+    LLADER          reduce using rule 16 (expresion -> DECIMAL .)
+    CORDER          reduce using rule 16 (expresion -> DECIMAL .)
+
+
+state 12
+
+    (1) declaracion -> VARIABLE ASIGNAR . expresion PUNTOYCOMA
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULT expresion
+    (8) expresion -> . expresion DIV expresion
+    (9) expresion -> . expresion POTENCIA expresion
+    (10) expresion -> . expresion MODULO expresion
+    (11) expresion -> . RESTA expresion
+    (12) expresion -> . PARIZQ expresion PARDER
+    (13) expresion -> . LLAIZQ expresion LLADER
+    (14) expresion -> . CORIZQ expresion CORDER
+    (15) expresion -> . ENTERO
+    (16) expresion -> . DECIMAL
+    (17) expresion -> . VARIABLE
+
+    RESTA           shift and go to state 6
+    PARIZQ          shift and go to state 7
+    LLAIZQ          shift and go to state 8
+    CORIZQ          shift and go to state 9
+    ENTERO          shift and go to state 10
+    DECIMAL         shift and go to state 11
+    VARIABLE        shift and go to state 21
+
+    expresion                      shift and go to state 25
 
 state 13
+
+    (4) declaracion -> expresion PUNTOYCOMA .
+
+    $end            reduce using rule 4 (declaracion -> expresion PUNTOYCOMA .)
+
+
+state 14
 
     (5) expresion -> expresion SUMA . expresion
     (5) expresion -> . expresion SUMA expresion
@@ -410,22 +373,15 @@ state 13
     (16) expresion -> . DECIMAL
     (17) expresion -> . VARIABLE
 
-    RESTA           shift and go to state 9
-    PARIZQ          shift and go to state 10
-    LLAIZQ          shift and go to state 2
-    CORIZQ          shift and go to state 7
-    ENTERO          shift and go to state 3
-    DECIMAL         shift and go to state 4
-    VARIABLE        shift and go to state 20
+    RESTA           shift and go to state 6
+    PARIZQ          shift and go to state 7
+    LLAIZQ          shift and go to state 8
+    CORIZQ          shift and go to state 9
+    ENTERO          shift and go to state 10
+    DECIMAL         shift and go to state 11
+    VARIABLE        shift and go to state 21
 
-    expresion                      shift and go to state 28
-
-state 14
-
-    (4) declaracion -> expresion PUNTOYCOMA .
-
-    $end            reduce using rule 4 (declaracion -> expresion PUNTOYCOMA .)
-
+    expresion                      shift and go to state 26
 
 state 15
 
@@ -444,44 +400,17 @@ state 15
     (16) expresion -> . DECIMAL
     (17) expresion -> . VARIABLE
 
-    RESTA           shift and go to state 9
-    PARIZQ          shift and go to state 10
-    LLAIZQ          shift and go to state 2
-    CORIZQ          shift and go to state 7
-    ENTERO          shift and go to state 3
-    DECIMAL         shift and go to state 4
-    VARIABLE        shift and go to state 20
+    RESTA           shift and go to state 6
+    PARIZQ          shift and go to state 7
+    LLAIZQ          shift and go to state 8
+    CORIZQ          shift and go to state 9
+    ENTERO          shift and go to state 10
+    DECIMAL         shift and go to state 11
+    VARIABLE        shift and go to state 21
 
-    expresion                      shift and go to state 29
+    expresion                      shift and go to state 27
 
 state 16
-
-    (8) expresion -> expresion DIV . expresion
-    (5) expresion -> . expresion SUMA expresion
-    (6) expresion -> . expresion RESTA expresion
-    (7) expresion -> . expresion MULT expresion
-    (8) expresion -> . expresion DIV expresion
-    (9) expresion -> . expresion POTENCIA expresion
-    (10) expresion -> . expresion MODULO expresion
-    (11) expresion -> . RESTA expresion
-    (12) expresion -> . PARIZQ expresion PARDER
-    (13) expresion -> . LLAIZQ expresion LLADER
-    (14) expresion -> . CORIZQ expresion CORDER
-    (15) expresion -> . ENTERO
-    (16) expresion -> . DECIMAL
-    (17) expresion -> . VARIABLE
-
-    RESTA           shift and go to state 9
-    PARIZQ          shift and go to state 10
-    LLAIZQ          shift and go to state 2
-    CORIZQ          shift and go to state 7
-    ENTERO          shift and go to state 3
-    DECIMAL         shift and go to state 4
-    VARIABLE        shift and go to state 20
-
-    expresion                      shift and go to state 30
-
-state 17
 
     (7) expresion -> expresion MULT . expresion
     (5) expresion -> . expresion SUMA expresion
@@ -498,15 +427,42 @@ state 17
     (16) expresion -> . DECIMAL
     (17) expresion -> . VARIABLE
 
-    RESTA           shift and go to state 9
-    PARIZQ          shift and go to state 10
-    LLAIZQ          shift and go to state 2
-    CORIZQ          shift and go to state 7
-    ENTERO          shift and go to state 3
-    DECIMAL         shift and go to state 4
-    VARIABLE        shift and go to state 20
+    RESTA           shift and go to state 6
+    PARIZQ          shift and go to state 7
+    LLAIZQ          shift and go to state 8
+    CORIZQ          shift and go to state 9
+    ENTERO          shift and go to state 10
+    DECIMAL         shift and go to state 11
+    VARIABLE        shift and go to state 21
 
-    expresion                      shift and go to state 31
+    expresion                      shift and go to state 28
+
+state 17
+
+    (8) expresion -> expresion DIV . expresion
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULT expresion
+    (8) expresion -> . expresion DIV expresion
+    (9) expresion -> . expresion POTENCIA expresion
+    (10) expresion -> . expresion MODULO expresion
+    (11) expresion -> . RESTA expresion
+    (12) expresion -> . PARIZQ expresion PARDER
+    (13) expresion -> . LLAIZQ expresion LLADER
+    (14) expresion -> . CORIZQ expresion CORDER
+    (15) expresion -> . ENTERO
+    (16) expresion -> . DECIMAL
+    (17) expresion -> . VARIABLE
+
+    RESTA           shift and go to state 6
+    PARIZQ          shift and go to state 7
+    LLAIZQ          shift and go to state 8
+    CORIZQ          shift and go to state 9
+    ENTERO          shift and go to state 10
+    DECIMAL         shift and go to state 11
+    VARIABLE        shift and go to state 21
+
+    expresion                      shift and go to state 29
 
 state 18
 
@@ -525,113 +481,19 @@ state 18
     (16) expresion -> . DECIMAL
     (17) expresion -> . VARIABLE
 
-    RESTA           shift and go to state 9
-    PARIZQ          shift and go to state 10
-    LLAIZQ          shift and go to state 2
-    CORIZQ          shift and go to state 7
-    ENTERO          shift and go to state 3
-    DECIMAL         shift and go to state 4
-    VARIABLE        shift and go to state 20
+    RESTA           shift and go to state 6
+    PARIZQ          shift and go to state 7
+    LLAIZQ          shift and go to state 8
+    CORIZQ          shift and go to state 9
+    ENTERO          shift and go to state 10
+    DECIMAL         shift and go to state 11
+    VARIABLE        shift and go to state 21
 
-    expresion                      shift and go to state 32
+    expresion                      shift and go to state 30
 
 state 19
 
-    (13) expresion -> LLAIZQ expresion . LLADER
-    (5) expresion -> expresion . SUMA expresion
-    (6) expresion -> expresion . RESTA expresion
-    (7) expresion -> expresion . MULT expresion
-    (8) expresion -> expresion . DIV expresion
-    (9) expresion -> expresion . POTENCIA expresion
-    (10) expresion -> expresion . MODULO expresion
-
-    LLADER          shift and go to state 33
-    SUMA            shift and go to state 13
-    RESTA           shift and go to state 15
-    MULT            shift and go to state 17
-    DIV             shift and go to state 16
-    POTENCIA        shift and go to state 18
-    MODULO          shift and go to state 12
-
-
-state 20
-
-    (17) expresion -> VARIABLE .
-
-    SUMA            reduce using rule 17 (expresion -> VARIABLE .)
-    RESTA           reduce using rule 17 (expresion -> VARIABLE .)
-    MULT            reduce using rule 17 (expresion -> VARIABLE .)
-    DIV             reduce using rule 17 (expresion -> VARIABLE .)
-    POTENCIA        reduce using rule 17 (expresion -> VARIABLE .)
-    MODULO          reduce using rule 17 (expresion -> VARIABLE .)
-    PUNTOYCOMA      reduce using rule 17 (expresion -> VARIABLE .)
-    LLADER          reduce using rule 17 (expresion -> VARIABLE .)
-    TAGINICIO       reduce using rule 17 (expresion -> VARIABLE .)
-    TAG_FINAL       reduce using rule 17 (expresion -> VARIABLE .)
-    CORDER          reduce using rule 17 (expresion -> VARIABLE .)
-    PARDER          reduce using rule 17 (expresion -> VARIABLE .)
-
-
-state 21
-
-    (3) declaracion -> TAG_FINAL expresion . TAGINICIO
-    (5) expresion -> expresion . SUMA expresion
-    (6) expresion -> expresion . RESTA expresion
-    (7) expresion -> expresion . MULT expresion
-    (8) expresion -> expresion . DIV expresion
-    (9) expresion -> expresion . POTENCIA expresion
-    (10) expresion -> expresion . MODULO expresion
-
-    TAGINICIO       shift and go to state 34
-    SUMA            shift and go to state 13
-    RESTA           shift and go to state 15
-    MULT            shift and go to state 17
-    DIV             shift and go to state 16
-    POTENCIA        shift and go to state 18
-    MODULO          shift and go to state 12
-
-
-state 22
-
-    (2) declaracion -> TAGINICIO expresion . TAG_FINAL
-    (5) expresion -> expresion . SUMA expresion
-    (6) expresion -> expresion . RESTA expresion
-    (7) expresion -> expresion . MULT expresion
-    (8) expresion -> expresion . DIV expresion
-    (9) expresion -> expresion . POTENCIA expresion
-    (10) expresion -> expresion . MODULO expresion
-
-    TAG_FINAL       shift and go to state 35
-    SUMA            shift and go to state 13
-    RESTA           shift and go to state 15
-    MULT            shift and go to state 17
-    DIV             shift and go to state 16
-    POTENCIA        shift and go to state 18
-    MODULO          shift and go to state 12
-
-
-state 23
-
-    (14) expresion -> CORIZQ expresion . CORDER
-    (5) expresion -> expresion . SUMA expresion
-    (6) expresion -> expresion . RESTA expresion
-    (7) expresion -> expresion . MULT expresion
-    (8) expresion -> expresion . DIV expresion
-    (9) expresion -> expresion . POTENCIA expresion
-    (10) expresion -> expresion . MODULO expresion
-
-    CORDER          shift and go to state 36
-    SUMA            shift and go to state 13
-    RESTA           shift and go to state 15
-    MULT            shift and go to state 17
-    DIV             shift and go to state 16
-    POTENCIA        shift and go to state 18
-    MODULO          shift and go to state 12
-
-
-state 24
-
-    (1) declaracion -> VARIABLE ASIGNAR . expresion PUNTOYCOMA
+    (10) expresion -> expresion MODULO . expresion
     (5) expresion -> . expresion SUMA expresion
     (6) expresion -> . expresion RESTA expresion
     (7) expresion -> . expresion MULT expresion
@@ -646,17 +508,17 @@ state 24
     (16) expresion -> . DECIMAL
     (17) expresion -> . VARIABLE
 
-    RESTA           shift and go to state 9
-    PARIZQ          shift and go to state 10
-    LLAIZQ          shift and go to state 2
-    CORIZQ          shift and go to state 7
-    ENTERO          shift and go to state 3
-    DECIMAL         shift and go to state 4
-    VARIABLE        shift and go to state 20
+    RESTA           shift and go to state 6
+    PARIZQ          shift and go to state 7
+    LLAIZQ          shift and go to state 8
+    CORIZQ          shift and go to state 9
+    ENTERO          shift and go to state 10
+    DECIMAL         shift and go to state 11
+    VARIABLE        shift and go to state 21
 
-    expresion                      shift and go to state 37
+    expresion                      shift and go to state 31
 
-state 25
+state 20
 
     (11) expresion -> RESTA expresion .
     (5) expresion -> expresion . SUMA expresion
@@ -666,28 +528,42 @@ state 25
     (9) expresion -> expresion . POTENCIA expresion
     (10) expresion -> expresion . MODULO expresion
 
+    PUNTOYCOMA      reduce using rule 11 (expresion -> RESTA expresion .)
     SUMA            reduce using rule 11 (expresion -> RESTA expresion .)
     RESTA           reduce using rule 11 (expresion -> RESTA expresion .)
     MULT            reduce using rule 11 (expresion -> RESTA expresion .)
     DIV             reduce using rule 11 (expresion -> RESTA expresion .)
     POTENCIA        reduce using rule 11 (expresion -> RESTA expresion .)
     MODULO          reduce using rule 11 (expresion -> RESTA expresion .)
-    PUNTOYCOMA      reduce using rule 11 (expresion -> RESTA expresion .)
-    LLADER          reduce using rule 11 (expresion -> RESTA expresion .)
-    TAGINICIO       reduce using rule 11 (expresion -> RESTA expresion .)
-    TAG_FINAL       reduce using rule 11 (expresion -> RESTA expresion .)
-    CORDER          reduce using rule 11 (expresion -> RESTA expresion .)
     PARDER          reduce using rule 11 (expresion -> RESTA expresion .)
+    LLADER          reduce using rule 11 (expresion -> RESTA expresion .)
+    CORDER          reduce using rule 11 (expresion -> RESTA expresion .)
 
-  ! SUMA            [ shift and go to state 13 ]
+  ! SUMA            [ shift and go to state 14 ]
   ! RESTA           [ shift and go to state 15 ]
-  ! MULT            [ shift and go to state 17 ]
-  ! DIV             [ shift and go to state 16 ]
+  ! MULT            [ shift and go to state 16 ]
+  ! DIV             [ shift and go to state 17 ]
   ! POTENCIA        [ shift and go to state 18 ]
-  ! MODULO          [ shift and go to state 12 ]
+  ! MODULO          [ shift and go to state 19 ]
 
 
-state 26
+state 21
+
+    (17) expresion -> VARIABLE .
+
+    SUMA            reduce using rule 17 (expresion -> VARIABLE .)
+    RESTA           reduce using rule 17 (expresion -> VARIABLE .)
+    MULT            reduce using rule 17 (expresion -> VARIABLE .)
+    DIV             reduce using rule 17 (expresion -> VARIABLE .)
+    POTENCIA        reduce using rule 17 (expresion -> VARIABLE .)
+    MODULO          reduce using rule 17 (expresion -> VARIABLE .)
+    PUNTOYCOMA      reduce using rule 17 (expresion -> VARIABLE .)
+    PARDER          reduce using rule 17 (expresion -> VARIABLE .)
+    LLADER          reduce using rule 17 (expresion -> VARIABLE .)
+    CORDER          reduce using rule 17 (expresion -> VARIABLE .)
+
+
+state 22
 
     (12) expresion -> PARIZQ expresion . PARDER
     (5) expresion -> expresion . SUMA expresion
@@ -697,18 +573,18 @@ state 26
     (9) expresion -> expresion . POTENCIA expresion
     (10) expresion -> expresion . MODULO expresion
 
-    PARDER          shift and go to state 38
-    SUMA            shift and go to state 13
+    PARDER          shift and go to state 32
+    SUMA            shift and go to state 14
     RESTA           shift and go to state 15
-    MULT            shift and go to state 17
-    DIV             shift and go to state 16
+    MULT            shift and go to state 16
+    DIV             shift and go to state 17
     POTENCIA        shift and go to state 18
-    MODULO          shift and go to state 12
+    MODULO          shift and go to state 19
 
 
-state 27
+state 23
 
-    (10) expresion -> expresion MODULO expresion .
+    (13) expresion -> LLAIZQ expresion . LLADER
     (5) expresion -> expresion . SUMA expresion
     (6) expresion -> expresion . RESTA expresion
     (7) expresion -> expresion . MULT expresion
@@ -716,34 +592,54 @@ state 27
     (9) expresion -> expresion . POTENCIA expresion
     (10) expresion -> expresion . MODULO expresion
 
-  ! shift/reduce conflict for SUMA resolved as shift
-  ! shift/reduce conflict for RESTA resolved as shift
-  ! shift/reduce conflict for MULT resolved as shift
-  ! shift/reduce conflict for DIV resolved as shift
-  ! shift/reduce conflict for POTENCIA resolved as shift
-  ! shift/reduce conflict for MODULO resolved as shift
-    PUNTOYCOMA      reduce using rule 10 (expresion -> expresion MODULO expresion .)
-    LLADER          reduce using rule 10 (expresion -> expresion MODULO expresion .)
-    TAGINICIO       reduce using rule 10 (expresion -> expresion MODULO expresion .)
-    TAG_FINAL       reduce using rule 10 (expresion -> expresion MODULO expresion .)
-    CORDER          reduce using rule 10 (expresion -> expresion MODULO expresion .)
-    PARDER          reduce using rule 10 (expresion -> expresion MODULO expresion .)
-    SUMA            shift and go to state 13
+    LLADER          shift and go to state 33
+    SUMA            shift and go to state 14
     RESTA           shift and go to state 15
-    MULT            shift and go to state 17
-    DIV             shift and go to state 16
+    MULT            shift and go to state 16
+    DIV             shift and go to state 17
     POTENCIA        shift and go to state 18
-    MODULO          shift and go to state 12
-
-  ! SUMA            [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
-  ! RESTA           [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
-  ! MULT            [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
-  ! DIV             [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
-  ! POTENCIA        [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
-  ! MODULO          [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
+    MODULO          shift and go to state 19
 
 
-state 28
+state 24
+
+    (14) expresion -> CORIZQ expresion . CORDER
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULT expresion
+    (8) expresion -> expresion . DIV expresion
+    (9) expresion -> expresion . POTENCIA expresion
+    (10) expresion -> expresion . MODULO expresion
+
+    CORDER          shift and go to state 34
+    SUMA            shift and go to state 14
+    RESTA           shift and go to state 15
+    MULT            shift and go to state 16
+    DIV             shift and go to state 17
+    POTENCIA        shift and go to state 18
+    MODULO          shift and go to state 19
+
+
+state 25
+
+    (1) declaracion -> VARIABLE ASIGNAR expresion . PUNTOYCOMA
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULT expresion
+    (8) expresion -> expresion . DIV expresion
+    (9) expresion -> expresion . POTENCIA expresion
+    (10) expresion -> expresion . MODULO expresion
+
+    PUNTOYCOMA      shift and go to state 35
+    SUMA            shift and go to state 14
+    RESTA           shift and go to state 15
+    MULT            shift and go to state 16
+    DIV             shift and go to state 17
+    POTENCIA        shift and go to state 18
+    MODULO          shift and go to state 19
+
+
+state 26
 
     (5) expresion -> expresion SUMA expresion .
     (5) expresion -> expresion . SUMA expresion
@@ -753,28 +649,26 @@ state 28
     (9) expresion -> expresion . POTENCIA expresion
     (10) expresion -> expresion . MODULO expresion
 
+    PUNTOYCOMA      reduce using rule 5 (expresion -> expresion SUMA expresion .)
     SUMA            reduce using rule 5 (expresion -> expresion SUMA expresion .)
     RESTA           reduce using rule 5 (expresion -> expresion SUMA expresion .)
     POTENCIA        reduce using rule 5 (expresion -> expresion SUMA expresion .)
     MODULO          reduce using rule 5 (expresion -> expresion SUMA expresion .)
-    PUNTOYCOMA      reduce using rule 5 (expresion -> expresion SUMA expresion .)
-    LLADER          reduce using rule 5 (expresion -> expresion SUMA expresion .)
-    TAGINICIO       reduce using rule 5 (expresion -> expresion SUMA expresion .)
-    TAG_FINAL       reduce using rule 5 (expresion -> expresion SUMA expresion .)
-    CORDER          reduce using rule 5 (expresion -> expresion SUMA expresion .)
     PARDER          reduce using rule 5 (expresion -> expresion SUMA expresion .)
-    MULT            shift and go to state 17
-    DIV             shift and go to state 16
+    LLADER          reduce using rule 5 (expresion -> expresion SUMA expresion .)
+    CORDER          reduce using rule 5 (expresion -> expresion SUMA expresion .)
+    MULT            shift and go to state 16
+    DIV             shift and go to state 17
 
   ! MULT            [ reduce using rule 5 (expresion -> expresion SUMA expresion .) ]
   ! DIV             [ reduce using rule 5 (expresion -> expresion SUMA expresion .) ]
-  ! SUMA            [ shift and go to state 13 ]
+  ! SUMA            [ shift and go to state 14 ]
   ! RESTA           [ shift and go to state 15 ]
   ! POTENCIA        [ shift and go to state 18 ]
-  ! MODULO          [ shift and go to state 12 ]
+  ! MODULO          [ shift and go to state 19 ]
 
 
-state 29
+state 27
 
     (6) expresion -> expresion RESTA expresion .
     (5) expresion -> expresion . SUMA expresion
@@ -784,59 +678,26 @@ state 29
     (9) expresion -> expresion . POTENCIA expresion
     (10) expresion -> expresion . MODULO expresion
 
+    PUNTOYCOMA      reduce using rule 6 (expresion -> expresion RESTA expresion .)
     SUMA            reduce using rule 6 (expresion -> expresion RESTA expresion .)
     RESTA           reduce using rule 6 (expresion -> expresion RESTA expresion .)
     POTENCIA        reduce using rule 6 (expresion -> expresion RESTA expresion .)
     MODULO          reduce using rule 6 (expresion -> expresion RESTA expresion .)
-    PUNTOYCOMA      reduce using rule 6 (expresion -> expresion RESTA expresion .)
-    LLADER          reduce using rule 6 (expresion -> expresion RESTA expresion .)
-    TAGINICIO       reduce using rule 6 (expresion -> expresion RESTA expresion .)
-    TAG_FINAL       reduce using rule 6 (expresion -> expresion RESTA expresion .)
-    CORDER          reduce using rule 6 (expresion -> expresion RESTA expresion .)
     PARDER          reduce using rule 6 (expresion -> expresion RESTA expresion .)
-    MULT            shift and go to state 17
-    DIV             shift and go to state 16
+    LLADER          reduce using rule 6 (expresion -> expresion RESTA expresion .)
+    CORDER          reduce using rule 6 (expresion -> expresion RESTA expresion .)
+    MULT            shift and go to state 16
+    DIV             shift and go to state 17
 
   ! MULT            [ reduce using rule 6 (expresion -> expresion RESTA expresion .) ]
   ! DIV             [ reduce using rule 6 (expresion -> expresion RESTA expresion .) ]
-  ! SUMA            [ shift and go to state 13 ]
+  ! SUMA            [ shift and go to state 14 ]
   ! RESTA           [ shift and go to state 15 ]
   ! POTENCIA        [ shift and go to state 18 ]
-  ! MODULO          [ shift and go to state 12 ]
+  ! MODULO          [ shift and go to state 19 ]
 
 
-state 30
-
-    (8) expresion -> expresion DIV expresion .
-    (5) expresion -> expresion . SUMA expresion
-    (6) expresion -> expresion . RESTA expresion
-    (7) expresion -> expresion . MULT expresion
-    (8) expresion -> expresion . DIV expresion
-    (9) expresion -> expresion . POTENCIA expresion
-    (10) expresion -> expresion . MODULO expresion
-
-    SUMA            reduce using rule 8 (expresion -> expresion DIV expresion .)
-    RESTA           reduce using rule 8 (expresion -> expresion DIV expresion .)
-    MULT            reduce using rule 8 (expresion -> expresion DIV expresion .)
-    DIV             reduce using rule 8 (expresion -> expresion DIV expresion .)
-    POTENCIA        reduce using rule 8 (expresion -> expresion DIV expresion .)
-    MODULO          reduce using rule 8 (expresion -> expresion DIV expresion .)
-    PUNTOYCOMA      reduce using rule 8 (expresion -> expresion DIV expresion .)
-    LLADER          reduce using rule 8 (expresion -> expresion DIV expresion .)
-    TAGINICIO       reduce using rule 8 (expresion -> expresion DIV expresion .)
-    TAG_FINAL       reduce using rule 8 (expresion -> expresion DIV expresion .)
-    CORDER          reduce using rule 8 (expresion -> expresion DIV expresion .)
-    PARDER          reduce using rule 8 (expresion -> expresion DIV expresion .)
-
-  ! SUMA            [ shift and go to state 13 ]
-  ! RESTA           [ shift and go to state 15 ]
-  ! MULT            [ shift and go to state 17 ]
-  ! DIV             [ shift and go to state 16 ]
-  ! POTENCIA        [ shift and go to state 18 ]
-  ! MODULO          [ shift and go to state 12 ]
-
-
-state 31
+state 28
 
     (7) expresion -> expresion MULT expresion .
     (5) expresion -> expresion . SUMA expresion
@@ -846,28 +707,55 @@ state 31
     (9) expresion -> expresion . POTENCIA expresion
     (10) expresion -> expresion . MODULO expresion
 
+    PUNTOYCOMA      reduce using rule 7 (expresion -> expresion MULT expresion .)
     SUMA            reduce using rule 7 (expresion -> expresion MULT expresion .)
     RESTA           reduce using rule 7 (expresion -> expresion MULT expresion .)
     MULT            reduce using rule 7 (expresion -> expresion MULT expresion .)
     DIV             reduce using rule 7 (expresion -> expresion MULT expresion .)
     POTENCIA        reduce using rule 7 (expresion -> expresion MULT expresion .)
     MODULO          reduce using rule 7 (expresion -> expresion MULT expresion .)
-    PUNTOYCOMA      reduce using rule 7 (expresion -> expresion MULT expresion .)
-    LLADER          reduce using rule 7 (expresion -> expresion MULT expresion .)
-    TAGINICIO       reduce using rule 7 (expresion -> expresion MULT expresion .)
-    TAG_FINAL       reduce using rule 7 (expresion -> expresion MULT expresion .)
-    CORDER          reduce using rule 7 (expresion -> expresion MULT expresion .)
     PARDER          reduce using rule 7 (expresion -> expresion MULT expresion .)
+    LLADER          reduce using rule 7 (expresion -> expresion MULT expresion .)
+    CORDER          reduce using rule 7 (expresion -> expresion MULT expresion .)
 
-  ! SUMA            [ shift and go to state 13 ]
+  ! SUMA            [ shift and go to state 14 ]
   ! RESTA           [ shift and go to state 15 ]
-  ! MULT            [ shift and go to state 17 ]
-  ! DIV             [ shift and go to state 16 ]
+  ! MULT            [ shift and go to state 16 ]
+  ! DIV             [ shift and go to state 17 ]
   ! POTENCIA        [ shift and go to state 18 ]
-  ! MODULO          [ shift and go to state 12 ]
+  ! MODULO          [ shift and go to state 19 ]
 
 
-state 32
+state 29
+
+    (8) expresion -> expresion DIV expresion .
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULT expresion
+    (8) expresion -> expresion . DIV expresion
+    (9) expresion -> expresion . POTENCIA expresion
+    (10) expresion -> expresion . MODULO expresion
+
+    PUNTOYCOMA      reduce using rule 8 (expresion -> expresion DIV expresion .)
+    SUMA            reduce using rule 8 (expresion -> expresion DIV expresion .)
+    RESTA           reduce using rule 8 (expresion -> expresion DIV expresion .)
+    MULT            reduce using rule 8 (expresion -> expresion DIV expresion .)
+    DIV             reduce using rule 8 (expresion -> expresion DIV expresion .)
+    POTENCIA        reduce using rule 8 (expresion -> expresion DIV expresion .)
+    MODULO          reduce using rule 8 (expresion -> expresion DIV expresion .)
+    PARDER          reduce using rule 8 (expresion -> expresion DIV expresion .)
+    LLADER          reduce using rule 8 (expresion -> expresion DIV expresion .)
+    CORDER          reduce using rule 8 (expresion -> expresion DIV expresion .)
+
+  ! SUMA            [ shift and go to state 14 ]
+  ! RESTA           [ shift and go to state 15 ]
+  ! MULT            [ shift and go to state 16 ]
+  ! DIV             [ shift and go to state 17 ]
+  ! POTENCIA        [ shift and go to state 18 ]
+  ! MODULO          [ shift and go to state 19 ]
+
+
+state 30
 
     (9) expresion -> expresion POTENCIA expresion .
     (5) expresion -> expresion . SUMA expresion
@@ -884,17 +772,15 @@ state 32
   ! shift/reduce conflict for POTENCIA resolved as shift
   ! shift/reduce conflict for MODULO resolved as shift
     PUNTOYCOMA      reduce using rule 9 (expresion -> expresion POTENCIA expresion .)
-    LLADER          reduce using rule 9 (expresion -> expresion POTENCIA expresion .)
-    TAGINICIO       reduce using rule 9 (expresion -> expresion POTENCIA expresion .)
-    TAG_FINAL       reduce using rule 9 (expresion -> expresion POTENCIA expresion .)
-    CORDER          reduce using rule 9 (expresion -> expresion POTENCIA expresion .)
     PARDER          reduce using rule 9 (expresion -> expresion POTENCIA expresion .)
-    SUMA            shift and go to state 13
+    LLADER          reduce using rule 9 (expresion -> expresion POTENCIA expresion .)
+    CORDER          reduce using rule 9 (expresion -> expresion POTENCIA expresion .)
+    SUMA            shift and go to state 14
     RESTA           shift and go to state 15
-    MULT            shift and go to state 17
-    DIV             shift and go to state 16
+    MULT            shift and go to state 16
+    DIV             shift and go to state 17
     POTENCIA        shift and go to state 18
-    MODULO          shift and go to state 12
+    MODULO          shift and go to state 19
 
   ! SUMA            [ reduce using rule 9 (expresion -> expresion POTENCIA expresion .) ]
   ! RESTA           [ reduce using rule 9 (expresion -> expresion POTENCIA expresion .) ]
@@ -904,59 +790,9 @@ state 32
   ! MODULO          [ reduce using rule 9 (expresion -> expresion POTENCIA expresion .) ]
 
 
-state 33
+state 31
 
-    (13) expresion -> LLAIZQ expresion LLADER .
-
-    SUMA            reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
-    RESTA           reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
-    MULT            reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
-    DIV             reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
-    POTENCIA        reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
-    MODULO          reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
-    PUNTOYCOMA      reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
-    LLADER          reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
-    TAGINICIO       reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
-    TAG_FINAL       reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
-    CORDER          reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
-    PARDER          reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
-
-
-state 34
-
-    (3) declaracion -> TAG_FINAL expresion TAGINICIO .
-
-    $end            reduce using rule 3 (declaracion -> TAG_FINAL expresion TAGINICIO .)
-
-
-state 35
-
-    (2) declaracion -> TAGINICIO expresion TAG_FINAL .
-
-    $end            reduce using rule 2 (declaracion -> TAGINICIO expresion TAG_FINAL .)
-
-
-state 36
-
-    (14) expresion -> CORIZQ expresion CORDER .
-
-    SUMA            reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
-    RESTA           reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
-    MULT            reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
-    DIV             reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
-    POTENCIA        reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
-    MODULO          reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
-    PUNTOYCOMA      reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
-    LLADER          reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
-    TAGINICIO       reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
-    TAG_FINAL       reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
-    CORDER          reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
-    PARDER          reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
-
-
-state 37
-
-    (1) declaracion -> VARIABLE ASIGNAR expresion . PUNTOYCOMA
+    (10) expresion -> expresion MODULO expresion .
     (5) expresion -> expresion . SUMA expresion
     (6) expresion -> expresion . RESTA expresion
     (7) expresion -> expresion . MULT expresion
@@ -964,34 +800,80 @@ state 37
     (9) expresion -> expresion . POTENCIA expresion
     (10) expresion -> expresion . MODULO expresion
 
-    PUNTOYCOMA      shift and go to state 39
-    SUMA            shift and go to state 13
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for POTENCIA resolved as shift
+  ! shift/reduce conflict for MODULO resolved as shift
+    PUNTOYCOMA      reduce using rule 10 (expresion -> expresion MODULO expresion .)
+    PARDER          reduce using rule 10 (expresion -> expresion MODULO expresion .)
+    LLADER          reduce using rule 10 (expresion -> expresion MODULO expresion .)
+    CORDER          reduce using rule 10 (expresion -> expresion MODULO expresion .)
+    SUMA            shift and go to state 14
     RESTA           shift and go to state 15
-    MULT            shift and go to state 17
-    DIV             shift and go to state 16
+    MULT            shift and go to state 16
+    DIV             shift and go to state 17
     POTENCIA        shift and go to state 18
-    MODULO          shift and go to state 12
+    MODULO          shift and go to state 19
+
+  ! SUMA            [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
+  ! RESTA           [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
+  ! MULT            [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
+  ! DIV             [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
+  ! POTENCIA        [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
+  ! MODULO          [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
 
 
-state 38
+state 32
 
     (12) expresion -> PARIZQ expresion PARDER .
 
+    PUNTOYCOMA      reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
     SUMA            reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
     RESTA           reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
     MULT            reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
     DIV             reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
     POTENCIA        reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
     MODULO          reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
-    PUNTOYCOMA      reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
-    LLADER          reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
-    TAGINICIO       reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
-    TAG_FINAL       reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
-    CORDER          reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
     PARDER          reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
+    LLADER          reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
+    CORDER          reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
 
 
-state 39
+state 33
+
+    (13) expresion -> LLAIZQ expresion LLADER .
+
+    PUNTOYCOMA      reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
+    SUMA            reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
+    RESTA           reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
+    MULT            reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
+    DIV             reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
+    POTENCIA        reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
+    MODULO          reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
+    PARDER          reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
+    LLADER          reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
+    CORDER          reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
+
+
+state 34
+
+    (14) expresion -> CORIZQ expresion CORDER .
+
+    PUNTOYCOMA      reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
+    SUMA            reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
+    RESTA           reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
+    MULT            reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
+    DIV             reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
+    POTENCIA        reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
+    MODULO          reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
+    PARDER          reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
+    LLADER          reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
+    CORDER          reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
+
+
+state 35
 
     (1) declaracion -> VARIABLE ASIGNAR expresion PUNTOYCOMA .
 
@@ -1000,15 +882,15 @@ state 39
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for SUMA in state 27 resolved as shift
-WARNING: shift/reduce conflict for RESTA in state 27 resolved as shift
-WARNING: shift/reduce conflict for MULT in state 27 resolved as shift
-WARNING: shift/reduce conflict for DIV in state 27 resolved as shift
-WARNING: shift/reduce conflict for POTENCIA in state 27 resolved as shift
-WARNING: shift/reduce conflict for MODULO in state 27 resolved as shift
-WARNING: shift/reduce conflict for SUMA in state 32 resolved as shift
-WARNING: shift/reduce conflict for RESTA in state 32 resolved as shift
-WARNING: shift/reduce conflict for MULT in state 32 resolved as shift
-WARNING: shift/reduce conflict for DIV in state 32 resolved as shift
-WARNING: shift/reduce conflict for POTENCIA in state 32 resolved as shift
-WARNING: shift/reduce conflict for MODULO in state 32 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 30 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 30 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 30 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 30 resolved as shift
+WARNING: shift/reduce conflict for POTENCIA in state 30 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 30 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 31 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 31 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 31 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 31 resolved as shift
+WARNING: shift/reduce conflict for POTENCIA in state 31 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 31 resolved as shift
