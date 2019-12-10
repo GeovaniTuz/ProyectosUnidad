@@ -16,7 +16,7 @@ precedence = (
     ('right', 'ASIGNAR'),
     ('left', 'TAGINICIO'),
     ('right', 'TAG_FINAL'),
-    ('left', 'PUNTOYCOMA'),
+    ('right', 'PUNTOYCOMA'),
     ('left', 'SUMA', 'RESTA'),
     ('left', 'MULT', 'DIV'),
     ('right', 'UMINUS'),
@@ -42,10 +42,13 @@ def p_declaracion_asignar(t):
 
 # aqui la idea de como hacer la primera declaracion
 def p_declaracion_taginicio(t):
-    'declaracion : TAGINICIO expresion TAG_FINAL'
-    
+    'declaracion : TAGINICIO'
+    t[0] = t[1]
+
+
 def p_declaracion_tagfinal(t):
-  'declaracion :  TAG_FINAL expresion TAGINICIO'
+  'declaracion :  TAG_FINAL'
+  t[0] = t[1]
 
 
 # def p_declaracion_taginicio(p):
