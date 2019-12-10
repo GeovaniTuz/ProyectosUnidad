@@ -16,7 +16,7 @@ precedence = (
     ('right', 'ASIGNAR'),
     ('left', 'TAGINICIO'),
     ('right', 'TAG_FINAL'),
-    ('right', 'PUNTOYCOMA'),
+    ('left', 'PUNTOYCOMA'),
     ('left', 'SUMA', 'RESTA'),
     ('left', 'MULT', 'DIV'),
     ('right', 'UMINUS'),
@@ -42,11 +42,15 @@ def p_declaracion_asignar(t):
 
 # aqui la idea de como hacer la primera declaracion
 def p_declaracion_taginicio(t):
-    'declaracion : TAGINICIO expresion TAG_FINAL'
+    'declaracion : TAGINICIO '
+    t[0] = t[1]
 
 
 def p_declaracion_tagfinal(t):
-    'declaracion :  TAG_FINAL expresion TAGINICIO'
+    'declaracion :  TAG_FINAL '
+    t[0] = t[1]
+
+
  #   
 
 # def p_declaracion_taginicio(p):
@@ -135,6 +139,7 @@ def p_expresion_nombre(t):
         print("¿verificar si se definio o asigno un valor(en caso de operacion arimetica)?")
         t[0] = 0
         print("---------------------------------------------")
+
 
 
 def p_error(t):
