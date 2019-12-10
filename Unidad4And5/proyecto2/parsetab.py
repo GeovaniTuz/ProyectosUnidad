@@ -6,15 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-<<<<<<< HEAD
-_lr_signature = 'rightASIGNARleftTAGINICIOrightTAG_FINALleftPUNTOYCOMAleftSUMARESTAleftMULTDIVrightUMINUSAND ASIGNAR COMA COMENTARIO CORDER CORIZQ DECIMAL DISTINTO DIV ECHO ENTERO IGUAL LLADER LLAIZQ MAYORIGUAL MAYORQUE MENORIGUAL MENORQUE MIENTRAS MINUSMINUS MODULO MULT NOT NUMERAL OR PARA PARDER PARIZQ PLUSPLUS POTENCIA PUNTO PUNTOYCOMA RESTA SI SINO SUMA TAGINICIO TAG_FINAL VARIABLEdeclaracion : VARIABLE ASIGNAR expresion PUNTOYCOMAdeclaracion : TAGINICIOdeclaracion :  TAG_FINAL declaracion : expresion PUNTOYCOMA\n    expresion  :   expresion SUMA expresion\n                |   expresion RESTA expresion\n                |   expresion MULT expresion\n                |   expresion DIV expresion\n                |   expresion POTENCIA expresion\n                |   expresion MODULO expresion\n\n    expresion : RESTA expresion %prec UMINUS\n    expresion  : PARIZQ expresion PARDER \n                | LLAIZQ expresion LLADER\n                | CORIZQ expresion CORDER\n    expresion : ENTEROexpresion : DECIMALexpresion : VARIABLE'
+_lr_signature = 'rightASIGNARleftTAGINICIOrightTAG_FINALleftPUNTOYCOMAleftSUMARESTAleftMULTDIVrightUMINUSAND ASIGNAR COMA COMENTARIO CORDER CORIZQ DECIMAL DISTINTO DIV ECHO ENTERO IGUAL LLADER LLAIZQ MAYORIGUAL MAYORQUE MENORIGUAL MENORQUE MIENTRAS MINUSMINUS MODULO MULT NOT NUMERAL OR PARA PARDER PARIZQ PLUSPLUS POTENCIA PUNTO PUNTOYCOMA RESTA SI SINO SUMA TAGINICIO TAG_FINAL VARIABLEdeclaracion : VARIABLE ASIGNAR expresion PUNTOYCOMAdeclaracion : TAGINICIO expresion TAG_FINALdeclaracion :  TAG_FINAL expresion TAGINICIOdeclaracion : expresion PUNTOYCOMA\n    expresion  :   expresion SUMA expresion\n                |   expresion RESTA expresion\n                |   expresion MULT expresion\n                |   expresion DIV expresion\n                |   expresion POTENCIA expresion\n                |   expresion MODULO expresion\n\n    expresion : RESTA expresion %prec UMINUS\n    expresion  : PARIZQ expresion PARDER \n                | LLAIZQ expresion LLADER\n                | CORIZQ expresion CORDER\n    expresion : ENTEROexpresion : DECIMALexpresion : VARIABLE'
     
-_lr_action_items = {'$end':([5,6,11,14,35,],[-3,-2,0,-4,-1,]),'LLAIZQ':([0,2,7,9,10,12,13,15,16,17,18,22,],[2,2,2,2,2,2,2,2,2,2,2,2,]),'MODULO':([1,3,4,8,19,20,21,23,24,25,26,27,28,29,30,31,32,33,34,],[12,-15,-16,-17,12,-17,12,-11,12,12,-5,-6,-8,-7,12,-13,-14,12,-12,]),'MULT':([1,3,4,8,19,20,21,23,24,25,26,27,28,29,30,31,32,33,34,],[17,-15,-16,-17,17,-17,17,-11,17,17,17,17,-8,-7,17,-13,-14,17,-12,]),'TAGINICIO':([0,],[6,]),'LLADER':([3,4,19,20,23,25,26,27,28,29,30,31,32,34,],[-15,-16,31,-17,-11,-10,-5,-6,-8,-7,-9,-13,-14,-12,]),'DECIMAL':([0,2,7,9,10,12,13,15,16,17,18,22,],[4,4,4,4,4,4,4,4,4,4,4,4,]),'TAG_FINAL':([0,],[5,]),'CORDER':([3,4,20,21,23,25,26,27,28,29,30,31,32,34,],[-15,-16,-17,32,-11,-10,-5,-6,-8,-7,-9,-13,-14,-12,]),'ASIGNAR':([8,],[22,]),'POTENCIA':([1,3,4,8,19,20,21,23,24,25,26,27,28,29,30,31,32,33,34,],[18,-15,-16,-17,18,-17,18,-11,18,18,-5,-6,-8,-7,18,-13,-14,18,-12,]),'CORIZQ':([0,2,7,9,10,12,13,15,16,17,18,22,],[7,7,7,7,7,7,7,7,7,7,7,7,]),'PUNTOYCOMA':([1,3,4,8,20,23,25,26,27,28,29,30,31,32,33,34,],[14,-15,-16,-17,-17,-11,-10,-5,-6,-8,-7,-9,-13,-14,35,-12,]),'VARIABLE':([0,2,7,9,10,12,13,15,16,17,18,22,],[8,20,20,20,20,20,20,20,20,20,20,20,]),'PARDER':([3,4,20,23,24,25,26,27,28,29,30,31,32,34,],[-15,-16,-17,-11,34,-10,-5,-6,-8,-7,-9,-13,-14,-12,]),'RESTA':([0,1,2,3,4,7,8,9,10,12,13,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,],[9,15,9,-15,-16,9,-17,9,9,9,9,9,9,9,9,15,-17,15,9,-11,15,15,-5,-6,-8,-7,15,-13,-14,15,-12,]),'PARIZQ':([0,2,7,9,10,12,13,15,16,17,18,22,],[10,10,10,10,10,10,10,10,10,10,10,10,]),'DIV':([1,3,4,8,19,20,21,23,24,25,26,27,28,29,30,31,32,33,34,],[16,-15,-16,-17,16,-17,16,-11,16,16,16,16,-8,-7,16,-13,-14,16,-12,]),'SUMA':([1,3,4,8,19,20,21,23,24,25,26,27,28,29,30,31,32,33,34,],[13,-15,-16,-17,13,-17,13,-11,13,13,-5,-6,-8,-7,13,-13,-14,13,-12,]),'ENTERO':([0,2,7,9,10,12,13,15,16,17,18,22,],[3,3,3,3,3,3,3,3,3,3,3,3,]),}
-=======
-_lr_signature = 'rightASIGNARleftTAGINICIOrightTAG_FINALrightPUNTOYCOMAleftSUMARESTAleftMULTDIVrightUMINUSAND ASIGNAR COMA COMENTARIO CORDER CORIZQ DECIMAL DISTINTO DIV ECHO ENTERO IGUAL LLADER LLAIZQ MAYORIGUAL MAYORQUE MENORIGUAL MENORQUE MIENTRAS MINUSMINUS MODULO MULT NOT NUMERAL OR PARA PARDER PARIZQ PLUSPLUS POTENCIA PUNTO PUNTOYCOMA RESTA SI SINO SUMA TAGINICIO TAG_FINAL VARIABLEdeclaracion : VARIABLE ASIGNAR expresion PUNTOYCOMAdeclaracion : TAGINICIOdeclaracion :  TAG_FINALdeclaracion : expresion PUNTOYCOMA\n    expresion  :   expresion SUMA expresion\n                |   expresion RESTA expresion\n                |   expresion MULT expresion\n                |   expresion DIV expresion\n                |   expresion POTENCIA expresion\n                |   expresion MODULO expresion\n\n    expresion : RESTA expresion %prec UMINUS\n    expresion  : PARIZQ expresion PARDER \n                | LLAIZQ expresion LLADER\n                | CORIZQ expresion CORDER\n    expresion : ENTEROexpresion : DECIMALexpresion : VARIABLE'
-    
-_lr_action_items = {'VARIABLE':([0,6,7,8,9,12,14,15,16,17,18,19,],[2,21,21,21,21,21,21,21,21,21,21,21,]),'TAGINICIO':([0,],[4,]),'TAG_FINAL':([0,],[5,]),'RESTA':([0,2,3,6,7,8,9,10,11,12,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,],[6,-17,15,6,6,6,6,-15,-16,6,6,6,6,6,6,6,-11,-17,15,15,15,15,-5,-6,-7,-8,15,15,-12,-13,-14,]),'PARIZQ':([0,6,7,8,9,12,14,15,16,17,18,19,],[7,7,7,7,7,7,7,7,7,7,7,7,]),'LLAIZQ':([0,6,7,8,9,12,14,15,16,17,18,19,],[8,8,8,8,8,8,8,8,8,8,8,8,]),'CORIZQ':([0,6,7,8,9,12,14,15,16,17,18,19,],[9,9,9,9,9,9,9,9,9,9,9,9,]),'ENTERO':([0,6,7,8,9,12,14,15,16,17,18,19,],[10,10,10,10,10,10,10,10,10,10,10,10,]),'DECIMAL':([0,6,7,8,9,12,14,15,16,17,18,19,],[11,11,11,11,11,11,11,11,11,11,11,11,]),'$end':([1,4,5,13,35,],[0,-2,-3,-4,-1,]),'ASIGNAR':([2,],[12,]),'PUNTOYCOMA':([2,3,10,11,20,21,25,26,27,28,29,30,31,32,33,34,],[-17,13,-15,-16,-11,-17,35,-5,-6,-7,-8,-9,-10,-12,-13,-14,]),'SUMA':([2,3,10,11,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,],[-17,14,-15,-16,-11,-17,14,14,14,14,-5,-6,-7,-8,14,14,-12,-13,-14,]),'MULT':([2,3,10,11,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,],[-17,16,-15,-16,-11,-17,16,16,16,16,16,16,-7,-8,16,16,-12,-13,-14,]),'DIV':([2,3,10,11,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,],[-17,17,-15,-16,-11,-17,17,17,17,17,17,17,-7,-8,17,17,-12,-13,-14,]),'POTENCIA':([2,3,10,11,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,],[-17,18,-15,-16,-11,-17,18,18,18,18,-5,-6,-7,-8,18,18,-12,-13,-14,]),'MODULO':([2,3,10,11,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,],[-17,19,-15,-16,-11,-17,19,19,19,19,-5,-6,-7,-8,19,19,-12,-13,-14,]),'PARDER':([10,11,20,21,22,26,27,28,29,30,31,32,33,34,],[-15,-16,-11,-17,32,-5,-6,-7,-8,-9,-10,-12,-13,-14,]),'LLADER':([10,11,20,21,23,26,27,28,29,30,31,32,33,34,],[-15,-16,-11,-17,33,-5,-6,-7,-8,-9,-10,-12,-13,-14,]),'CORDER':([10,11,20,21,24,26,27,28,29,30,31,32,33,34,],[-15,-16,-11,-17,34,-5,-6,-7,-8,-9,-10,-12,-13,-14,]),}
->>>>>>> fe26adef1f7803ea3904ff0d77ed22a50c81f8d6
+_lr_action_items = {'$end':([11,14,34,35,39,],[0,-4,-3,-2,-1,]),'LLAIZQ':([0,2,5,6,7,9,10,12,13,15,16,17,18,24,],[2,2,2,2,2,2,2,2,2,2,2,2,2,2,]),'MODULO':([1,3,4,8,19,20,21,22,23,25,26,27,28,29,30,31,32,33,36,37,38,],[12,-15,-16,-17,12,-17,12,12,12,-11,12,12,-5,-6,-8,-7,12,-13,-14,12,-12,]),'MULT':([1,3,4,8,19,20,21,22,23,25,26,27,28,29,30,31,32,33,36,37,38,],[17,-15,-16,-17,17,-17,17,17,17,-11,17,17,17,17,-8,-7,17,-13,-14,17,-12,]),'TAGINICIO':([0,3,4,20,21,25,27,28,29,30,31,32,33,36,38,],[6,-15,-16,-17,34,-11,-10,-5,-6,-8,-7,-9,-13,-14,-12,]),'LLADER':([3,4,19,20,25,27,28,29,30,31,32,33,36,38,],[-15,-16,33,-17,-11,-10,-5,-6,-8,-7,-9,-13,-14,-12,]),'DECIMAL':([0,2,5,6,7,9,10,12,13,15,16,17,18,24,],[4,4,4,4,4,4,4,4,4,4,4,4,4,4,]),'TAG_FINAL':([0,3,4,20,22,25,27,28,29,30,31,32,33,36,38,],[5,-15,-16,-17,35,-11,-10,-5,-6,-8,-7,-9,-13,-14,-12,]),'CORDER':([3,4,20,23,25,27,28,29,30,31,32,33,36,38,],[-15,-16,-17,36,-11,-10,-5,-6,-8,-7,-9,-13,-14,-12,]),'ASIGNAR':([8,],[24,]),'POTENCIA':([1,3,4,8,19,20,21,22,23,25,26,27,28,29,30,31,32,33,36,37,38,],[18,-15,-16,-17,18,-17,18,18,18,-11,18,18,-5,-6,-8,-7,18,-13,-14,18,-12,]),'CORIZQ':([0,2,5,6,7,9,10,12,13,15,16,17,18,24,],[7,7,7,7,7,7,7,7,7,7,7,7,7,7,]),'PUNTOYCOMA':([1,3,4,8,20,25,27,28,29,30,31,32,33,36,37,38,],[14,-15,-16,-17,-17,-11,-10,-5,-6,-8,-7,-9,-13,-14,39,-12,]),'VARIABLE':([0,2,5,6,7,9,10,12,13,15,16,17,18,24,],[8,20,20,20,20,20,20,20,20,20,20,20,20,20,]),'PARDER':([3,4,20,25,26,27,28,29,30,31,32,33,36,38,],[-15,-16,-17,-11,38,-10,-5,-6,-8,-7,-9,-13,-14,-12,]),'RESTA':([0,1,2,3,4,5,6,7,8,9,10,12,13,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,36,37,38,],[9,15,9,-15,-16,9,9,9,-17,9,9,9,9,9,9,9,9,15,-17,15,15,15,9,-11,15,15,-5,-6,-8,-7,15,-13,-14,15,-12,]),'PARIZQ':([0,2,5,6,7,9,10,12,13,15,16,17,18,24,],[10,10,10,10,10,10,10,10,10,10,10,10,10,10,]),'DIV':([1,3,4,8,19,20,21,22,23,25,26,27,28,29,30,31,32,33,36,37,38,],[16,-15,-16,-17,16,-17,16,16,16,-11,16,16,16,16,-8,-7,16,-13,-14,16,-12,]),'SUMA':([1,3,4,8,19,20,21,22,23,25,26,27,28,29,30,31,32,33,36,37,38,],[13,-15,-16,-17,13,-17,13,13,13,-11,13,13,-5,-6,-8,-7,13,-13,-14,13,-12,]),'ENTERO':([0,2,5,6,7,9,10,12,13,15,16,17,18,24,],[3,3,3,3,3,3,3,3,3,3,3,3,3,3,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -23,11 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-<<<<<<< HEAD
-_lr_goto_items = {'expresion':([0,2,7,9,10,12,13,15,16,17,18,22,],[1,19,21,23,24,25,26,27,28,29,30,33,]),'declaracion':([0,],[11,]),}
-=======
-_lr_goto_items = {'declaracion':([0,],[1,]),'expresion':([0,6,7,8,9,12,14,15,16,17,18,19,],[3,20,22,23,24,25,26,27,28,29,30,31,]),}
->>>>>>> fe26adef1f7803ea3904ff0d77ed22a50c81f8d6
+_lr_goto_items = {'expresion':([0,2,5,6,7,9,10,12,13,15,16,17,18,24,],[1,19,21,22,23,25,26,27,28,29,30,31,32,37,]),'declaracion':([0,],[11,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -38,39 +28,20 @@ del _lr_goto_items
 _lr_productions = [
   ("S' -> declaracion","S'",1,None,None,None),
   ('declaracion -> VARIABLE ASIGNAR expresion PUNTOYCOMA','declaracion',4,'p_declaracion_asignar','main.py',33),
-<<<<<<< HEAD
-  ('declaracion -> TAGINICIO','declaracion',1,'p_declaracion_taginicio','main.py',45),
-  ('declaracion -> TAG_FINAL','declaracion',1,'p_declaracion_tagfinal','main.py',50),
-  ('declaracion -> expresion PUNTOYCOMA','declaracion',2,'p_declaracion_expr','main.py',67),
-  ('expresion -> expresion SUMA expresion','expresion',3,'p_expresion_operaciones','main.py',74),
-  ('expresion -> expresion RESTA expresion','expresion',3,'p_expresion_operaciones','main.py',75),
-  ('expresion -> expresion MULT expresion','expresion',3,'p_expresion_operaciones','main.py',76),
-  ('expresion -> expresion DIV expresion','expresion',3,'p_expresion_operaciones','main.py',77),
-  ('expresion -> expresion POTENCIA expresion','expresion',3,'p_expresion_operaciones','main.py',78),
-  ('expresion -> expresion MODULO expresion','expresion',3,'p_expresion_operaciones','main.py',79),
-  ('expresion -> RESTA expresion','expresion',2,'p_expresion_uminus','main.py',101),
-  ('expresion -> PARIZQ expresion PARDER','expresion',3,'p_expresion_grupo','main.py',107),
-  ('expresion -> LLAIZQ expresion LLADER','expresion',3,'p_expresion_grupo','main.py',108),
-  ('expresion -> CORIZQ expresion CORDER','expresion',3,'p_expresion_grupo','main.py',109),
-  ('expresion -> ENTERO','expresion',1,'p_expresion_numero','main.py',116),
-  ('expresion -> DECIMAL','expresion',1,'p_expresion_decimal','main.py',120),
-  ('expresion -> VARIABLE','expresion',1,'p_expresion_nombre','main.py',130),
-=======
-  ('declaracion -> TAGINICIO','declaracion',1,'p_declaracion_taginicio','main.py',50),
-  ('declaracion -> TAG_FINAL','declaracion',1,'p_declaracion_tagfinal','main.py',64),
-  ('declaracion -> expresion PUNTOYCOMA','declaracion',2,'p_declaracion_expr','main.py',87),
-  ('expresion -> expresion SUMA expresion','expresion',3,'p_expresion_operaciones','main.py',94),
-  ('expresion -> expresion RESTA expresion','expresion',3,'p_expresion_operaciones','main.py',95),
-  ('expresion -> expresion MULT expresion','expresion',3,'p_expresion_operaciones','main.py',96),
-  ('expresion -> expresion DIV expresion','expresion',3,'p_expresion_operaciones','main.py',97),
-  ('expresion -> expresion POTENCIA expresion','expresion',3,'p_expresion_operaciones','main.py',98),
-  ('expresion -> expresion MODULO expresion','expresion',3,'p_expresion_operaciones','main.py',99),
-  ('expresion -> RESTA expresion','expresion',2,'p_expresion_uminus','main.py',121),
-  ('expresion -> PARIZQ expresion PARDER','expresion',3,'p_expresion_grupo','main.py',127),
-  ('expresion -> LLAIZQ expresion LLADER','expresion',3,'p_expresion_grupo','main.py',128),
-  ('expresion -> CORIZQ expresion CORDER','expresion',3,'p_expresion_grupo','main.py',129),
-  ('expresion -> ENTERO','expresion',1,'p_expresion_numero','main.py',136),
-  ('expresion -> DECIMAL','expresion',1,'p_expresion_decimal','main.py',140),
-  ('expresion -> VARIABLE','expresion',1,'p_expresion_nombre','main.py',150),
->>>>>>> fe26adef1f7803ea3904ff0d77ed22a50c81f8d6
+  ('declaracion -> TAGINICIO expresion TAG_FINAL','declaracion',3,'p_declaracion_taginicio','main.py',45),
+  ('declaracion -> TAG_FINAL expresion TAGINICIO','declaracion',3,'p_declaracion_tagfinal','main.py',48),
+  ('declaracion -> expresion PUNTOYCOMA','declaracion',2,'p_declaracion_expr','main.py',62),
+  ('expresion -> expresion SUMA expresion','expresion',3,'p_expresion_operaciones','main.py',69),
+  ('expresion -> expresion RESTA expresion','expresion',3,'p_expresion_operaciones','main.py',70),
+  ('expresion -> expresion MULT expresion','expresion',3,'p_expresion_operaciones','main.py',71),
+  ('expresion -> expresion DIV expresion','expresion',3,'p_expresion_operaciones','main.py',72),
+  ('expresion -> expresion POTENCIA expresion','expresion',3,'p_expresion_operaciones','main.py',73),
+  ('expresion -> expresion MODULO expresion','expresion',3,'p_expresion_operaciones','main.py',74),
+  ('expresion -> RESTA expresion','expresion',2,'p_expresion_uminus','main.py',96),
+  ('expresion -> PARIZQ expresion PARDER','expresion',3,'p_expresion_grupo','main.py',102),
+  ('expresion -> LLAIZQ expresion LLADER','expresion',3,'p_expresion_grupo','main.py',103),
+  ('expresion -> CORIZQ expresion CORDER','expresion',3,'p_expresion_grupo','main.py',104),
+  ('expresion -> ENTERO','expresion',1,'p_expresion_numero','main.py',111),
+  ('expresion -> DECIMAL','expresion',1,'p_expresion_decimal','main.py',115),
+  ('expresion -> VARIABLE','expresion',1,'p_expresion_nombre','main.py',125),
 ]

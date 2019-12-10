@@ -41,53 +41,13 @@ def p_declaracion_asignar(t):
 
 
 # aqui la idea de como hacer la primera declaracion
-<<<<<<< HEAD
 def p_declaracion_taginicio(t):
-    'declaracion : TAGINICIO '
-    t[0] = t[1]
-=======
-#def p_declaracion_taginicio(t):
- #   'declaracion : TAGINICIO expresion TAG_FINAL'
-#def p_declaracion_tagfinal(t):
-#  'declaracion :  TAG_FINAL expresion TAGINICIO'
->>>>>>> fe26adef1f7803ea3904ff0d77ed22a50c81f8d6
-
-def p_declaracion_taginicio(t):
-    'declaracion : TAGINICIO'
-    try:
-        t[0] = t[1]
-    except LookupError:
-        print("---------------------------------------------")
-        print("SINTAXIS ERROR ")
-        print("--------------------------------------------")
-        print("")
-        print("VERIFICAR: ", t[1])
-        print("¿verificar si se definio o asigno un valor(en caso de operacion arimetica)?")
-        t[0] = 0
-        print("---------------------------------------------")
-
+    'declaracion : TAGINICIO expresion TAG_FINAL'
+    
 def p_declaracion_tagfinal(t):
-<<<<<<< HEAD
-    'declaracion :  TAG_FINAL '
-    t[0] = t[1]
+  'declaracion :  TAG_FINAL expresion TAGINICIO'
 
 
- #   
-
-=======
-    'declaracion :  TAG_FINAL'
-    try:
-        t[0] = t[1]
-    except LookupError:
-        print("---------------------------------------------")
-        print("SINTAXIS ERROR ")
-        print("--------------------------------------------")
-        print("")
-        print("VERIFICAR: ", t[1])
-        print("¿verificar si se definio o asigno un valor(en caso de operacion arimetica)?")
-        t[0] = 0
-        print("---------------------------------------------")
->>>>>>> fe26adef1f7803ea3904ff0d77ed22a50c81f8d6
 # def p_declaracion_taginicio(p):
  #   'declaracion : TAGINICIO'
   #  print("Inicio de sintaxis PHP")
