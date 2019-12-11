@@ -4,20 +4,14 @@ Unused terminals:
 
     PARA
     SINO
-    MENORQUE
     NUMERAL
     COMENTARIO
     PUNTO
     PLUSPLUS
-    MAYORQUE
-    MAYORIGUAL
-    MENORIGUAL
-    DISTINTO
     ECHO
     MIENTRAS
     COMA
     MINUSMINUS
-    IGUAL
     AND
     SI
     NOT
@@ -40,9 +34,21 @@ Rule 11    expresion -> RESTA expresion
 Rule 12    expresion -> PARIZQ expresion PARDER
 Rule 13    expresion -> LLAIZQ expresion LLADER
 Rule 14    expresion -> CORIZQ expresion CORDER
-Rule 15    expresion -> ENTERO
-Rule 16    expresion -> DECIMAL
-Rule 17    expresion -> VARIABLE
+Rule 15    expresion -> expresion MENORQUE expresion
+Rule 16    expresion -> expresion MAYORQUE expresion
+Rule 17    expresion -> expresion MENORIGUAL expresion
+Rule 18    expresion -> expresion MAYORIGUAL expresion
+Rule 19    expresion -> expresion IGUAL expresion
+Rule 20    expresion -> expresion DISTINTO expresion
+Rule 21    expresion -> PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+Rule 22    expresion -> PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+Rule 23    expresion -> PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER
+Rule 24    expresion -> PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+Rule 25    expresion -> PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER
+Rule 26    expresion -> PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER
+Rule 27    expresion -> ENTERO
+Rule 28    expresion -> DECIMAL
+Rule 29    expresion -> VARIABLE
 
 Terminals, with rules where they appear
 
@@ -52,18 +58,18 @@ COMA                 :
 COMENTARIO           : 
 CORDER               : 14
 CORIZQ               : 14
-DECIMAL              : 16
-DISTINTO             : 
+DECIMAL              : 28
+DISTINTO             : 20 26
 DIV                  : 8
 ECHO                 : 
-ENTERO               : 15
-IGUAL                : 
+ENTERO               : 27
+IGUAL                : 19 25
 LLADER               : 13
 LLAIZQ               : 13
-MAYORIGUAL           : 
-MAYORQUE             : 
-MENORIGUAL           : 
-MENORQUE             : 
+MAYORIGUAL           : 18 24
+MAYORQUE             : 16 22
+MENORIGUAL           : 17 23
+MENORQUE             : 15 21
 MIENTRAS             : 
 MINUSMINUS           : 
 MODULO               : 10
@@ -72,8 +78,8 @@ NOT                  :
 NUMERAL              : 
 OR                   : 
 PARA                 : 
-PARDER               : 12
-PARIZQ               : 12
+PARDER               : 12 21 21 22 22 23 23 24 24 25 25 26 26
+PARIZQ               : 12 21 21 22 22 23 23 24 24 25 25 26 26
 PLUSPLUS             : 
 POTENCIA             : 9
 PUNTO                : 
@@ -84,13 +90,13 @@ SINO                 :
 SUMA                 : 5
 TAGINICIO            : 2
 TAG_FINAL            : 3
-VARIABLE             : 1 17
+VARIABLE             : 1 29
 error                : 
 
 Nonterminals, with rules where they appear
 
 declaracion          : 0
-expresion            : 1 4 5 5 6 6 7 7 8 8 9 9 10 10 11 12 13 14
+expresion            : 1 4 5 5 6 6 7 7 8 8 9 9 10 10 11 12 13 14 15 15 16 16 17 17 18 18 19 19 20 20 21 21 22 22 23 23 24 24 25 25 26 26
 
 Parsing method: LALR
 
@@ -111,45 +117,45 @@ state 0
     (12) expresion -> . PARIZQ expresion PARDER
     (13) expresion -> . LLAIZQ expresion LLADER
     (14) expresion -> . CORIZQ expresion CORDER
-    (15) expresion -> . ENTERO
-    (16) expresion -> . DECIMAL
-    (17) expresion -> . VARIABLE
+    (15) expresion -> . expresion MENORQUE expresion
+    (16) expresion -> . expresion MAYORQUE expresion
+    (17) expresion -> . expresion MENORIGUAL expresion
+    (18) expresion -> . expresion MAYORIGUAL expresion
+    (19) expresion -> . expresion IGUAL expresion
+    (20) expresion -> . expresion DISTINTO expresion
+    (21) expresion -> . PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+    (22) expresion -> . PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+    (23) expresion -> . PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER
+    (24) expresion -> . PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+    (25) expresion -> . PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER
+    (26) expresion -> . PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER
+    (27) expresion -> . ENTERO
+    (28) expresion -> . DECIMAL
+    (29) expresion -> . VARIABLE
 
     VARIABLE        shift and go to state 8
-    TAGINICIO       shift and go to state 6
-    TAG_FINAL       shift and go to state 5
-    RESTA           shift and go to state 9
-    PARIZQ          shift and go to state 10
-    LLAIZQ          shift and go to state 2
+    TAGINICIO       shift and go to state 4
+    TAG_FINAL       shift and go to state 1
+    RESTA           shift and go to state 2
+    PARIZQ          shift and go to state 3
+    LLAIZQ          shift and go to state 10
     CORIZQ          shift and go to state 7
-    ENTERO          shift and go to state 3
-    DECIMAL         shift and go to state 4
+    ENTERO          shift and go to state 5
+    DECIMAL         shift and go to state 6
 
-    expresion                      shift and go to state 1
+    expresion                      shift and go to state 9
     declaracion                    shift and go to state 11
 
 state 1
 
-    (4) declaracion -> expresion . PUNTOYCOMA
-    (5) expresion -> expresion . SUMA expresion
-    (6) expresion -> expresion . RESTA expresion
-    (7) expresion -> expresion . MULT expresion
-    (8) expresion -> expresion . DIV expresion
-    (9) expresion -> expresion . POTENCIA expresion
-    (10) expresion -> expresion . MODULO expresion
+    (3) declaracion -> TAG_FINAL .
 
-    PUNTOYCOMA      shift and go to state 14
-    SUMA            shift and go to state 13
-    RESTA           shift and go to state 15
-    MULT            shift and go to state 17
-    DIV             shift and go to state 16
-    POTENCIA        shift and go to state 18
-    MODULO          shift and go to state 12
+    $end            reduce using rule 3 (declaracion -> TAG_FINAL .)
 
 
 state 2
 
-    (13) expresion -> LLAIZQ . expresion LLADER
+    (11) expresion -> RESTA . expresion
     (5) expresion -> . expresion SUMA expresion
     (6) expresion -> . expresion RESTA expresion
     (7) expresion -> . expresion MULT expresion
@@ -160,64 +166,126 @@ state 2
     (12) expresion -> . PARIZQ expresion PARDER
     (13) expresion -> . LLAIZQ expresion LLADER
     (14) expresion -> . CORIZQ expresion CORDER
-    (15) expresion -> . ENTERO
-    (16) expresion -> . DECIMAL
-    (17) expresion -> . VARIABLE
+    (15) expresion -> . expresion MENORQUE expresion
+    (16) expresion -> . expresion MAYORQUE expresion
+    (17) expresion -> . expresion MENORIGUAL expresion
+    (18) expresion -> . expresion MAYORIGUAL expresion
+    (19) expresion -> . expresion IGUAL expresion
+    (20) expresion -> . expresion DISTINTO expresion
+    (21) expresion -> . PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+    (22) expresion -> . PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+    (23) expresion -> . PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER
+    (24) expresion -> . PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+    (25) expresion -> . PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER
+    (26) expresion -> . PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER
+    (27) expresion -> . ENTERO
+    (28) expresion -> . DECIMAL
+    (29) expresion -> . VARIABLE
 
-    RESTA           shift and go to state 9
-    PARIZQ          shift and go to state 10
-    LLAIZQ          shift and go to state 2
+    RESTA           shift and go to state 2
+    PARIZQ          shift and go to state 3
+    LLAIZQ          shift and go to state 10
     CORIZQ          shift and go to state 7
-    ENTERO          shift and go to state 3
-    DECIMAL         shift and go to state 4
-    VARIABLE        shift and go to state 20
+    ENTERO          shift and go to state 5
+    DECIMAL         shift and go to state 6
+    VARIABLE        shift and go to state 12
 
-    expresion                      shift and go to state 19
+    expresion                      shift and go to state 13
 
 state 3
 
-    (15) expresion -> ENTERO .
+    (12) expresion -> PARIZQ . expresion PARDER
+    (21) expresion -> PARIZQ . expresion PARDER MENORQUE PARIZQ expresion PARDER
+    (22) expresion -> PARIZQ . expresion PARDER MAYORQUE PARIZQ expresion PARDER
+    (23) expresion -> PARIZQ . expresion PARDER MENORIGUAL PARIZQ expresion PARDER
+    (24) expresion -> PARIZQ . expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+    (25) expresion -> PARIZQ . expresion PARDER IGUAL PARIZQ expresion PARDER
+    (26) expresion -> PARIZQ . expresion PARDER DISTINTO PARIZQ expresion PARDER
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULT expresion
+    (8) expresion -> . expresion DIV expresion
+    (9) expresion -> . expresion POTENCIA expresion
+    (10) expresion -> . expresion MODULO expresion
+    (11) expresion -> . RESTA expresion
+    (12) expresion -> . PARIZQ expresion PARDER
+    (13) expresion -> . LLAIZQ expresion LLADER
+    (14) expresion -> . CORIZQ expresion CORDER
+    (15) expresion -> . expresion MENORQUE expresion
+    (16) expresion -> . expresion MAYORQUE expresion
+    (17) expresion -> . expresion MENORIGUAL expresion
+    (18) expresion -> . expresion MAYORIGUAL expresion
+    (19) expresion -> . expresion IGUAL expresion
+    (20) expresion -> . expresion DISTINTO expresion
+    (21) expresion -> . PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+    (22) expresion -> . PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+    (23) expresion -> . PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER
+    (24) expresion -> . PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+    (25) expresion -> . PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER
+    (26) expresion -> . PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER
+    (27) expresion -> . ENTERO
+    (28) expresion -> . DECIMAL
+    (29) expresion -> . VARIABLE
 
-    SUMA            reduce using rule 15 (expresion -> ENTERO .)
-    RESTA           reduce using rule 15 (expresion -> ENTERO .)
-    MULT            reduce using rule 15 (expresion -> ENTERO .)
-    DIV             reduce using rule 15 (expresion -> ENTERO .)
-    POTENCIA        reduce using rule 15 (expresion -> ENTERO .)
-    MODULO          reduce using rule 15 (expresion -> ENTERO .)
-    PUNTOYCOMA      reduce using rule 15 (expresion -> ENTERO .)
-    LLADER          reduce using rule 15 (expresion -> ENTERO .)
-    CORDER          reduce using rule 15 (expresion -> ENTERO .)
-    PARDER          reduce using rule 15 (expresion -> ENTERO .)
+    RESTA           shift and go to state 2
+    PARIZQ          shift and go to state 3
+    LLAIZQ          shift and go to state 10
+    CORIZQ          shift and go to state 7
+    ENTERO          shift and go to state 5
+    DECIMAL         shift and go to state 6
+    VARIABLE        shift and go to state 12
 
+    expresion                      shift and go to state 14
 
 state 4
-
-    (16) expresion -> DECIMAL .
-
-    SUMA            reduce using rule 16 (expresion -> DECIMAL .)
-    RESTA           reduce using rule 16 (expresion -> DECIMAL .)
-    MULT            reduce using rule 16 (expresion -> DECIMAL .)
-    DIV             reduce using rule 16 (expresion -> DECIMAL .)
-    POTENCIA        reduce using rule 16 (expresion -> DECIMAL .)
-    MODULO          reduce using rule 16 (expresion -> DECIMAL .)
-    PUNTOYCOMA      reduce using rule 16 (expresion -> DECIMAL .)
-    LLADER          reduce using rule 16 (expresion -> DECIMAL .)
-    CORDER          reduce using rule 16 (expresion -> DECIMAL .)
-    PARDER          reduce using rule 16 (expresion -> DECIMAL .)
-
-
-state 5
-
-    (3) declaracion -> TAG_FINAL .
-
-    $end            reduce using rule 3 (declaracion -> TAG_FINAL .)
-
-
-state 6
 
     (2) declaracion -> TAGINICIO .
 
     $end            reduce using rule 2 (declaracion -> TAGINICIO .)
+
+
+state 5
+
+    (27) expresion -> ENTERO .
+
+    SUMA            reduce using rule 27 (expresion -> ENTERO .)
+    RESTA           reduce using rule 27 (expresion -> ENTERO .)
+    MULT            reduce using rule 27 (expresion -> ENTERO .)
+    DIV             reduce using rule 27 (expresion -> ENTERO .)
+    POTENCIA        reduce using rule 27 (expresion -> ENTERO .)
+    MODULO          reduce using rule 27 (expresion -> ENTERO .)
+    MENORQUE        reduce using rule 27 (expresion -> ENTERO .)
+    MAYORQUE        reduce using rule 27 (expresion -> ENTERO .)
+    MENORIGUAL      reduce using rule 27 (expresion -> ENTERO .)
+    MAYORIGUAL      reduce using rule 27 (expresion -> ENTERO .)
+    IGUAL           reduce using rule 27 (expresion -> ENTERO .)
+    DISTINTO        reduce using rule 27 (expresion -> ENTERO .)
+    PUNTOYCOMA      reduce using rule 27 (expresion -> ENTERO .)
+    PARDER          reduce using rule 27 (expresion -> ENTERO .)
+    CORDER          reduce using rule 27 (expresion -> ENTERO .)
+    LLADER          reduce using rule 27 (expresion -> ENTERO .)
+
+
+state 6
+
+    (28) expresion -> DECIMAL .
+
+    SUMA            reduce using rule 28 (expresion -> DECIMAL .)
+    RESTA           reduce using rule 28 (expresion -> DECIMAL .)
+    MULT            reduce using rule 28 (expresion -> DECIMAL .)
+    DIV             reduce using rule 28 (expresion -> DECIMAL .)
+    POTENCIA        reduce using rule 28 (expresion -> DECIMAL .)
+    MODULO          reduce using rule 28 (expresion -> DECIMAL .)
+    MENORQUE        reduce using rule 28 (expresion -> DECIMAL .)
+    MAYORQUE        reduce using rule 28 (expresion -> DECIMAL .)
+    MENORIGUAL      reduce using rule 28 (expresion -> DECIMAL .)
+    MAYORIGUAL      reduce using rule 28 (expresion -> DECIMAL .)
+    IGUAL           reduce using rule 28 (expresion -> DECIMAL .)
+    DISTINTO        reduce using rule 28 (expresion -> DECIMAL .)
+    PUNTOYCOMA      reduce using rule 28 (expresion -> DECIMAL .)
+    PARDER          reduce using rule 28 (expresion -> DECIMAL .)
+    CORDER          reduce using rule 28 (expresion -> DECIMAL .)
+    LLADER          reduce using rule 28 (expresion -> DECIMAL .)
 
 
 state 7
@@ -233,65 +301,87 @@ state 7
     (12) expresion -> . PARIZQ expresion PARDER
     (13) expresion -> . LLAIZQ expresion LLADER
     (14) expresion -> . CORIZQ expresion CORDER
-    (15) expresion -> . ENTERO
-    (16) expresion -> . DECIMAL
-    (17) expresion -> . VARIABLE
+    (15) expresion -> . expresion MENORQUE expresion
+    (16) expresion -> . expresion MAYORQUE expresion
+    (17) expresion -> . expresion MENORIGUAL expresion
+    (18) expresion -> . expresion MAYORIGUAL expresion
+    (19) expresion -> . expresion IGUAL expresion
+    (20) expresion -> . expresion DISTINTO expresion
+    (21) expresion -> . PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+    (22) expresion -> . PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+    (23) expresion -> . PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER
+    (24) expresion -> . PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+    (25) expresion -> . PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER
+    (26) expresion -> . PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER
+    (27) expresion -> . ENTERO
+    (28) expresion -> . DECIMAL
+    (29) expresion -> . VARIABLE
 
-    RESTA           shift and go to state 9
-    PARIZQ          shift and go to state 10
-    LLAIZQ          shift and go to state 2
+    RESTA           shift and go to state 2
+    PARIZQ          shift and go to state 3
+    LLAIZQ          shift and go to state 10
     CORIZQ          shift and go to state 7
-    ENTERO          shift and go to state 3
-    DECIMAL         shift and go to state 4
-    VARIABLE        shift and go to state 20
+    ENTERO          shift and go to state 5
+    DECIMAL         shift and go to state 6
+    VARIABLE        shift and go to state 12
 
-    expresion                      shift and go to state 21
+    expresion                      shift and go to state 15
 
 state 8
 
     (1) declaracion -> VARIABLE . ASIGNAR expresion PUNTOYCOMA
-    (17) expresion -> VARIABLE .
+    (29) expresion -> VARIABLE .
 
-    ASIGNAR         shift and go to state 22
-    PUNTOYCOMA      reduce using rule 17 (expresion -> VARIABLE .)
-    SUMA            reduce using rule 17 (expresion -> VARIABLE .)
-    RESTA           reduce using rule 17 (expresion -> VARIABLE .)
-    MULT            reduce using rule 17 (expresion -> VARIABLE .)
-    DIV             reduce using rule 17 (expresion -> VARIABLE .)
-    POTENCIA        reduce using rule 17 (expresion -> VARIABLE .)
-    MODULO          reduce using rule 17 (expresion -> VARIABLE .)
+    ASIGNAR         shift and go to state 16
+    PUNTOYCOMA      reduce using rule 29 (expresion -> VARIABLE .)
+    SUMA            reduce using rule 29 (expresion -> VARIABLE .)
+    RESTA           reduce using rule 29 (expresion -> VARIABLE .)
+    MULT            reduce using rule 29 (expresion -> VARIABLE .)
+    DIV             reduce using rule 29 (expresion -> VARIABLE .)
+    POTENCIA        reduce using rule 29 (expresion -> VARIABLE .)
+    MODULO          reduce using rule 29 (expresion -> VARIABLE .)
+    MENORQUE        reduce using rule 29 (expresion -> VARIABLE .)
+    MAYORQUE        reduce using rule 29 (expresion -> VARIABLE .)
+    MENORIGUAL      reduce using rule 29 (expresion -> VARIABLE .)
+    MAYORIGUAL      reduce using rule 29 (expresion -> VARIABLE .)
+    IGUAL           reduce using rule 29 (expresion -> VARIABLE .)
+    DISTINTO        reduce using rule 29 (expresion -> VARIABLE .)
 
 
 state 9
 
-    (11) expresion -> RESTA . expresion
-    (5) expresion -> . expresion SUMA expresion
-    (6) expresion -> . expresion RESTA expresion
-    (7) expresion -> . expresion MULT expresion
-    (8) expresion -> . expresion DIV expresion
-    (9) expresion -> . expresion POTENCIA expresion
-    (10) expresion -> . expresion MODULO expresion
-    (11) expresion -> . RESTA expresion
-    (12) expresion -> . PARIZQ expresion PARDER
-    (13) expresion -> . LLAIZQ expresion LLADER
-    (14) expresion -> . CORIZQ expresion CORDER
-    (15) expresion -> . ENTERO
-    (16) expresion -> . DECIMAL
-    (17) expresion -> . VARIABLE
+    (4) declaracion -> expresion . PUNTOYCOMA
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULT expresion
+    (8) expresion -> expresion . DIV expresion
+    (9) expresion -> expresion . POTENCIA expresion
+    (10) expresion -> expresion . MODULO expresion
+    (15) expresion -> expresion . MENORQUE expresion
+    (16) expresion -> expresion . MAYORQUE expresion
+    (17) expresion -> expresion . MENORIGUAL expresion
+    (18) expresion -> expresion . MAYORIGUAL expresion
+    (19) expresion -> expresion . IGUAL expresion
+    (20) expresion -> expresion . DISTINTO expresion
 
-    RESTA           shift and go to state 9
-    PARIZQ          shift and go to state 10
-    LLAIZQ          shift and go to state 2
-    CORIZQ          shift and go to state 7
-    ENTERO          shift and go to state 3
-    DECIMAL         shift and go to state 4
-    VARIABLE        shift and go to state 20
+    PUNTOYCOMA      shift and go to state 21
+    SUMA            shift and go to state 20
+    RESTA           shift and go to state 26
+    MULT            shift and go to state 28
+    DIV             shift and go to state 27
+    POTENCIA        shift and go to state 29
+    MODULO          shift and go to state 17
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 25
+    MAYORIGUAL      shift and go to state 24
+    IGUAL           shift and go to state 19
+    DISTINTO        shift and go to state 18
 
-    expresion                      shift and go to state 23
 
 state 10
 
-    (12) expresion -> PARIZQ . expresion PARDER
+    (13) expresion -> LLAIZQ . expresion LLADER
     (5) expresion -> . expresion SUMA expresion
     (6) expresion -> . expresion RESTA expresion
     (7) expresion -> . expresion MULT expresion
@@ -302,19 +392,31 @@ state 10
     (12) expresion -> . PARIZQ expresion PARDER
     (13) expresion -> . LLAIZQ expresion LLADER
     (14) expresion -> . CORIZQ expresion CORDER
-    (15) expresion -> . ENTERO
-    (16) expresion -> . DECIMAL
-    (17) expresion -> . VARIABLE
+    (15) expresion -> . expresion MENORQUE expresion
+    (16) expresion -> . expresion MAYORQUE expresion
+    (17) expresion -> . expresion MENORIGUAL expresion
+    (18) expresion -> . expresion MAYORIGUAL expresion
+    (19) expresion -> . expresion IGUAL expresion
+    (20) expresion -> . expresion DISTINTO expresion
+    (21) expresion -> . PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+    (22) expresion -> . PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+    (23) expresion -> . PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER
+    (24) expresion -> . PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+    (25) expresion -> . PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER
+    (26) expresion -> . PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER
+    (27) expresion -> . ENTERO
+    (28) expresion -> . DECIMAL
+    (29) expresion -> . VARIABLE
 
-    RESTA           shift and go to state 9
-    PARIZQ          shift and go to state 10
-    LLAIZQ          shift and go to state 2
+    RESTA           shift and go to state 2
+    PARIZQ          shift and go to state 3
+    LLAIZQ          shift and go to state 10
     CORIZQ          shift and go to state 7
-    ENTERO          shift and go to state 3
-    DECIMAL         shift and go to state 4
-    VARIABLE        shift and go to state 20
+    ENTERO          shift and go to state 5
+    DECIMAL         shift and go to state 6
+    VARIABLE        shift and go to state 12
 
-    expresion                      shift and go to state 24
+    expresion                      shift and go to state 30
 
 state 11
 
@@ -324,209 +426,111 @@ state 11
 
 state 12
 
-    (10) expresion -> expresion MODULO . expresion
-    (5) expresion -> . expresion SUMA expresion
-    (6) expresion -> . expresion RESTA expresion
-    (7) expresion -> . expresion MULT expresion
-    (8) expresion -> . expresion DIV expresion
-    (9) expresion -> . expresion POTENCIA expresion
-    (10) expresion -> . expresion MODULO expresion
-    (11) expresion -> . RESTA expresion
-    (12) expresion -> . PARIZQ expresion PARDER
-    (13) expresion -> . LLAIZQ expresion LLADER
-    (14) expresion -> . CORIZQ expresion CORDER
-    (15) expresion -> . ENTERO
-    (16) expresion -> . DECIMAL
-    (17) expresion -> . VARIABLE
+    (29) expresion -> VARIABLE .
 
-    RESTA           shift and go to state 9
-    PARIZQ          shift and go to state 10
-    LLAIZQ          shift and go to state 2
-    CORIZQ          shift and go to state 7
-    ENTERO          shift and go to state 3
-    DECIMAL         shift and go to state 4
-    VARIABLE        shift and go to state 20
+    SUMA            reduce using rule 29 (expresion -> VARIABLE .)
+    RESTA           reduce using rule 29 (expresion -> VARIABLE .)
+    MULT            reduce using rule 29 (expresion -> VARIABLE .)
+    DIV             reduce using rule 29 (expresion -> VARIABLE .)
+    POTENCIA        reduce using rule 29 (expresion -> VARIABLE .)
+    MODULO          reduce using rule 29 (expresion -> VARIABLE .)
+    MENORQUE        reduce using rule 29 (expresion -> VARIABLE .)
+    MAYORQUE        reduce using rule 29 (expresion -> VARIABLE .)
+    MENORIGUAL      reduce using rule 29 (expresion -> VARIABLE .)
+    MAYORIGUAL      reduce using rule 29 (expresion -> VARIABLE .)
+    IGUAL           reduce using rule 29 (expresion -> VARIABLE .)
+    DISTINTO        reduce using rule 29 (expresion -> VARIABLE .)
+    PUNTOYCOMA      reduce using rule 29 (expresion -> VARIABLE .)
+    PARDER          reduce using rule 29 (expresion -> VARIABLE .)
+    CORDER          reduce using rule 29 (expresion -> VARIABLE .)
+    LLADER          reduce using rule 29 (expresion -> VARIABLE .)
 
-    expresion                      shift and go to state 25
 
 state 13
 
-    (5) expresion -> expresion SUMA . expresion
-    (5) expresion -> . expresion SUMA expresion
-    (6) expresion -> . expresion RESTA expresion
-    (7) expresion -> . expresion MULT expresion
-    (8) expresion -> . expresion DIV expresion
-    (9) expresion -> . expresion POTENCIA expresion
-    (10) expresion -> . expresion MODULO expresion
-    (11) expresion -> . RESTA expresion
-    (12) expresion -> . PARIZQ expresion PARDER
-    (13) expresion -> . LLAIZQ expresion LLADER
-    (14) expresion -> . CORIZQ expresion CORDER
-    (15) expresion -> . ENTERO
-    (16) expresion -> . DECIMAL
-    (17) expresion -> . VARIABLE
-
-    RESTA           shift and go to state 9
-    PARIZQ          shift and go to state 10
-    LLAIZQ          shift and go to state 2
-    CORIZQ          shift and go to state 7
-    ENTERO          shift and go to state 3
-    DECIMAL         shift and go to state 4
-    VARIABLE        shift and go to state 20
-
-    expresion                      shift and go to state 26
-
-state 14
-
-    (4) declaracion -> expresion PUNTOYCOMA .
-
-    $end            reduce using rule 4 (declaracion -> expresion PUNTOYCOMA .)
-
-
-state 15
-
-    (6) expresion -> expresion RESTA . expresion
-    (5) expresion -> . expresion SUMA expresion
-    (6) expresion -> . expresion RESTA expresion
-    (7) expresion -> . expresion MULT expresion
-    (8) expresion -> . expresion DIV expresion
-    (9) expresion -> . expresion POTENCIA expresion
-    (10) expresion -> . expresion MODULO expresion
-    (11) expresion -> . RESTA expresion
-    (12) expresion -> . PARIZQ expresion PARDER
-    (13) expresion -> . LLAIZQ expresion LLADER
-    (14) expresion -> . CORIZQ expresion CORDER
-    (15) expresion -> . ENTERO
-    (16) expresion -> . DECIMAL
-    (17) expresion -> . VARIABLE
-
-    RESTA           shift and go to state 9
-    PARIZQ          shift and go to state 10
-    LLAIZQ          shift and go to state 2
-    CORIZQ          shift and go to state 7
-    ENTERO          shift and go to state 3
-    DECIMAL         shift and go to state 4
-    VARIABLE        shift and go to state 20
-
-    expresion                      shift and go to state 27
-
-state 16
-
-    (8) expresion -> expresion DIV . expresion
-    (5) expresion -> . expresion SUMA expresion
-    (6) expresion -> . expresion RESTA expresion
-    (7) expresion -> . expresion MULT expresion
-    (8) expresion -> . expresion DIV expresion
-    (9) expresion -> . expresion POTENCIA expresion
-    (10) expresion -> . expresion MODULO expresion
-    (11) expresion -> . RESTA expresion
-    (12) expresion -> . PARIZQ expresion PARDER
-    (13) expresion -> . LLAIZQ expresion LLADER
-    (14) expresion -> . CORIZQ expresion CORDER
-    (15) expresion -> . ENTERO
-    (16) expresion -> . DECIMAL
-    (17) expresion -> . VARIABLE
-
-    RESTA           shift and go to state 9
-    PARIZQ          shift and go to state 10
-    LLAIZQ          shift and go to state 2
-    CORIZQ          shift and go to state 7
-    ENTERO          shift and go to state 3
-    DECIMAL         shift and go to state 4
-    VARIABLE        shift and go to state 20
-
-    expresion                      shift and go to state 28
-
-state 17
-
-    (7) expresion -> expresion MULT . expresion
-    (5) expresion -> . expresion SUMA expresion
-    (6) expresion -> . expresion RESTA expresion
-    (7) expresion -> . expresion MULT expresion
-    (8) expresion -> . expresion DIV expresion
-    (9) expresion -> . expresion POTENCIA expresion
-    (10) expresion -> . expresion MODULO expresion
-    (11) expresion -> . RESTA expresion
-    (12) expresion -> . PARIZQ expresion PARDER
-    (13) expresion -> . LLAIZQ expresion LLADER
-    (14) expresion -> . CORIZQ expresion CORDER
-    (15) expresion -> . ENTERO
-    (16) expresion -> . DECIMAL
-    (17) expresion -> . VARIABLE
-
-    RESTA           shift and go to state 9
-    PARIZQ          shift and go to state 10
-    LLAIZQ          shift and go to state 2
-    CORIZQ          shift and go to state 7
-    ENTERO          shift and go to state 3
-    DECIMAL         shift and go to state 4
-    VARIABLE        shift and go to state 20
-
-    expresion                      shift and go to state 29
-
-state 18
-
-    (9) expresion -> expresion POTENCIA . expresion
-    (5) expresion -> . expresion SUMA expresion
-    (6) expresion -> . expresion RESTA expresion
-    (7) expresion -> . expresion MULT expresion
-    (8) expresion -> . expresion DIV expresion
-    (9) expresion -> . expresion POTENCIA expresion
-    (10) expresion -> . expresion MODULO expresion
-    (11) expresion -> . RESTA expresion
-    (12) expresion -> . PARIZQ expresion PARDER
-    (13) expresion -> . LLAIZQ expresion LLADER
-    (14) expresion -> . CORIZQ expresion CORDER
-    (15) expresion -> . ENTERO
-    (16) expresion -> . DECIMAL
-    (17) expresion -> . VARIABLE
-
-    RESTA           shift and go to state 9
-    PARIZQ          shift and go to state 10
-    LLAIZQ          shift and go to state 2
-    CORIZQ          shift and go to state 7
-    ENTERO          shift and go to state 3
-    DECIMAL         shift and go to state 4
-    VARIABLE        shift and go to state 20
-
-    expresion                      shift and go to state 30
-
-state 19
-
-    (13) expresion -> LLAIZQ expresion . LLADER
+    (11) expresion -> RESTA expresion .
     (5) expresion -> expresion . SUMA expresion
     (6) expresion -> expresion . RESTA expresion
     (7) expresion -> expresion . MULT expresion
     (8) expresion -> expresion . DIV expresion
     (9) expresion -> expresion . POTENCIA expresion
     (10) expresion -> expresion . MODULO expresion
+    (15) expresion -> expresion . MENORQUE expresion
+    (16) expresion -> expresion . MAYORQUE expresion
+    (17) expresion -> expresion . MENORIGUAL expresion
+    (18) expresion -> expresion . MAYORIGUAL expresion
+    (19) expresion -> expresion . IGUAL expresion
+    (20) expresion -> expresion . DISTINTO expresion
 
-    LLADER          shift and go to state 31
-    SUMA            shift and go to state 13
-    RESTA           shift and go to state 15
-    MULT            shift and go to state 17
-    DIV             shift and go to state 16
-    POTENCIA        shift and go to state 18
-    MODULO          shift and go to state 12
+    SUMA            reduce using rule 11 (expresion -> RESTA expresion .)
+    RESTA           reduce using rule 11 (expresion -> RESTA expresion .)
+    MULT            reduce using rule 11 (expresion -> RESTA expresion .)
+    DIV             reduce using rule 11 (expresion -> RESTA expresion .)
+    POTENCIA        reduce using rule 11 (expresion -> RESTA expresion .)
+    MODULO          reduce using rule 11 (expresion -> RESTA expresion .)
+    MENORQUE        reduce using rule 11 (expresion -> RESTA expresion .)
+    MAYORQUE        reduce using rule 11 (expresion -> RESTA expresion .)
+    MENORIGUAL      reduce using rule 11 (expresion -> RESTA expresion .)
+    MAYORIGUAL      reduce using rule 11 (expresion -> RESTA expresion .)
+    IGUAL           reduce using rule 11 (expresion -> RESTA expresion .)
+    DISTINTO        reduce using rule 11 (expresion -> RESTA expresion .)
+    PUNTOYCOMA      reduce using rule 11 (expresion -> RESTA expresion .)
+    PARDER          reduce using rule 11 (expresion -> RESTA expresion .)
+    CORDER          reduce using rule 11 (expresion -> RESTA expresion .)
+    LLADER          reduce using rule 11 (expresion -> RESTA expresion .)
+
+  ! SUMA            [ shift and go to state 20 ]
+  ! RESTA           [ shift and go to state 26 ]
+  ! MULT            [ shift and go to state 28 ]
+  ! DIV             [ shift and go to state 27 ]
+  ! POTENCIA        [ shift and go to state 29 ]
+  ! MODULO          [ shift and go to state 17 ]
+  ! MENORQUE        [ shift and go to state 22 ]
+  ! MAYORQUE        [ shift and go to state 23 ]
+  ! MENORIGUAL      [ shift and go to state 25 ]
+  ! MAYORIGUAL      [ shift and go to state 24 ]
+  ! IGUAL           [ shift and go to state 19 ]
+  ! DISTINTO        [ shift and go to state 18 ]
 
 
-state 20
+state 14
 
-    (17) expresion -> VARIABLE .
+    (12) expresion -> PARIZQ expresion . PARDER
+    (21) expresion -> PARIZQ expresion . PARDER MENORQUE PARIZQ expresion PARDER
+    (22) expresion -> PARIZQ expresion . PARDER MAYORQUE PARIZQ expresion PARDER
+    (23) expresion -> PARIZQ expresion . PARDER MENORIGUAL PARIZQ expresion PARDER
+    (24) expresion -> PARIZQ expresion . PARDER MAYORIGUAL PARIZQ expresion PARDER
+    (25) expresion -> PARIZQ expresion . PARDER IGUAL PARIZQ expresion PARDER
+    (26) expresion -> PARIZQ expresion . PARDER DISTINTO PARIZQ expresion PARDER
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULT expresion
+    (8) expresion -> expresion . DIV expresion
+    (9) expresion -> expresion . POTENCIA expresion
+    (10) expresion -> expresion . MODULO expresion
+    (15) expresion -> expresion . MENORQUE expresion
+    (16) expresion -> expresion . MAYORQUE expresion
+    (17) expresion -> expresion . MENORIGUAL expresion
+    (18) expresion -> expresion . MAYORIGUAL expresion
+    (19) expresion -> expresion . IGUAL expresion
+    (20) expresion -> expresion . DISTINTO expresion
 
-    SUMA            reduce using rule 17 (expresion -> VARIABLE .)
-    RESTA           reduce using rule 17 (expresion -> VARIABLE .)
-    MULT            reduce using rule 17 (expresion -> VARIABLE .)
-    DIV             reduce using rule 17 (expresion -> VARIABLE .)
-    POTENCIA        reduce using rule 17 (expresion -> VARIABLE .)
-    MODULO          reduce using rule 17 (expresion -> VARIABLE .)
-    PUNTOYCOMA      reduce using rule 17 (expresion -> VARIABLE .)
-    LLADER          reduce using rule 17 (expresion -> VARIABLE .)
-    CORDER          reduce using rule 17 (expresion -> VARIABLE .)
-    PARDER          reduce using rule 17 (expresion -> VARIABLE .)
+    PARDER          shift and go to state 31
+    SUMA            shift and go to state 20
+    RESTA           shift and go to state 26
+    MULT            shift and go to state 28
+    DIV             shift and go to state 27
+    POTENCIA        shift and go to state 29
+    MODULO          shift and go to state 17
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 25
+    MAYORIGUAL      shift and go to state 24
+    IGUAL           shift and go to state 19
+    DISTINTO        shift and go to state 18
 
 
-state 21
+state 15
 
     (14) expresion -> CORIZQ expresion . CORDER
     (5) expresion -> expresion . SUMA expresion
@@ -535,17 +539,29 @@ state 21
     (8) expresion -> expresion . DIV expresion
     (9) expresion -> expresion . POTENCIA expresion
     (10) expresion -> expresion . MODULO expresion
+    (15) expresion -> expresion . MENORQUE expresion
+    (16) expresion -> expresion . MAYORQUE expresion
+    (17) expresion -> expresion . MENORIGUAL expresion
+    (18) expresion -> expresion . MAYORIGUAL expresion
+    (19) expresion -> expresion . IGUAL expresion
+    (20) expresion -> expresion . DISTINTO expresion
 
     CORDER          shift and go to state 32
-    SUMA            shift and go to state 13
-    RESTA           shift and go to state 15
-    MULT            shift and go to state 17
-    DIV             shift and go to state 16
-    POTENCIA        shift and go to state 18
-    MODULO          shift and go to state 12
+    SUMA            shift and go to state 20
+    RESTA           shift and go to state 26
+    MULT            shift and go to state 28
+    DIV             shift and go to state 27
+    POTENCIA        shift and go to state 29
+    MODULO          shift and go to state 17
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 25
+    MAYORIGUAL      shift and go to state 24
+    IGUAL           shift and go to state 19
+    DISTINTO        shift and go to state 18
 
 
-state 22
+state 16
 
     (1) declaracion -> VARIABLE ASIGNAR . expresion PUNTOYCOMA
     (5) expresion -> . expresion SUMA expresion
@@ -558,268 +574,577 @@ state 22
     (12) expresion -> . PARIZQ expresion PARDER
     (13) expresion -> . LLAIZQ expresion LLADER
     (14) expresion -> . CORIZQ expresion CORDER
-    (15) expresion -> . ENTERO
-    (16) expresion -> . DECIMAL
-    (17) expresion -> . VARIABLE
+    (15) expresion -> . expresion MENORQUE expresion
+    (16) expresion -> . expresion MAYORQUE expresion
+    (17) expresion -> . expresion MENORIGUAL expresion
+    (18) expresion -> . expresion MAYORIGUAL expresion
+    (19) expresion -> . expresion IGUAL expresion
+    (20) expresion -> . expresion DISTINTO expresion
+    (21) expresion -> . PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+    (22) expresion -> . PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+    (23) expresion -> . PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER
+    (24) expresion -> . PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+    (25) expresion -> . PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER
+    (26) expresion -> . PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER
+    (27) expresion -> . ENTERO
+    (28) expresion -> . DECIMAL
+    (29) expresion -> . VARIABLE
 
-    RESTA           shift and go to state 9
-    PARIZQ          shift and go to state 10
-    LLAIZQ          shift and go to state 2
+    RESTA           shift and go to state 2
+    PARIZQ          shift and go to state 3
+    LLAIZQ          shift and go to state 10
     CORIZQ          shift and go to state 7
-    ENTERO          shift and go to state 3
-    DECIMAL         shift and go to state 4
-    VARIABLE        shift and go to state 20
+    ENTERO          shift and go to state 5
+    DECIMAL         shift and go to state 6
+    VARIABLE        shift and go to state 12
 
     expresion                      shift and go to state 33
 
+state 17
+
+    (10) expresion -> expresion MODULO . expresion
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULT expresion
+    (8) expresion -> . expresion DIV expresion
+    (9) expresion -> . expresion POTENCIA expresion
+    (10) expresion -> . expresion MODULO expresion
+    (11) expresion -> . RESTA expresion
+    (12) expresion -> . PARIZQ expresion PARDER
+    (13) expresion -> . LLAIZQ expresion LLADER
+    (14) expresion -> . CORIZQ expresion CORDER
+    (15) expresion -> . expresion MENORQUE expresion
+    (16) expresion -> . expresion MAYORQUE expresion
+    (17) expresion -> . expresion MENORIGUAL expresion
+    (18) expresion -> . expresion MAYORIGUAL expresion
+    (19) expresion -> . expresion IGUAL expresion
+    (20) expresion -> . expresion DISTINTO expresion
+    (21) expresion -> . PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+    (22) expresion -> . PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+    (23) expresion -> . PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER
+    (24) expresion -> . PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+    (25) expresion -> . PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER
+    (26) expresion -> . PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER
+    (27) expresion -> . ENTERO
+    (28) expresion -> . DECIMAL
+    (29) expresion -> . VARIABLE
+
+    RESTA           shift and go to state 2
+    PARIZQ          shift and go to state 3
+    LLAIZQ          shift and go to state 10
+    CORIZQ          shift and go to state 7
+    ENTERO          shift and go to state 5
+    DECIMAL         shift and go to state 6
+    VARIABLE        shift and go to state 12
+
+    expresion                      shift and go to state 34
+
+state 18
+
+    (20) expresion -> expresion DISTINTO . expresion
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULT expresion
+    (8) expresion -> . expresion DIV expresion
+    (9) expresion -> . expresion POTENCIA expresion
+    (10) expresion -> . expresion MODULO expresion
+    (11) expresion -> . RESTA expresion
+    (12) expresion -> . PARIZQ expresion PARDER
+    (13) expresion -> . LLAIZQ expresion LLADER
+    (14) expresion -> . CORIZQ expresion CORDER
+    (15) expresion -> . expresion MENORQUE expresion
+    (16) expresion -> . expresion MAYORQUE expresion
+    (17) expresion -> . expresion MENORIGUAL expresion
+    (18) expresion -> . expresion MAYORIGUAL expresion
+    (19) expresion -> . expresion IGUAL expresion
+    (20) expresion -> . expresion DISTINTO expresion
+    (21) expresion -> . PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+    (22) expresion -> . PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+    (23) expresion -> . PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER
+    (24) expresion -> . PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+    (25) expresion -> . PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER
+    (26) expresion -> . PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER
+    (27) expresion -> . ENTERO
+    (28) expresion -> . DECIMAL
+    (29) expresion -> . VARIABLE
+
+    RESTA           shift and go to state 2
+    PARIZQ          shift and go to state 3
+    LLAIZQ          shift and go to state 10
+    CORIZQ          shift and go to state 7
+    ENTERO          shift and go to state 5
+    DECIMAL         shift and go to state 6
+    VARIABLE        shift and go to state 12
+
+    expresion                      shift and go to state 35
+
+state 19
+
+    (19) expresion -> expresion IGUAL . expresion
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULT expresion
+    (8) expresion -> . expresion DIV expresion
+    (9) expresion -> . expresion POTENCIA expresion
+    (10) expresion -> . expresion MODULO expresion
+    (11) expresion -> . RESTA expresion
+    (12) expresion -> . PARIZQ expresion PARDER
+    (13) expresion -> . LLAIZQ expresion LLADER
+    (14) expresion -> . CORIZQ expresion CORDER
+    (15) expresion -> . expresion MENORQUE expresion
+    (16) expresion -> . expresion MAYORQUE expresion
+    (17) expresion -> . expresion MENORIGUAL expresion
+    (18) expresion -> . expresion MAYORIGUAL expresion
+    (19) expresion -> . expresion IGUAL expresion
+    (20) expresion -> . expresion DISTINTO expresion
+    (21) expresion -> . PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+    (22) expresion -> . PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+    (23) expresion -> . PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER
+    (24) expresion -> . PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+    (25) expresion -> . PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER
+    (26) expresion -> . PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER
+    (27) expresion -> . ENTERO
+    (28) expresion -> . DECIMAL
+    (29) expresion -> . VARIABLE
+
+    RESTA           shift and go to state 2
+    PARIZQ          shift and go to state 3
+    LLAIZQ          shift and go to state 10
+    CORIZQ          shift and go to state 7
+    ENTERO          shift and go to state 5
+    DECIMAL         shift and go to state 6
+    VARIABLE        shift and go to state 12
+
+    expresion                      shift and go to state 36
+
+state 20
+
+    (5) expresion -> expresion SUMA . expresion
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULT expresion
+    (8) expresion -> . expresion DIV expresion
+    (9) expresion -> . expresion POTENCIA expresion
+    (10) expresion -> . expresion MODULO expresion
+    (11) expresion -> . RESTA expresion
+    (12) expresion -> . PARIZQ expresion PARDER
+    (13) expresion -> . LLAIZQ expresion LLADER
+    (14) expresion -> . CORIZQ expresion CORDER
+    (15) expresion -> . expresion MENORQUE expresion
+    (16) expresion -> . expresion MAYORQUE expresion
+    (17) expresion -> . expresion MENORIGUAL expresion
+    (18) expresion -> . expresion MAYORIGUAL expresion
+    (19) expresion -> . expresion IGUAL expresion
+    (20) expresion -> . expresion DISTINTO expresion
+    (21) expresion -> . PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+    (22) expresion -> . PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+    (23) expresion -> . PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER
+    (24) expresion -> . PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+    (25) expresion -> . PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER
+    (26) expresion -> . PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER
+    (27) expresion -> . ENTERO
+    (28) expresion -> . DECIMAL
+    (29) expresion -> . VARIABLE
+
+    RESTA           shift and go to state 2
+    PARIZQ          shift and go to state 3
+    LLAIZQ          shift and go to state 10
+    CORIZQ          shift and go to state 7
+    ENTERO          shift and go to state 5
+    DECIMAL         shift and go to state 6
+    VARIABLE        shift and go to state 12
+
+    expresion                      shift and go to state 37
+
+state 21
+
+    (4) declaracion -> expresion PUNTOYCOMA .
+
+    $end            reduce using rule 4 (declaracion -> expresion PUNTOYCOMA .)
+
+
+state 22
+
+    (15) expresion -> expresion MENORQUE . expresion
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULT expresion
+    (8) expresion -> . expresion DIV expresion
+    (9) expresion -> . expresion POTENCIA expresion
+    (10) expresion -> . expresion MODULO expresion
+    (11) expresion -> . RESTA expresion
+    (12) expresion -> . PARIZQ expresion PARDER
+    (13) expresion -> . LLAIZQ expresion LLADER
+    (14) expresion -> . CORIZQ expresion CORDER
+    (15) expresion -> . expresion MENORQUE expresion
+    (16) expresion -> . expresion MAYORQUE expresion
+    (17) expresion -> . expresion MENORIGUAL expresion
+    (18) expresion -> . expresion MAYORIGUAL expresion
+    (19) expresion -> . expresion IGUAL expresion
+    (20) expresion -> . expresion DISTINTO expresion
+    (21) expresion -> . PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+    (22) expresion -> . PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+    (23) expresion -> . PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER
+    (24) expresion -> . PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+    (25) expresion -> . PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER
+    (26) expresion -> . PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER
+    (27) expresion -> . ENTERO
+    (28) expresion -> . DECIMAL
+    (29) expresion -> . VARIABLE
+
+    RESTA           shift and go to state 2
+    PARIZQ          shift and go to state 3
+    LLAIZQ          shift and go to state 10
+    CORIZQ          shift and go to state 7
+    ENTERO          shift and go to state 5
+    DECIMAL         shift and go to state 6
+    VARIABLE        shift and go to state 12
+
+    expresion                      shift and go to state 38
+
 state 23
 
-    (11) expresion -> RESTA expresion .
-    (5) expresion -> expresion . SUMA expresion
-    (6) expresion -> expresion . RESTA expresion
-    (7) expresion -> expresion . MULT expresion
-    (8) expresion -> expresion . DIV expresion
-    (9) expresion -> expresion . POTENCIA expresion
-    (10) expresion -> expresion . MODULO expresion
+    (16) expresion -> expresion MAYORQUE . expresion
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULT expresion
+    (8) expresion -> . expresion DIV expresion
+    (9) expresion -> . expresion POTENCIA expresion
+    (10) expresion -> . expresion MODULO expresion
+    (11) expresion -> . RESTA expresion
+    (12) expresion -> . PARIZQ expresion PARDER
+    (13) expresion -> . LLAIZQ expresion LLADER
+    (14) expresion -> . CORIZQ expresion CORDER
+    (15) expresion -> . expresion MENORQUE expresion
+    (16) expresion -> . expresion MAYORQUE expresion
+    (17) expresion -> . expresion MENORIGUAL expresion
+    (18) expresion -> . expresion MAYORIGUAL expresion
+    (19) expresion -> . expresion IGUAL expresion
+    (20) expresion -> . expresion DISTINTO expresion
+    (21) expresion -> . PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+    (22) expresion -> . PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+    (23) expresion -> . PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER
+    (24) expresion -> . PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+    (25) expresion -> . PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER
+    (26) expresion -> . PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER
+    (27) expresion -> . ENTERO
+    (28) expresion -> . DECIMAL
+    (29) expresion -> . VARIABLE
 
-    SUMA            reduce using rule 11 (expresion -> RESTA expresion .)
-    RESTA           reduce using rule 11 (expresion -> RESTA expresion .)
-    MULT            reduce using rule 11 (expresion -> RESTA expresion .)
-    DIV             reduce using rule 11 (expresion -> RESTA expresion .)
-    POTENCIA        reduce using rule 11 (expresion -> RESTA expresion .)
-    MODULO          reduce using rule 11 (expresion -> RESTA expresion .)
-    PUNTOYCOMA      reduce using rule 11 (expresion -> RESTA expresion .)
-    LLADER          reduce using rule 11 (expresion -> RESTA expresion .)
-    CORDER          reduce using rule 11 (expresion -> RESTA expresion .)
-    PARDER          reduce using rule 11 (expresion -> RESTA expresion .)
+    RESTA           shift and go to state 2
+    PARIZQ          shift and go to state 3
+    LLAIZQ          shift and go to state 10
+    CORIZQ          shift and go to state 7
+    ENTERO          shift and go to state 5
+    DECIMAL         shift and go to state 6
+    VARIABLE        shift and go to state 12
 
-  ! SUMA            [ shift and go to state 13 ]
-  ! RESTA           [ shift and go to state 15 ]
-  ! MULT            [ shift and go to state 17 ]
-  ! DIV             [ shift and go to state 16 ]
-  ! POTENCIA        [ shift and go to state 18 ]
-  ! MODULO          [ shift and go to state 12 ]
-
+    expresion                      shift and go to state 39
 
 state 24
 
-    (12) expresion -> PARIZQ expresion . PARDER
-    (5) expresion -> expresion . SUMA expresion
-    (6) expresion -> expresion . RESTA expresion
-    (7) expresion -> expresion . MULT expresion
-    (8) expresion -> expresion . DIV expresion
-    (9) expresion -> expresion . POTENCIA expresion
-    (10) expresion -> expresion . MODULO expresion
+    (18) expresion -> expresion MAYORIGUAL . expresion
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULT expresion
+    (8) expresion -> . expresion DIV expresion
+    (9) expresion -> . expresion POTENCIA expresion
+    (10) expresion -> . expresion MODULO expresion
+    (11) expresion -> . RESTA expresion
+    (12) expresion -> . PARIZQ expresion PARDER
+    (13) expresion -> . LLAIZQ expresion LLADER
+    (14) expresion -> . CORIZQ expresion CORDER
+    (15) expresion -> . expresion MENORQUE expresion
+    (16) expresion -> . expresion MAYORQUE expresion
+    (17) expresion -> . expresion MENORIGUAL expresion
+    (18) expresion -> . expresion MAYORIGUAL expresion
+    (19) expresion -> . expresion IGUAL expresion
+    (20) expresion -> . expresion DISTINTO expresion
+    (21) expresion -> . PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+    (22) expresion -> . PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+    (23) expresion -> . PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER
+    (24) expresion -> . PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+    (25) expresion -> . PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER
+    (26) expresion -> . PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER
+    (27) expresion -> . ENTERO
+    (28) expresion -> . DECIMAL
+    (29) expresion -> . VARIABLE
 
-    PARDER          shift and go to state 34
-    SUMA            shift and go to state 13
-    RESTA           shift and go to state 15
-    MULT            shift and go to state 17
-    DIV             shift and go to state 16
-    POTENCIA        shift and go to state 18
-    MODULO          shift and go to state 12
+    RESTA           shift and go to state 2
+    PARIZQ          shift and go to state 3
+    LLAIZQ          shift and go to state 10
+    CORIZQ          shift and go to state 7
+    ENTERO          shift and go to state 5
+    DECIMAL         shift and go to state 6
+    VARIABLE        shift and go to state 12
 
+    expresion                      shift and go to state 40
 
 state 25
 
-    (10) expresion -> expresion MODULO expresion .
-    (5) expresion -> expresion . SUMA expresion
-    (6) expresion -> expresion . RESTA expresion
-    (7) expresion -> expresion . MULT expresion
-    (8) expresion -> expresion . DIV expresion
-    (9) expresion -> expresion . POTENCIA expresion
-    (10) expresion -> expresion . MODULO expresion
+    (17) expresion -> expresion MENORIGUAL . expresion
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULT expresion
+    (8) expresion -> . expresion DIV expresion
+    (9) expresion -> . expresion POTENCIA expresion
+    (10) expresion -> . expresion MODULO expresion
+    (11) expresion -> . RESTA expresion
+    (12) expresion -> . PARIZQ expresion PARDER
+    (13) expresion -> . LLAIZQ expresion LLADER
+    (14) expresion -> . CORIZQ expresion CORDER
+    (15) expresion -> . expresion MENORQUE expresion
+    (16) expresion -> . expresion MAYORQUE expresion
+    (17) expresion -> . expresion MENORIGUAL expresion
+    (18) expresion -> . expresion MAYORIGUAL expresion
+    (19) expresion -> . expresion IGUAL expresion
+    (20) expresion -> . expresion DISTINTO expresion
+    (21) expresion -> . PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+    (22) expresion -> . PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+    (23) expresion -> . PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER
+    (24) expresion -> . PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+    (25) expresion -> . PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER
+    (26) expresion -> . PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER
+    (27) expresion -> . ENTERO
+    (28) expresion -> . DECIMAL
+    (29) expresion -> . VARIABLE
 
-  ! shift/reduce conflict for SUMA resolved as shift
-  ! shift/reduce conflict for RESTA resolved as shift
-  ! shift/reduce conflict for MULT resolved as shift
-  ! shift/reduce conflict for DIV resolved as shift
-  ! shift/reduce conflict for POTENCIA resolved as shift
-  ! shift/reduce conflict for MODULO resolved as shift
-    PUNTOYCOMA      reduce using rule 10 (expresion -> expresion MODULO expresion .)
-    LLADER          reduce using rule 10 (expresion -> expresion MODULO expresion .)
-    CORDER          reduce using rule 10 (expresion -> expresion MODULO expresion .)
-    PARDER          reduce using rule 10 (expresion -> expresion MODULO expresion .)
-    SUMA            shift and go to state 13
-    RESTA           shift and go to state 15
-    MULT            shift and go to state 17
-    DIV             shift and go to state 16
-    POTENCIA        shift and go to state 18
-    MODULO          shift and go to state 12
+    RESTA           shift and go to state 2
+    PARIZQ          shift and go to state 3
+    LLAIZQ          shift and go to state 10
+    CORIZQ          shift and go to state 7
+    ENTERO          shift and go to state 5
+    DECIMAL         shift and go to state 6
+    VARIABLE        shift and go to state 12
 
-  ! SUMA            [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
-  ! RESTA           [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
-  ! MULT            [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
-  ! DIV             [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
-  ! POTENCIA        [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
-  ! MODULO          [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
-
+    expresion                      shift and go to state 41
 
 state 26
 
-    (5) expresion -> expresion SUMA expresion .
-    (5) expresion -> expresion . SUMA expresion
-    (6) expresion -> expresion . RESTA expresion
-    (7) expresion -> expresion . MULT expresion
-    (8) expresion -> expresion . DIV expresion
-    (9) expresion -> expresion . POTENCIA expresion
-    (10) expresion -> expresion . MODULO expresion
+    (6) expresion -> expresion RESTA . expresion
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULT expresion
+    (8) expresion -> . expresion DIV expresion
+    (9) expresion -> . expresion POTENCIA expresion
+    (10) expresion -> . expresion MODULO expresion
+    (11) expresion -> . RESTA expresion
+    (12) expresion -> . PARIZQ expresion PARDER
+    (13) expresion -> . LLAIZQ expresion LLADER
+    (14) expresion -> . CORIZQ expresion CORDER
+    (15) expresion -> . expresion MENORQUE expresion
+    (16) expresion -> . expresion MAYORQUE expresion
+    (17) expresion -> . expresion MENORIGUAL expresion
+    (18) expresion -> . expresion MAYORIGUAL expresion
+    (19) expresion -> . expresion IGUAL expresion
+    (20) expresion -> . expresion DISTINTO expresion
+    (21) expresion -> . PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+    (22) expresion -> . PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+    (23) expresion -> . PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER
+    (24) expresion -> . PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+    (25) expresion -> . PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER
+    (26) expresion -> . PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER
+    (27) expresion -> . ENTERO
+    (28) expresion -> . DECIMAL
+    (29) expresion -> . VARIABLE
 
-    SUMA            reduce using rule 5 (expresion -> expresion SUMA expresion .)
-    RESTA           reduce using rule 5 (expresion -> expresion SUMA expresion .)
-    POTENCIA        reduce using rule 5 (expresion -> expresion SUMA expresion .)
-    MODULO          reduce using rule 5 (expresion -> expresion SUMA expresion .)
-    PUNTOYCOMA      reduce using rule 5 (expresion -> expresion SUMA expresion .)
-    LLADER          reduce using rule 5 (expresion -> expresion SUMA expresion .)
-    CORDER          reduce using rule 5 (expresion -> expresion SUMA expresion .)
-    PARDER          reduce using rule 5 (expresion -> expresion SUMA expresion .)
-    MULT            shift and go to state 17
-    DIV             shift and go to state 16
+    RESTA           shift and go to state 2
+    PARIZQ          shift and go to state 3
+    LLAIZQ          shift and go to state 10
+    CORIZQ          shift and go to state 7
+    ENTERO          shift and go to state 5
+    DECIMAL         shift and go to state 6
+    VARIABLE        shift and go to state 12
 
-  ! MULT            [ reduce using rule 5 (expresion -> expresion SUMA expresion .) ]
-  ! DIV             [ reduce using rule 5 (expresion -> expresion SUMA expresion .) ]
-  ! SUMA            [ shift and go to state 13 ]
-  ! RESTA           [ shift and go to state 15 ]
-  ! POTENCIA        [ shift and go to state 18 ]
-  ! MODULO          [ shift and go to state 12 ]
-
+    expresion                      shift and go to state 42
 
 state 27
 
-    (6) expresion -> expresion RESTA expresion .
-    (5) expresion -> expresion . SUMA expresion
-    (6) expresion -> expresion . RESTA expresion
-    (7) expresion -> expresion . MULT expresion
-    (8) expresion -> expresion . DIV expresion
-    (9) expresion -> expresion . POTENCIA expresion
-    (10) expresion -> expresion . MODULO expresion
+    (8) expresion -> expresion DIV . expresion
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULT expresion
+    (8) expresion -> . expresion DIV expresion
+    (9) expresion -> . expresion POTENCIA expresion
+    (10) expresion -> . expresion MODULO expresion
+    (11) expresion -> . RESTA expresion
+    (12) expresion -> . PARIZQ expresion PARDER
+    (13) expresion -> . LLAIZQ expresion LLADER
+    (14) expresion -> . CORIZQ expresion CORDER
+    (15) expresion -> . expresion MENORQUE expresion
+    (16) expresion -> . expresion MAYORQUE expresion
+    (17) expresion -> . expresion MENORIGUAL expresion
+    (18) expresion -> . expresion MAYORIGUAL expresion
+    (19) expresion -> . expresion IGUAL expresion
+    (20) expresion -> . expresion DISTINTO expresion
+    (21) expresion -> . PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+    (22) expresion -> . PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+    (23) expresion -> . PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER
+    (24) expresion -> . PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+    (25) expresion -> . PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER
+    (26) expresion -> . PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER
+    (27) expresion -> . ENTERO
+    (28) expresion -> . DECIMAL
+    (29) expresion -> . VARIABLE
 
-    SUMA            reduce using rule 6 (expresion -> expresion RESTA expresion .)
-    RESTA           reduce using rule 6 (expresion -> expresion RESTA expresion .)
-    POTENCIA        reduce using rule 6 (expresion -> expresion RESTA expresion .)
-    MODULO          reduce using rule 6 (expresion -> expresion RESTA expresion .)
-    PUNTOYCOMA      reduce using rule 6 (expresion -> expresion RESTA expresion .)
-    LLADER          reduce using rule 6 (expresion -> expresion RESTA expresion .)
-    CORDER          reduce using rule 6 (expresion -> expresion RESTA expresion .)
-    PARDER          reduce using rule 6 (expresion -> expresion RESTA expresion .)
-    MULT            shift and go to state 17
-    DIV             shift and go to state 16
+    RESTA           shift and go to state 2
+    PARIZQ          shift and go to state 3
+    LLAIZQ          shift and go to state 10
+    CORIZQ          shift and go to state 7
+    ENTERO          shift and go to state 5
+    DECIMAL         shift and go to state 6
+    VARIABLE        shift and go to state 12
 
-  ! MULT            [ reduce using rule 6 (expresion -> expresion RESTA expresion .) ]
-  ! DIV             [ reduce using rule 6 (expresion -> expresion RESTA expresion .) ]
-  ! SUMA            [ shift and go to state 13 ]
-  ! RESTA           [ shift and go to state 15 ]
-  ! POTENCIA        [ shift and go to state 18 ]
-  ! MODULO          [ shift and go to state 12 ]
-
+    expresion                      shift and go to state 43
 
 state 28
 
-    (8) expresion -> expresion DIV expresion .
-    (5) expresion -> expresion . SUMA expresion
-    (6) expresion -> expresion . RESTA expresion
-    (7) expresion -> expresion . MULT expresion
-    (8) expresion -> expresion . DIV expresion
-    (9) expresion -> expresion . POTENCIA expresion
-    (10) expresion -> expresion . MODULO expresion
+    (7) expresion -> expresion MULT . expresion
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULT expresion
+    (8) expresion -> . expresion DIV expresion
+    (9) expresion -> . expresion POTENCIA expresion
+    (10) expresion -> . expresion MODULO expresion
+    (11) expresion -> . RESTA expresion
+    (12) expresion -> . PARIZQ expresion PARDER
+    (13) expresion -> . LLAIZQ expresion LLADER
+    (14) expresion -> . CORIZQ expresion CORDER
+    (15) expresion -> . expresion MENORQUE expresion
+    (16) expresion -> . expresion MAYORQUE expresion
+    (17) expresion -> . expresion MENORIGUAL expresion
+    (18) expresion -> . expresion MAYORIGUAL expresion
+    (19) expresion -> . expresion IGUAL expresion
+    (20) expresion -> . expresion DISTINTO expresion
+    (21) expresion -> . PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+    (22) expresion -> . PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+    (23) expresion -> . PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER
+    (24) expresion -> . PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+    (25) expresion -> . PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER
+    (26) expresion -> . PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER
+    (27) expresion -> . ENTERO
+    (28) expresion -> . DECIMAL
+    (29) expresion -> . VARIABLE
 
-    SUMA            reduce using rule 8 (expresion -> expresion DIV expresion .)
-    RESTA           reduce using rule 8 (expresion -> expresion DIV expresion .)
-    MULT            reduce using rule 8 (expresion -> expresion DIV expresion .)
-    DIV             reduce using rule 8 (expresion -> expresion DIV expresion .)
-    POTENCIA        reduce using rule 8 (expresion -> expresion DIV expresion .)
-    MODULO          reduce using rule 8 (expresion -> expresion DIV expresion .)
-    PUNTOYCOMA      reduce using rule 8 (expresion -> expresion DIV expresion .)
-    LLADER          reduce using rule 8 (expresion -> expresion DIV expresion .)
-    CORDER          reduce using rule 8 (expresion -> expresion DIV expresion .)
-    PARDER          reduce using rule 8 (expresion -> expresion DIV expresion .)
+    RESTA           shift and go to state 2
+    PARIZQ          shift and go to state 3
+    LLAIZQ          shift and go to state 10
+    CORIZQ          shift and go to state 7
+    ENTERO          shift and go to state 5
+    DECIMAL         shift and go to state 6
+    VARIABLE        shift and go to state 12
 
-  ! SUMA            [ shift and go to state 13 ]
-  ! RESTA           [ shift and go to state 15 ]
-  ! MULT            [ shift and go to state 17 ]
-  ! DIV             [ shift and go to state 16 ]
-  ! POTENCIA        [ shift and go to state 18 ]
-  ! MODULO          [ shift and go to state 12 ]
-
+    expresion                      shift and go to state 44
 
 state 29
 
-    (7) expresion -> expresion MULT expresion .
-    (5) expresion -> expresion . SUMA expresion
-    (6) expresion -> expresion . RESTA expresion
-    (7) expresion -> expresion . MULT expresion
-    (8) expresion -> expresion . DIV expresion
-    (9) expresion -> expresion . POTENCIA expresion
-    (10) expresion -> expresion . MODULO expresion
+    (9) expresion -> expresion POTENCIA . expresion
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULT expresion
+    (8) expresion -> . expresion DIV expresion
+    (9) expresion -> . expresion POTENCIA expresion
+    (10) expresion -> . expresion MODULO expresion
+    (11) expresion -> . RESTA expresion
+    (12) expresion -> . PARIZQ expresion PARDER
+    (13) expresion -> . LLAIZQ expresion LLADER
+    (14) expresion -> . CORIZQ expresion CORDER
+    (15) expresion -> . expresion MENORQUE expresion
+    (16) expresion -> . expresion MAYORQUE expresion
+    (17) expresion -> . expresion MENORIGUAL expresion
+    (18) expresion -> . expresion MAYORIGUAL expresion
+    (19) expresion -> . expresion IGUAL expresion
+    (20) expresion -> . expresion DISTINTO expresion
+    (21) expresion -> . PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+    (22) expresion -> . PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+    (23) expresion -> . PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER
+    (24) expresion -> . PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+    (25) expresion -> . PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER
+    (26) expresion -> . PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER
+    (27) expresion -> . ENTERO
+    (28) expresion -> . DECIMAL
+    (29) expresion -> . VARIABLE
 
-    SUMA            reduce using rule 7 (expresion -> expresion MULT expresion .)
-    RESTA           reduce using rule 7 (expresion -> expresion MULT expresion .)
-    MULT            reduce using rule 7 (expresion -> expresion MULT expresion .)
-    DIV             reduce using rule 7 (expresion -> expresion MULT expresion .)
-    POTENCIA        reduce using rule 7 (expresion -> expresion MULT expresion .)
-    MODULO          reduce using rule 7 (expresion -> expresion MULT expresion .)
-    PUNTOYCOMA      reduce using rule 7 (expresion -> expresion MULT expresion .)
-    LLADER          reduce using rule 7 (expresion -> expresion MULT expresion .)
-    CORDER          reduce using rule 7 (expresion -> expresion MULT expresion .)
-    PARDER          reduce using rule 7 (expresion -> expresion MULT expresion .)
+    RESTA           shift and go to state 2
+    PARIZQ          shift and go to state 3
+    LLAIZQ          shift and go to state 10
+    CORIZQ          shift and go to state 7
+    ENTERO          shift and go to state 5
+    DECIMAL         shift and go to state 6
+    VARIABLE        shift and go to state 12
 
-  ! SUMA            [ shift and go to state 13 ]
-  ! RESTA           [ shift and go to state 15 ]
-  ! MULT            [ shift and go to state 17 ]
-  ! DIV             [ shift and go to state 16 ]
-  ! POTENCIA        [ shift and go to state 18 ]
-  ! MODULO          [ shift and go to state 12 ]
-
+    expresion                      shift and go to state 45
 
 state 30
 
-    (9) expresion -> expresion POTENCIA expresion .
+    (13) expresion -> LLAIZQ expresion . LLADER
     (5) expresion -> expresion . SUMA expresion
     (6) expresion -> expresion . RESTA expresion
     (7) expresion -> expresion . MULT expresion
     (8) expresion -> expresion . DIV expresion
     (9) expresion -> expresion . POTENCIA expresion
     (10) expresion -> expresion . MODULO expresion
+    (15) expresion -> expresion . MENORQUE expresion
+    (16) expresion -> expresion . MAYORQUE expresion
+    (17) expresion -> expresion . MENORIGUAL expresion
+    (18) expresion -> expresion . MAYORIGUAL expresion
+    (19) expresion -> expresion . IGUAL expresion
+    (20) expresion -> expresion . DISTINTO expresion
 
-  ! shift/reduce conflict for SUMA resolved as shift
-  ! shift/reduce conflict for RESTA resolved as shift
-  ! shift/reduce conflict for MULT resolved as shift
-  ! shift/reduce conflict for DIV resolved as shift
-  ! shift/reduce conflict for POTENCIA resolved as shift
-  ! shift/reduce conflict for MODULO resolved as shift
-    PUNTOYCOMA      reduce using rule 9 (expresion -> expresion POTENCIA expresion .)
-    LLADER          reduce using rule 9 (expresion -> expresion POTENCIA expresion .)
-    CORDER          reduce using rule 9 (expresion -> expresion POTENCIA expresion .)
-    PARDER          reduce using rule 9 (expresion -> expresion POTENCIA expresion .)
-    SUMA            shift and go to state 13
-    RESTA           shift and go to state 15
-    MULT            shift and go to state 17
-    DIV             shift and go to state 16
-    POTENCIA        shift and go to state 18
-    MODULO          shift and go to state 12
-
-  ! SUMA            [ reduce using rule 9 (expresion -> expresion POTENCIA expresion .) ]
-  ! RESTA           [ reduce using rule 9 (expresion -> expresion POTENCIA expresion .) ]
-  ! MULT            [ reduce using rule 9 (expresion -> expresion POTENCIA expresion .) ]
-  ! DIV             [ reduce using rule 9 (expresion -> expresion POTENCIA expresion .) ]
-  ! POTENCIA        [ reduce using rule 9 (expresion -> expresion POTENCIA expresion .) ]
-  ! MODULO          [ reduce using rule 9 (expresion -> expresion POTENCIA expresion .) ]
+    LLADER          shift and go to state 46
+    SUMA            shift and go to state 20
+    RESTA           shift and go to state 26
+    MULT            shift and go to state 28
+    DIV             shift and go to state 27
+    POTENCIA        shift and go to state 29
+    MODULO          shift and go to state 17
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 25
+    MAYORIGUAL      shift and go to state 24
+    IGUAL           shift and go to state 19
+    DISTINTO        shift and go to state 18
 
 
 state 31
 
-    (13) expresion -> LLAIZQ expresion LLADER .
+    (12) expresion -> PARIZQ expresion PARDER .
+    (21) expresion -> PARIZQ expresion PARDER . MENORQUE PARIZQ expresion PARDER
+    (22) expresion -> PARIZQ expresion PARDER . MAYORQUE PARIZQ expresion PARDER
+    (23) expresion -> PARIZQ expresion PARDER . MENORIGUAL PARIZQ expresion PARDER
+    (24) expresion -> PARIZQ expresion PARDER . MAYORIGUAL PARIZQ expresion PARDER
+    (25) expresion -> PARIZQ expresion PARDER . IGUAL PARIZQ expresion PARDER
+    (26) expresion -> PARIZQ expresion PARDER . DISTINTO PARIZQ expresion PARDER
 
-    SUMA            reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
-    RESTA           reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
-    MULT            reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
-    DIV             reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
-    POTENCIA        reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
-    MODULO          reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
-    PUNTOYCOMA      reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
-    LLADER          reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
-    CORDER          reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
-    PARDER          reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
+  ! shift/reduce conflict for MENORQUE resolved as shift
+  ! shift/reduce conflict for MAYORQUE resolved as shift
+  ! shift/reduce conflict for MENORIGUAL resolved as shift
+  ! shift/reduce conflict for MAYORIGUAL resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for DISTINTO resolved as shift
+    SUMA            reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
+    RESTA           reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
+    MULT            reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
+    DIV             reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
+    POTENCIA        reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
+    MODULO          reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
+    PUNTOYCOMA      reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
+    PARDER          reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
+    CORDER          reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
+    LLADER          reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
+    MENORQUE        shift and go to state 49
+    MAYORQUE        shift and go to state 50
+    MENORIGUAL      shift and go to state 52
+    MAYORIGUAL      shift and go to state 51
+    IGUAL           shift and go to state 48
+    DISTINTO        shift and go to state 47
+
+  ! MENORQUE        [ reduce using rule 12 (expresion -> PARIZQ expresion PARDER .) ]
+  ! MAYORQUE        [ reduce using rule 12 (expresion -> PARIZQ expresion PARDER .) ]
+  ! MENORIGUAL      [ reduce using rule 12 (expresion -> PARIZQ expresion PARDER .) ]
+  ! MAYORIGUAL      [ reduce using rule 12 (expresion -> PARIZQ expresion PARDER .) ]
+  ! IGUAL           [ reduce using rule 12 (expresion -> PARIZQ expresion PARDER .) ]
+  ! DISTINTO        [ reduce using rule 12 (expresion -> PARIZQ expresion PARDER .) ]
 
 
 state 32
@@ -832,10 +1157,16 @@ state 32
     DIV             reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
     POTENCIA        reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
     MODULO          reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
+    MENORQUE        reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
+    MAYORQUE        reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
+    MENORIGUAL      reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
+    MAYORIGUAL      reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
+    IGUAL           reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
+    DISTINTO        reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
     PUNTOYCOMA      reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
-    LLADER          reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
-    CORDER          reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
     PARDER          reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
+    CORDER          reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
+    LLADER          reduce using rule 14 (expresion -> CORIZQ expresion CORDER .)
 
 
 state 33
@@ -847,50 +1178,1412 @@ state 33
     (8) expresion -> expresion . DIV expresion
     (9) expresion -> expresion . POTENCIA expresion
     (10) expresion -> expresion . MODULO expresion
+    (15) expresion -> expresion . MENORQUE expresion
+    (16) expresion -> expresion . MAYORQUE expresion
+    (17) expresion -> expresion . MENORIGUAL expresion
+    (18) expresion -> expresion . MAYORIGUAL expresion
+    (19) expresion -> expresion . IGUAL expresion
+    (20) expresion -> expresion . DISTINTO expresion
 
-    PUNTOYCOMA      shift and go to state 35
-    SUMA            shift and go to state 13
-    RESTA           shift and go to state 15
-    MULT            shift and go to state 17
-    DIV             shift and go to state 16
-    POTENCIA        shift and go to state 18
-    MODULO          shift and go to state 12
+    PUNTOYCOMA      shift and go to state 53
+    SUMA            shift and go to state 20
+    RESTA           shift and go to state 26
+    MULT            shift and go to state 28
+    DIV             shift and go to state 27
+    POTENCIA        shift and go to state 29
+    MODULO          shift and go to state 17
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 25
+    MAYORIGUAL      shift and go to state 24
+    IGUAL           shift and go to state 19
+    DISTINTO        shift and go to state 18
 
 
 state 34
 
-    (12) expresion -> PARIZQ expresion PARDER .
+    (10) expresion -> expresion MODULO expresion .
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULT expresion
+    (8) expresion -> expresion . DIV expresion
+    (9) expresion -> expresion . POTENCIA expresion
+    (10) expresion -> expresion . MODULO expresion
+    (15) expresion -> expresion . MENORQUE expresion
+    (16) expresion -> expresion . MAYORQUE expresion
+    (17) expresion -> expresion . MENORIGUAL expresion
+    (18) expresion -> expresion . MAYORIGUAL expresion
+    (19) expresion -> expresion . IGUAL expresion
+    (20) expresion -> expresion . DISTINTO expresion
 
-    SUMA            reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
-    RESTA           reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
-    MULT            reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
-    DIV             reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
-    POTENCIA        reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
-    MODULO          reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
-    PUNTOYCOMA      reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
-    LLADER          reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
-    CORDER          reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
-    PARDER          reduce using rule 12 (expresion -> PARIZQ expresion PARDER .)
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for POTENCIA resolved as shift
+  ! shift/reduce conflict for MODULO resolved as shift
+  ! shift/reduce conflict for MENORQUE resolved as shift
+  ! shift/reduce conflict for MAYORQUE resolved as shift
+  ! shift/reduce conflict for MENORIGUAL resolved as shift
+  ! shift/reduce conflict for MAYORIGUAL resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for DISTINTO resolved as shift
+    PUNTOYCOMA      reduce using rule 10 (expresion -> expresion MODULO expresion .)
+    PARDER          reduce using rule 10 (expresion -> expresion MODULO expresion .)
+    CORDER          reduce using rule 10 (expresion -> expresion MODULO expresion .)
+    LLADER          reduce using rule 10 (expresion -> expresion MODULO expresion .)
+    SUMA            shift and go to state 20
+    RESTA           shift and go to state 26
+    MULT            shift and go to state 28
+    DIV             shift and go to state 27
+    POTENCIA        shift and go to state 29
+    MODULO          shift and go to state 17
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 25
+    MAYORIGUAL      shift and go to state 24
+    IGUAL           shift and go to state 19
+    DISTINTO        shift and go to state 18
+
+  ! SUMA            [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
+  ! RESTA           [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
+  ! MULT            [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
+  ! DIV             [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
+  ! POTENCIA        [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
+  ! MODULO          [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
+  ! MENORQUE        [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
+  ! MAYORQUE        [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
+  ! MENORIGUAL      [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
+  ! MAYORIGUAL      [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
+  ! IGUAL           [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
+  ! DISTINTO        [ reduce using rule 10 (expresion -> expresion MODULO expresion .) ]
 
 
 state 35
+
+    (20) expresion -> expresion DISTINTO expresion .
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULT expresion
+    (8) expresion -> expresion . DIV expresion
+    (9) expresion -> expresion . POTENCIA expresion
+    (10) expresion -> expresion . MODULO expresion
+    (15) expresion -> expresion . MENORQUE expresion
+    (16) expresion -> expresion . MAYORQUE expresion
+    (17) expresion -> expresion . MENORIGUAL expresion
+    (18) expresion -> expresion . MAYORIGUAL expresion
+    (19) expresion -> expresion . IGUAL expresion
+    (20) expresion -> expresion . DISTINTO expresion
+
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for POTENCIA resolved as shift
+  ! shift/reduce conflict for MODULO resolved as shift
+  ! shift/reduce conflict for MENORQUE resolved as shift
+  ! shift/reduce conflict for MAYORQUE resolved as shift
+  ! shift/reduce conflict for MENORIGUAL resolved as shift
+  ! shift/reduce conflict for MAYORIGUAL resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for DISTINTO resolved as shift
+    PUNTOYCOMA      reduce using rule 20 (expresion -> expresion DISTINTO expresion .)
+    PARDER          reduce using rule 20 (expresion -> expresion DISTINTO expresion .)
+    CORDER          reduce using rule 20 (expresion -> expresion DISTINTO expresion .)
+    LLADER          reduce using rule 20 (expresion -> expresion DISTINTO expresion .)
+    SUMA            shift and go to state 20
+    RESTA           shift and go to state 26
+    MULT            shift and go to state 28
+    DIV             shift and go to state 27
+    POTENCIA        shift and go to state 29
+    MODULO          shift and go to state 17
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 25
+    MAYORIGUAL      shift and go to state 24
+    IGUAL           shift and go to state 19
+    DISTINTO        shift and go to state 18
+
+  ! SUMA            [ reduce using rule 20 (expresion -> expresion DISTINTO expresion .) ]
+  ! RESTA           [ reduce using rule 20 (expresion -> expresion DISTINTO expresion .) ]
+  ! MULT            [ reduce using rule 20 (expresion -> expresion DISTINTO expresion .) ]
+  ! DIV             [ reduce using rule 20 (expresion -> expresion DISTINTO expresion .) ]
+  ! POTENCIA        [ reduce using rule 20 (expresion -> expresion DISTINTO expresion .) ]
+  ! MODULO          [ reduce using rule 20 (expresion -> expresion DISTINTO expresion .) ]
+  ! MENORQUE        [ reduce using rule 20 (expresion -> expresion DISTINTO expresion .) ]
+  ! MAYORQUE        [ reduce using rule 20 (expresion -> expresion DISTINTO expresion .) ]
+  ! MENORIGUAL      [ reduce using rule 20 (expresion -> expresion DISTINTO expresion .) ]
+  ! MAYORIGUAL      [ reduce using rule 20 (expresion -> expresion DISTINTO expresion .) ]
+  ! IGUAL           [ reduce using rule 20 (expresion -> expresion DISTINTO expresion .) ]
+  ! DISTINTO        [ reduce using rule 20 (expresion -> expresion DISTINTO expresion .) ]
+
+
+state 36
+
+    (19) expresion -> expresion IGUAL expresion .
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULT expresion
+    (8) expresion -> expresion . DIV expresion
+    (9) expresion -> expresion . POTENCIA expresion
+    (10) expresion -> expresion . MODULO expresion
+    (15) expresion -> expresion . MENORQUE expresion
+    (16) expresion -> expresion . MAYORQUE expresion
+    (17) expresion -> expresion . MENORIGUAL expresion
+    (18) expresion -> expresion . MAYORIGUAL expresion
+    (19) expresion -> expresion . IGUAL expresion
+    (20) expresion -> expresion . DISTINTO expresion
+
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for POTENCIA resolved as shift
+  ! shift/reduce conflict for MODULO resolved as shift
+  ! shift/reduce conflict for MENORQUE resolved as shift
+  ! shift/reduce conflict for MAYORQUE resolved as shift
+  ! shift/reduce conflict for MENORIGUAL resolved as shift
+  ! shift/reduce conflict for MAYORIGUAL resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for DISTINTO resolved as shift
+    PUNTOYCOMA      reduce using rule 19 (expresion -> expresion IGUAL expresion .)
+    PARDER          reduce using rule 19 (expresion -> expresion IGUAL expresion .)
+    CORDER          reduce using rule 19 (expresion -> expresion IGUAL expresion .)
+    LLADER          reduce using rule 19 (expresion -> expresion IGUAL expresion .)
+    SUMA            shift and go to state 20
+    RESTA           shift and go to state 26
+    MULT            shift and go to state 28
+    DIV             shift and go to state 27
+    POTENCIA        shift and go to state 29
+    MODULO          shift and go to state 17
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 25
+    MAYORIGUAL      shift and go to state 24
+    IGUAL           shift and go to state 19
+    DISTINTO        shift and go to state 18
+
+  ! SUMA            [ reduce using rule 19 (expresion -> expresion IGUAL expresion .) ]
+  ! RESTA           [ reduce using rule 19 (expresion -> expresion IGUAL expresion .) ]
+  ! MULT            [ reduce using rule 19 (expresion -> expresion IGUAL expresion .) ]
+  ! DIV             [ reduce using rule 19 (expresion -> expresion IGUAL expresion .) ]
+  ! POTENCIA        [ reduce using rule 19 (expresion -> expresion IGUAL expresion .) ]
+  ! MODULO          [ reduce using rule 19 (expresion -> expresion IGUAL expresion .) ]
+  ! MENORQUE        [ reduce using rule 19 (expresion -> expresion IGUAL expresion .) ]
+  ! MAYORQUE        [ reduce using rule 19 (expresion -> expresion IGUAL expresion .) ]
+  ! MENORIGUAL      [ reduce using rule 19 (expresion -> expresion IGUAL expresion .) ]
+  ! MAYORIGUAL      [ reduce using rule 19 (expresion -> expresion IGUAL expresion .) ]
+  ! IGUAL           [ reduce using rule 19 (expresion -> expresion IGUAL expresion .) ]
+  ! DISTINTO        [ reduce using rule 19 (expresion -> expresion IGUAL expresion .) ]
+
+
+state 37
+
+    (5) expresion -> expresion SUMA expresion .
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULT expresion
+    (8) expresion -> expresion . DIV expresion
+    (9) expresion -> expresion . POTENCIA expresion
+    (10) expresion -> expresion . MODULO expresion
+    (15) expresion -> expresion . MENORQUE expresion
+    (16) expresion -> expresion . MAYORQUE expresion
+    (17) expresion -> expresion . MENORIGUAL expresion
+    (18) expresion -> expresion . MAYORIGUAL expresion
+    (19) expresion -> expresion . IGUAL expresion
+    (20) expresion -> expresion . DISTINTO expresion
+
+    SUMA            reduce using rule 5 (expresion -> expresion SUMA expresion .)
+    RESTA           reduce using rule 5 (expresion -> expresion SUMA expresion .)
+    POTENCIA        reduce using rule 5 (expresion -> expresion SUMA expresion .)
+    MODULO          reduce using rule 5 (expresion -> expresion SUMA expresion .)
+    MENORQUE        reduce using rule 5 (expresion -> expresion SUMA expresion .)
+    MAYORQUE        reduce using rule 5 (expresion -> expresion SUMA expresion .)
+    MENORIGUAL      reduce using rule 5 (expresion -> expresion SUMA expresion .)
+    MAYORIGUAL      reduce using rule 5 (expresion -> expresion SUMA expresion .)
+    IGUAL           reduce using rule 5 (expresion -> expresion SUMA expresion .)
+    DISTINTO        reduce using rule 5 (expresion -> expresion SUMA expresion .)
+    PUNTOYCOMA      reduce using rule 5 (expresion -> expresion SUMA expresion .)
+    PARDER          reduce using rule 5 (expresion -> expresion SUMA expresion .)
+    CORDER          reduce using rule 5 (expresion -> expresion SUMA expresion .)
+    LLADER          reduce using rule 5 (expresion -> expresion SUMA expresion .)
+    MULT            shift and go to state 28
+    DIV             shift and go to state 27
+
+  ! MULT            [ reduce using rule 5 (expresion -> expresion SUMA expresion .) ]
+  ! DIV             [ reduce using rule 5 (expresion -> expresion SUMA expresion .) ]
+  ! SUMA            [ shift and go to state 20 ]
+  ! RESTA           [ shift and go to state 26 ]
+  ! POTENCIA        [ shift and go to state 29 ]
+  ! MODULO          [ shift and go to state 17 ]
+  ! MENORQUE        [ shift and go to state 22 ]
+  ! MAYORQUE        [ shift and go to state 23 ]
+  ! MENORIGUAL      [ shift and go to state 25 ]
+  ! MAYORIGUAL      [ shift and go to state 24 ]
+  ! IGUAL           [ shift and go to state 19 ]
+  ! DISTINTO        [ shift and go to state 18 ]
+
+
+state 38
+
+    (15) expresion -> expresion MENORQUE expresion .
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULT expresion
+    (8) expresion -> expresion . DIV expresion
+    (9) expresion -> expresion . POTENCIA expresion
+    (10) expresion -> expresion . MODULO expresion
+    (15) expresion -> expresion . MENORQUE expresion
+    (16) expresion -> expresion . MAYORQUE expresion
+    (17) expresion -> expresion . MENORIGUAL expresion
+    (18) expresion -> expresion . MAYORIGUAL expresion
+    (19) expresion -> expresion . IGUAL expresion
+    (20) expresion -> expresion . DISTINTO expresion
+
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for POTENCIA resolved as shift
+  ! shift/reduce conflict for MODULO resolved as shift
+  ! shift/reduce conflict for MENORQUE resolved as shift
+  ! shift/reduce conflict for MAYORQUE resolved as shift
+  ! shift/reduce conflict for MENORIGUAL resolved as shift
+  ! shift/reduce conflict for MAYORIGUAL resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for DISTINTO resolved as shift
+    PUNTOYCOMA      reduce using rule 15 (expresion -> expresion MENORQUE expresion .)
+    PARDER          reduce using rule 15 (expresion -> expresion MENORQUE expresion .)
+    CORDER          reduce using rule 15 (expresion -> expresion MENORQUE expresion .)
+    LLADER          reduce using rule 15 (expresion -> expresion MENORQUE expresion .)
+    SUMA            shift and go to state 20
+    RESTA           shift and go to state 26
+    MULT            shift and go to state 28
+    DIV             shift and go to state 27
+    POTENCIA        shift and go to state 29
+    MODULO          shift and go to state 17
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 25
+    MAYORIGUAL      shift and go to state 24
+    IGUAL           shift and go to state 19
+    DISTINTO        shift and go to state 18
+
+  ! SUMA            [ reduce using rule 15 (expresion -> expresion MENORQUE expresion .) ]
+  ! RESTA           [ reduce using rule 15 (expresion -> expresion MENORQUE expresion .) ]
+  ! MULT            [ reduce using rule 15 (expresion -> expresion MENORQUE expresion .) ]
+  ! DIV             [ reduce using rule 15 (expresion -> expresion MENORQUE expresion .) ]
+  ! POTENCIA        [ reduce using rule 15 (expresion -> expresion MENORQUE expresion .) ]
+  ! MODULO          [ reduce using rule 15 (expresion -> expresion MENORQUE expresion .) ]
+  ! MENORQUE        [ reduce using rule 15 (expresion -> expresion MENORQUE expresion .) ]
+  ! MAYORQUE        [ reduce using rule 15 (expresion -> expresion MENORQUE expresion .) ]
+  ! MENORIGUAL      [ reduce using rule 15 (expresion -> expresion MENORQUE expresion .) ]
+  ! MAYORIGUAL      [ reduce using rule 15 (expresion -> expresion MENORQUE expresion .) ]
+  ! IGUAL           [ reduce using rule 15 (expresion -> expresion MENORQUE expresion .) ]
+  ! DISTINTO        [ reduce using rule 15 (expresion -> expresion MENORQUE expresion .) ]
+
+
+state 39
+
+    (16) expresion -> expresion MAYORQUE expresion .
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULT expresion
+    (8) expresion -> expresion . DIV expresion
+    (9) expresion -> expresion . POTENCIA expresion
+    (10) expresion -> expresion . MODULO expresion
+    (15) expresion -> expresion . MENORQUE expresion
+    (16) expresion -> expresion . MAYORQUE expresion
+    (17) expresion -> expresion . MENORIGUAL expresion
+    (18) expresion -> expresion . MAYORIGUAL expresion
+    (19) expresion -> expresion . IGUAL expresion
+    (20) expresion -> expresion . DISTINTO expresion
+
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for POTENCIA resolved as shift
+  ! shift/reduce conflict for MODULO resolved as shift
+  ! shift/reduce conflict for MENORQUE resolved as shift
+  ! shift/reduce conflict for MAYORQUE resolved as shift
+  ! shift/reduce conflict for MENORIGUAL resolved as shift
+  ! shift/reduce conflict for MAYORIGUAL resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for DISTINTO resolved as shift
+    PUNTOYCOMA      reduce using rule 16 (expresion -> expresion MAYORQUE expresion .)
+    PARDER          reduce using rule 16 (expresion -> expresion MAYORQUE expresion .)
+    CORDER          reduce using rule 16 (expresion -> expresion MAYORQUE expresion .)
+    LLADER          reduce using rule 16 (expresion -> expresion MAYORQUE expresion .)
+    SUMA            shift and go to state 20
+    RESTA           shift and go to state 26
+    MULT            shift and go to state 28
+    DIV             shift and go to state 27
+    POTENCIA        shift and go to state 29
+    MODULO          shift and go to state 17
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 25
+    MAYORIGUAL      shift and go to state 24
+    IGUAL           shift and go to state 19
+    DISTINTO        shift and go to state 18
+
+  ! SUMA            [ reduce using rule 16 (expresion -> expresion MAYORQUE expresion .) ]
+  ! RESTA           [ reduce using rule 16 (expresion -> expresion MAYORQUE expresion .) ]
+  ! MULT            [ reduce using rule 16 (expresion -> expresion MAYORQUE expresion .) ]
+  ! DIV             [ reduce using rule 16 (expresion -> expresion MAYORQUE expresion .) ]
+  ! POTENCIA        [ reduce using rule 16 (expresion -> expresion MAYORQUE expresion .) ]
+  ! MODULO          [ reduce using rule 16 (expresion -> expresion MAYORQUE expresion .) ]
+  ! MENORQUE        [ reduce using rule 16 (expresion -> expresion MAYORQUE expresion .) ]
+  ! MAYORQUE        [ reduce using rule 16 (expresion -> expresion MAYORQUE expresion .) ]
+  ! MENORIGUAL      [ reduce using rule 16 (expresion -> expresion MAYORQUE expresion .) ]
+  ! MAYORIGUAL      [ reduce using rule 16 (expresion -> expresion MAYORQUE expresion .) ]
+  ! IGUAL           [ reduce using rule 16 (expresion -> expresion MAYORQUE expresion .) ]
+  ! DISTINTO        [ reduce using rule 16 (expresion -> expresion MAYORQUE expresion .) ]
+
+
+state 40
+
+    (18) expresion -> expresion MAYORIGUAL expresion .
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULT expresion
+    (8) expresion -> expresion . DIV expresion
+    (9) expresion -> expresion . POTENCIA expresion
+    (10) expresion -> expresion . MODULO expresion
+    (15) expresion -> expresion . MENORQUE expresion
+    (16) expresion -> expresion . MAYORQUE expresion
+    (17) expresion -> expresion . MENORIGUAL expresion
+    (18) expresion -> expresion . MAYORIGUAL expresion
+    (19) expresion -> expresion . IGUAL expresion
+    (20) expresion -> expresion . DISTINTO expresion
+
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for POTENCIA resolved as shift
+  ! shift/reduce conflict for MODULO resolved as shift
+  ! shift/reduce conflict for MENORQUE resolved as shift
+  ! shift/reduce conflict for MAYORQUE resolved as shift
+  ! shift/reduce conflict for MENORIGUAL resolved as shift
+  ! shift/reduce conflict for MAYORIGUAL resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for DISTINTO resolved as shift
+    PUNTOYCOMA      reduce using rule 18 (expresion -> expresion MAYORIGUAL expresion .)
+    PARDER          reduce using rule 18 (expresion -> expresion MAYORIGUAL expresion .)
+    CORDER          reduce using rule 18 (expresion -> expresion MAYORIGUAL expresion .)
+    LLADER          reduce using rule 18 (expresion -> expresion MAYORIGUAL expresion .)
+    SUMA            shift and go to state 20
+    RESTA           shift and go to state 26
+    MULT            shift and go to state 28
+    DIV             shift and go to state 27
+    POTENCIA        shift and go to state 29
+    MODULO          shift and go to state 17
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 25
+    MAYORIGUAL      shift and go to state 24
+    IGUAL           shift and go to state 19
+    DISTINTO        shift and go to state 18
+
+  ! SUMA            [ reduce using rule 18 (expresion -> expresion MAYORIGUAL expresion .) ]
+  ! RESTA           [ reduce using rule 18 (expresion -> expresion MAYORIGUAL expresion .) ]
+  ! MULT            [ reduce using rule 18 (expresion -> expresion MAYORIGUAL expresion .) ]
+  ! DIV             [ reduce using rule 18 (expresion -> expresion MAYORIGUAL expresion .) ]
+  ! POTENCIA        [ reduce using rule 18 (expresion -> expresion MAYORIGUAL expresion .) ]
+  ! MODULO          [ reduce using rule 18 (expresion -> expresion MAYORIGUAL expresion .) ]
+  ! MENORQUE        [ reduce using rule 18 (expresion -> expresion MAYORIGUAL expresion .) ]
+  ! MAYORQUE        [ reduce using rule 18 (expresion -> expresion MAYORIGUAL expresion .) ]
+  ! MENORIGUAL      [ reduce using rule 18 (expresion -> expresion MAYORIGUAL expresion .) ]
+  ! MAYORIGUAL      [ reduce using rule 18 (expresion -> expresion MAYORIGUAL expresion .) ]
+  ! IGUAL           [ reduce using rule 18 (expresion -> expresion MAYORIGUAL expresion .) ]
+  ! DISTINTO        [ reduce using rule 18 (expresion -> expresion MAYORIGUAL expresion .) ]
+
+
+state 41
+
+    (17) expresion -> expresion MENORIGUAL expresion .
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULT expresion
+    (8) expresion -> expresion . DIV expresion
+    (9) expresion -> expresion . POTENCIA expresion
+    (10) expresion -> expresion . MODULO expresion
+    (15) expresion -> expresion . MENORQUE expresion
+    (16) expresion -> expresion . MAYORQUE expresion
+    (17) expresion -> expresion . MENORIGUAL expresion
+    (18) expresion -> expresion . MAYORIGUAL expresion
+    (19) expresion -> expresion . IGUAL expresion
+    (20) expresion -> expresion . DISTINTO expresion
+
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for POTENCIA resolved as shift
+  ! shift/reduce conflict for MODULO resolved as shift
+  ! shift/reduce conflict for MENORQUE resolved as shift
+  ! shift/reduce conflict for MAYORQUE resolved as shift
+  ! shift/reduce conflict for MENORIGUAL resolved as shift
+  ! shift/reduce conflict for MAYORIGUAL resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for DISTINTO resolved as shift
+    PUNTOYCOMA      reduce using rule 17 (expresion -> expresion MENORIGUAL expresion .)
+    PARDER          reduce using rule 17 (expresion -> expresion MENORIGUAL expresion .)
+    CORDER          reduce using rule 17 (expresion -> expresion MENORIGUAL expresion .)
+    LLADER          reduce using rule 17 (expresion -> expresion MENORIGUAL expresion .)
+    SUMA            shift and go to state 20
+    RESTA           shift and go to state 26
+    MULT            shift and go to state 28
+    DIV             shift and go to state 27
+    POTENCIA        shift and go to state 29
+    MODULO          shift and go to state 17
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 25
+    MAYORIGUAL      shift and go to state 24
+    IGUAL           shift and go to state 19
+    DISTINTO        shift and go to state 18
+
+  ! SUMA            [ reduce using rule 17 (expresion -> expresion MENORIGUAL expresion .) ]
+  ! RESTA           [ reduce using rule 17 (expresion -> expresion MENORIGUAL expresion .) ]
+  ! MULT            [ reduce using rule 17 (expresion -> expresion MENORIGUAL expresion .) ]
+  ! DIV             [ reduce using rule 17 (expresion -> expresion MENORIGUAL expresion .) ]
+  ! POTENCIA        [ reduce using rule 17 (expresion -> expresion MENORIGUAL expresion .) ]
+  ! MODULO          [ reduce using rule 17 (expresion -> expresion MENORIGUAL expresion .) ]
+  ! MENORQUE        [ reduce using rule 17 (expresion -> expresion MENORIGUAL expresion .) ]
+  ! MAYORQUE        [ reduce using rule 17 (expresion -> expresion MENORIGUAL expresion .) ]
+  ! MENORIGUAL      [ reduce using rule 17 (expresion -> expresion MENORIGUAL expresion .) ]
+  ! MAYORIGUAL      [ reduce using rule 17 (expresion -> expresion MENORIGUAL expresion .) ]
+  ! IGUAL           [ reduce using rule 17 (expresion -> expresion MENORIGUAL expresion .) ]
+  ! DISTINTO        [ reduce using rule 17 (expresion -> expresion MENORIGUAL expresion .) ]
+
+
+state 42
+
+    (6) expresion -> expresion RESTA expresion .
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULT expresion
+    (8) expresion -> expresion . DIV expresion
+    (9) expresion -> expresion . POTENCIA expresion
+    (10) expresion -> expresion . MODULO expresion
+    (15) expresion -> expresion . MENORQUE expresion
+    (16) expresion -> expresion . MAYORQUE expresion
+    (17) expresion -> expresion . MENORIGUAL expresion
+    (18) expresion -> expresion . MAYORIGUAL expresion
+    (19) expresion -> expresion . IGUAL expresion
+    (20) expresion -> expresion . DISTINTO expresion
+
+    SUMA            reduce using rule 6 (expresion -> expresion RESTA expresion .)
+    RESTA           reduce using rule 6 (expresion -> expresion RESTA expresion .)
+    POTENCIA        reduce using rule 6 (expresion -> expresion RESTA expresion .)
+    MODULO          reduce using rule 6 (expresion -> expresion RESTA expresion .)
+    MENORQUE        reduce using rule 6 (expresion -> expresion RESTA expresion .)
+    MAYORQUE        reduce using rule 6 (expresion -> expresion RESTA expresion .)
+    MENORIGUAL      reduce using rule 6 (expresion -> expresion RESTA expresion .)
+    MAYORIGUAL      reduce using rule 6 (expresion -> expresion RESTA expresion .)
+    IGUAL           reduce using rule 6 (expresion -> expresion RESTA expresion .)
+    DISTINTO        reduce using rule 6 (expresion -> expresion RESTA expresion .)
+    PUNTOYCOMA      reduce using rule 6 (expresion -> expresion RESTA expresion .)
+    PARDER          reduce using rule 6 (expresion -> expresion RESTA expresion .)
+    CORDER          reduce using rule 6 (expresion -> expresion RESTA expresion .)
+    LLADER          reduce using rule 6 (expresion -> expresion RESTA expresion .)
+    MULT            shift and go to state 28
+    DIV             shift and go to state 27
+
+  ! MULT            [ reduce using rule 6 (expresion -> expresion RESTA expresion .) ]
+  ! DIV             [ reduce using rule 6 (expresion -> expresion RESTA expresion .) ]
+  ! SUMA            [ shift and go to state 20 ]
+  ! RESTA           [ shift and go to state 26 ]
+  ! POTENCIA        [ shift and go to state 29 ]
+  ! MODULO          [ shift and go to state 17 ]
+  ! MENORQUE        [ shift and go to state 22 ]
+  ! MAYORQUE        [ shift and go to state 23 ]
+  ! MENORIGUAL      [ shift and go to state 25 ]
+  ! MAYORIGUAL      [ shift and go to state 24 ]
+  ! IGUAL           [ shift and go to state 19 ]
+  ! DISTINTO        [ shift and go to state 18 ]
+
+
+state 43
+
+    (8) expresion -> expresion DIV expresion .
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULT expresion
+    (8) expresion -> expresion . DIV expresion
+    (9) expresion -> expresion . POTENCIA expresion
+    (10) expresion -> expresion . MODULO expresion
+    (15) expresion -> expresion . MENORQUE expresion
+    (16) expresion -> expresion . MAYORQUE expresion
+    (17) expresion -> expresion . MENORIGUAL expresion
+    (18) expresion -> expresion . MAYORIGUAL expresion
+    (19) expresion -> expresion . IGUAL expresion
+    (20) expresion -> expresion . DISTINTO expresion
+
+    SUMA            reduce using rule 8 (expresion -> expresion DIV expresion .)
+    RESTA           reduce using rule 8 (expresion -> expresion DIV expresion .)
+    MULT            reduce using rule 8 (expresion -> expresion DIV expresion .)
+    DIV             reduce using rule 8 (expresion -> expresion DIV expresion .)
+    POTENCIA        reduce using rule 8 (expresion -> expresion DIV expresion .)
+    MODULO          reduce using rule 8 (expresion -> expresion DIV expresion .)
+    MENORQUE        reduce using rule 8 (expresion -> expresion DIV expresion .)
+    MAYORQUE        reduce using rule 8 (expresion -> expresion DIV expresion .)
+    MENORIGUAL      reduce using rule 8 (expresion -> expresion DIV expresion .)
+    MAYORIGUAL      reduce using rule 8 (expresion -> expresion DIV expresion .)
+    IGUAL           reduce using rule 8 (expresion -> expresion DIV expresion .)
+    DISTINTO        reduce using rule 8 (expresion -> expresion DIV expresion .)
+    PUNTOYCOMA      reduce using rule 8 (expresion -> expresion DIV expresion .)
+    PARDER          reduce using rule 8 (expresion -> expresion DIV expresion .)
+    CORDER          reduce using rule 8 (expresion -> expresion DIV expresion .)
+    LLADER          reduce using rule 8 (expresion -> expresion DIV expresion .)
+
+  ! SUMA            [ shift and go to state 20 ]
+  ! RESTA           [ shift and go to state 26 ]
+  ! MULT            [ shift and go to state 28 ]
+  ! DIV             [ shift and go to state 27 ]
+  ! POTENCIA        [ shift and go to state 29 ]
+  ! MODULO          [ shift and go to state 17 ]
+  ! MENORQUE        [ shift and go to state 22 ]
+  ! MAYORQUE        [ shift and go to state 23 ]
+  ! MENORIGUAL      [ shift and go to state 25 ]
+  ! MAYORIGUAL      [ shift and go to state 24 ]
+  ! IGUAL           [ shift and go to state 19 ]
+  ! DISTINTO        [ shift and go to state 18 ]
+
+
+state 44
+
+    (7) expresion -> expresion MULT expresion .
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULT expresion
+    (8) expresion -> expresion . DIV expresion
+    (9) expresion -> expresion . POTENCIA expresion
+    (10) expresion -> expresion . MODULO expresion
+    (15) expresion -> expresion . MENORQUE expresion
+    (16) expresion -> expresion . MAYORQUE expresion
+    (17) expresion -> expresion . MENORIGUAL expresion
+    (18) expresion -> expresion . MAYORIGUAL expresion
+    (19) expresion -> expresion . IGUAL expresion
+    (20) expresion -> expresion . DISTINTO expresion
+
+    SUMA            reduce using rule 7 (expresion -> expresion MULT expresion .)
+    RESTA           reduce using rule 7 (expresion -> expresion MULT expresion .)
+    MULT            reduce using rule 7 (expresion -> expresion MULT expresion .)
+    DIV             reduce using rule 7 (expresion -> expresion MULT expresion .)
+    POTENCIA        reduce using rule 7 (expresion -> expresion MULT expresion .)
+    MODULO          reduce using rule 7 (expresion -> expresion MULT expresion .)
+    MENORQUE        reduce using rule 7 (expresion -> expresion MULT expresion .)
+    MAYORQUE        reduce using rule 7 (expresion -> expresion MULT expresion .)
+    MENORIGUAL      reduce using rule 7 (expresion -> expresion MULT expresion .)
+    MAYORIGUAL      reduce using rule 7 (expresion -> expresion MULT expresion .)
+    IGUAL           reduce using rule 7 (expresion -> expresion MULT expresion .)
+    DISTINTO        reduce using rule 7 (expresion -> expresion MULT expresion .)
+    PUNTOYCOMA      reduce using rule 7 (expresion -> expresion MULT expresion .)
+    PARDER          reduce using rule 7 (expresion -> expresion MULT expresion .)
+    CORDER          reduce using rule 7 (expresion -> expresion MULT expresion .)
+    LLADER          reduce using rule 7 (expresion -> expresion MULT expresion .)
+
+  ! SUMA            [ shift and go to state 20 ]
+  ! RESTA           [ shift and go to state 26 ]
+  ! MULT            [ shift and go to state 28 ]
+  ! DIV             [ shift and go to state 27 ]
+  ! POTENCIA        [ shift and go to state 29 ]
+  ! MODULO          [ shift and go to state 17 ]
+  ! MENORQUE        [ shift and go to state 22 ]
+  ! MAYORQUE        [ shift and go to state 23 ]
+  ! MENORIGUAL      [ shift and go to state 25 ]
+  ! MAYORIGUAL      [ shift and go to state 24 ]
+  ! IGUAL           [ shift and go to state 19 ]
+  ! DISTINTO        [ shift and go to state 18 ]
+
+
+state 45
+
+    (9) expresion -> expresion POTENCIA expresion .
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULT expresion
+    (8) expresion -> expresion . DIV expresion
+    (9) expresion -> expresion . POTENCIA expresion
+    (10) expresion -> expresion . MODULO expresion
+    (15) expresion -> expresion . MENORQUE expresion
+    (16) expresion -> expresion . MAYORQUE expresion
+    (17) expresion -> expresion . MENORIGUAL expresion
+    (18) expresion -> expresion . MAYORIGUAL expresion
+    (19) expresion -> expresion . IGUAL expresion
+    (20) expresion -> expresion . DISTINTO expresion
+
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for POTENCIA resolved as shift
+  ! shift/reduce conflict for MODULO resolved as shift
+  ! shift/reduce conflict for MENORQUE resolved as shift
+  ! shift/reduce conflict for MAYORQUE resolved as shift
+  ! shift/reduce conflict for MENORIGUAL resolved as shift
+  ! shift/reduce conflict for MAYORIGUAL resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for DISTINTO resolved as shift
+    PUNTOYCOMA      reduce using rule 9 (expresion -> expresion POTENCIA expresion .)
+    PARDER          reduce using rule 9 (expresion -> expresion POTENCIA expresion .)
+    CORDER          reduce using rule 9 (expresion -> expresion POTENCIA expresion .)
+    LLADER          reduce using rule 9 (expresion -> expresion POTENCIA expresion .)
+    SUMA            shift and go to state 20
+    RESTA           shift and go to state 26
+    MULT            shift and go to state 28
+    DIV             shift and go to state 27
+    POTENCIA        shift and go to state 29
+    MODULO          shift and go to state 17
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 25
+    MAYORIGUAL      shift and go to state 24
+    IGUAL           shift and go to state 19
+    DISTINTO        shift and go to state 18
+
+  ! SUMA            [ reduce using rule 9 (expresion -> expresion POTENCIA expresion .) ]
+  ! RESTA           [ reduce using rule 9 (expresion -> expresion POTENCIA expresion .) ]
+  ! MULT            [ reduce using rule 9 (expresion -> expresion POTENCIA expresion .) ]
+  ! DIV             [ reduce using rule 9 (expresion -> expresion POTENCIA expresion .) ]
+  ! POTENCIA        [ reduce using rule 9 (expresion -> expresion POTENCIA expresion .) ]
+  ! MODULO          [ reduce using rule 9 (expresion -> expresion POTENCIA expresion .) ]
+  ! MENORQUE        [ reduce using rule 9 (expresion -> expresion POTENCIA expresion .) ]
+  ! MAYORQUE        [ reduce using rule 9 (expresion -> expresion POTENCIA expresion .) ]
+  ! MENORIGUAL      [ reduce using rule 9 (expresion -> expresion POTENCIA expresion .) ]
+  ! MAYORIGUAL      [ reduce using rule 9 (expresion -> expresion POTENCIA expresion .) ]
+  ! IGUAL           [ reduce using rule 9 (expresion -> expresion POTENCIA expresion .) ]
+  ! DISTINTO        [ reduce using rule 9 (expresion -> expresion POTENCIA expresion .) ]
+
+
+state 46
+
+    (13) expresion -> LLAIZQ expresion LLADER .
+
+    SUMA            reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
+    RESTA           reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
+    MULT            reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
+    DIV             reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
+    POTENCIA        reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
+    MODULO          reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
+    MENORQUE        reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
+    MAYORQUE        reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
+    MENORIGUAL      reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
+    MAYORIGUAL      reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
+    IGUAL           reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
+    DISTINTO        reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
+    PUNTOYCOMA      reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
+    PARDER          reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
+    CORDER          reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
+    LLADER          reduce using rule 13 (expresion -> LLAIZQ expresion LLADER .)
+
+
+state 47
+
+    (26) expresion -> PARIZQ expresion PARDER DISTINTO . PARIZQ expresion PARDER
+
+    PARIZQ          shift and go to state 54
+
+
+state 48
+
+    (25) expresion -> PARIZQ expresion PARDER IGUAL . PARIZQ expresion PARDER
+
+    PARIZQ          shift and go to state 55
+
+
+state 49
+
+    (21) expresion -> PARIZQ expresion PARDER MENORQUE . PARIZQ expresion PARDER
+
+    PARIZQ          shift and go to state 56
+
+
+state 50
+
+    (22) expresion -> PARIZQ expresion PARDER MAYORQUE . PARIZQ expresion PARDER
+
+    PARIZQ          shift and go to state 57
+
+
+state 51
+
+    (24) expresion -> PARIZQ expresion PARDER MAYORIGUAL . PARIZQ expresion PARDER
+
+    PARIZQ          shift and go to state 58
+
+
+state 52
+
+    (23) expresion -> PARIZQ expresion PARDER MENORIGUAL . PARIZQ expresion PARDER
+
+    PARIZQ          shift and go to state 59
+
+
+state 53
 
     (1) declaracion -> VARIABLE ASIGNAR expresion PUNTOYCOMA .
 
     $end            reduce using rule 1 (declaracion -> VARIABLE ASIGNAR expresion PUNTOYCOMA .)
 
+
+state 54
+
+    (26) expresion -> PARIZQ expresion PARDER DISTINTO PARIZQ . expresion PARDER
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULT expresion
+    (8) expresion -> . expresion DIV expresion
+    (9) expresion -> . expresion POTENCIA expresion
+    (10) expresion -> . expresion MODULO expresion
+    (11) expresion -> . RESTA expresion
+    (12) expresion -> . PARIZQ expresion PARDER
+    (13) expresion -> . LLAIZQ expresion LLADER
+    (14) expresion -> . CORIZQ expresion CORDER
+    (15) expresion -> . expresion MENORQUE expresion
+    (16) expresion -> . expresion MAYORQUE expresion
+    (17) expresion -> . expresion MENORIGUAL expresion
+    (18) expresion -> . expresion MAYORIGUAL expresion
+    (19) expresion -> . expresion IGUAL expresion
+    (20) expresion -> . expresion DISTINTO expresion
+    (21) expresion -> . PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+    (22) expresion -> . PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+    (23) expresion -> . PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER
+    (24) expresion -> . PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+    (25) expresion -> . PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER
+    (26) expresion -> . PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER
+    (27) expresion -> . ENTERO
+    (28) expresion -> . DECIMAL
+    (29) expresion -> . VARIABLE
+
+    RESTA           shift and go to state 2
+    PARIZQ          shift and go to state 3
+    LLAIZQ          shift and go to state 10
+    CORIZQ          shift and go to state 7
+    ENTERO          shift and go to state 5
+    DECIMAL         shift and go to state 6
+    VARIABLE        shift and go to state 12
+
+    expresion                      shift and go to state 60
+
+state 55
+
+    (25) expresion -> PARIZQ expresion PARDER IGUAL PARIZQ . expresion PARDER
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULT expresion
+    (8) expresion -> . expresion DIV expresion
+    (9) expresion -> . expresion POTENCIA expresion
+    (10) expresion -> . expresion MODULO expresion
+    (11) expresion -> . RESTA expresion
+    (12) expresion -> . PARIZQ expresion PARDER
+    (13) expresion -> . LLAIZQ expresion LLADER
+    (14) expresion -> . CORIZQ expresion CORDER
+    (15) expresion -> . expresion MENORQUE expresion
+    (16) expresion -> . expresion MAYORQUE expresion
+    (17) expresion -> . expresion MENORIGUAL expresion
+    (18) expresion -> . expresion MAYORIGUAL expresion
+    (19) expresion -> . expresion IGUAL expresion
+    (20) expresion -> . expresion DISTINTO expresion
+    (21) expresion -> . PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+    (22) expresion -> . PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+    (23) expresion -> . PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER
+    (24) expresion -> . PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+    (25) expresion -> . PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER
+    (26) expresion -> . PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER
+    (27) expresion -> . ENTERO
+    (28) expresion -> . DECIMAL
+    (29) expresion -> . VARIABLE
+
+    RESTA           shift and go to state 2
+    PARIZQ          shift and go to state 3
+    LLAIZQ          shift and go to state 10
+    CORIZQ          shift and go to state 7
+    ENTERO          shift and go to state 5
+    DECIMAL         shift and go to state 6
+    VARIABLE        shift and go to state 12
+
+    expresion                      shift and go to state 61
+
+state 56
+
+    (21) expresion -> PARIZQ expresion PARDER MENORQUE PARIZQ . expresion PARDER
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULT expresion
+    (8) expresion -> . expresion DIV expresion
+    (9) expresion -> . expresion POTENCIA expresion
+    (10) expresion -> . expresion MODULO expresion
+    (11) expresion -> . RESTA expresion
+    (12) expresion -> . PARIZQ expresion PARDER
+    (13) expresion -> . LLAIZQ expresion LLADER
+    (14) expresion -> . CORIZQ expresion CORDER
+    (15) expresion -> . expresion MENORQUE expresion
+    (16) expresion -> . expresion MAYORQUE expresion
+    (17) expresion -> . expresion MENORIGUAL expresion
+    (18) expresion -> . expresion MAYORIGUAL expresion
+    (19) expresion -> . expresion IGUAL expresion
+    (20) expresion -> . expresion DISTINTO expresion
+    (21) expresion -> . PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+    (22) expresion -> . PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+    (23) expresion -> . PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER
+    (24) expresion -> . PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+    (25) expresion -> . PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER
+    (26) expresion -> . PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER
+    (27) expresion -> . ENTERO
+    (28) expresion -> . DECIMAL
+    (29) expresion -> . VARIABLE
+
+    RESTA           shift and go to state 2
+    PARIZQ          shift and go to state 3
+    LLAIZQ          shift and go to state 10
+    CORIZQ          shift and go to state 7
+    ENTERO          shift and go to state 5
+    DECIMAL         shift and go to state 6
+    VARIABLE        shift and go to state 12
+
+    expresion                      shift and go to state 62
+
+state 57
+
+    (22) expresion -> PARIZQ expresion PARDER MAYORQUE PARIZQ . expresion PARDER
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULT expresion
+    (8) expresion -> . expresion DIV expresion
+    (9) expresion -> . expresion POTENCIA expresion
+    (10) expresion -> . expresion MODULO expresion
+    (11) expresion -> . RESTA expresion
+    (12) expresion -> . PARIZQ expresion PARDER
+    (13) expresion -> . LLAIZQ expresion LLADER
+    (14) expresion -> . CORIZQ expresion CORDER
+    (15) expresion -> . expresion MENORQUE expresion
+    (16) expresion -> . expresion MAYORQUE expresion
+    (17) expresion -> . expresion MENORIGUAL expresion
+    (18) expresion -> . expresion MAYORIGUAL expresion
+    (19) expresion -> . expresion IGUAL expresion
+    (20) expresion -> . expresion DISTINTO expresion
+    (21) expresion -> . PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+    (22) expresion -> . PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+    (23) expresion -> . PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER
+    (24) expresion -> . PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+    (25) expresion -> . PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER
+    (26) expresion -> . PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER
+    (27) expresion -> . ENTERO
+    (28) expresion -> . DECIMAL
+    (29) expresion -> . VARIABLE
+
+    RESTA           shift and go to state 2
+    PARIZQ          shift and go to state 3
+    LLAIZQ          shift and go to state 10
+    CORIZQ          shift and go to state 7
+    ENTERO          shift and go to state 5
+    DECIMAL         shift and go to state 6
+    VARIABLE        shift and go to state 12
+
+    expresion                      shift and go to state 63
+
+state 58
+
+    (24) expresion -> PARIZQ expresion PARDER MAYORIGUAL PARIZQ . expresion PARDER
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULT expresion
+    (8) expresion -> . expresion DIV expresion
+    (9) expresion -> . expresion POTENCIA expresion
+    (10) expresion -> . expresion MODULO expresion
+    (11) expresion -> . RESTA expresion
+    (12) expresion -> . PARIZQ expresion PARDER
+    (13) expresion -> . LLAIZQ expresion LLADER
+    (14) expresion -> . CORIZQ expresion CORDER
+    (15) expresion -> . expresion MENORQUE expresion
+    (16) expresion -> . expresion MAYORQUE expresion
+    (17) expresion -> . expresion MENORIGUAL expresion
+    (18) expresion -> . expresion MAYORIGUAL expresion
+    (19) expresion -> . expresion IGUAL expresion
+    (20) expresion -> . expresion DISTINTO expresion
+    (21) expresion -> . PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+    (22) expresion -> . PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+    (23) expresion -> . PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER
+    (24) expresion -> . PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+    (25) expresion -> . PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER
+    (26) expresion -> . PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER
+    (27) expresion -> . ENTERO
+    (28) expresion -> . DECIMAL
+    (29) expresion -> . VARIABLE
+
+    RESTA           shift and go to state 2
+    PARIZQ          shift and go to state 3
+    LLAIZQ          shift and go to state 10
+    CORIZQ          shift and go to state 7
+    ENTERO          shift and go to state 5
+    DECIMAL         shift and go to state 6
+    VARIABLE        shift and go to state 12
+
+    expresion                      shift and go to state 64
+
+state 59
+
+    (23) expresion -> PARIZQ expresion PARDER MENORIGUAL PARIZQ . expresion PARDER
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULT expresion
+    (8) expresion -> . expresion DIV expresion
+    (9) expresion -> . expresion POTENCIA expresion
+    (10) expresion -> . expresion MODULO expresion
+    (11) expresion -> . RESTA expresion
+    (12) expresion -> . PARIZQ expresion PARDER
+    (13) expresion -> . LLAIZQ expresion LLADER
+    (14) expresion -> . CORIZQ expresion CORDER
+    (15) expresion -> . expresion MENORQUE expresion
+    (16) expresion -> . expresion MAYORQUE expresion
+    (17) expresion -> . expresion MENORIGUAL expresion
+    (18) expresion -> . expresion MAYORIGUAL expresion
+    (19) expresion -> . expresion IGUAL expresion
+    (20) expresion -> . expresion DISTINTO expresion
+    (21) expresion -> . PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+    (22) expresion -> . PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+    (23) expresion -> . PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER
+    (24) expresion -> . PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+    (25) expresion -> . PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER
+    (26) expresion -> . PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER
+    (27) expresion -> . ENTERO
+    (28) expresion -> . DECIMAL
+    (29) expresion -> . VARIABLE
+
+    RESTA           shift and go to state 2
+    PARIZQ          shift and go to state 3
+    LLAIZQ          shift and go to state 10
+    CORIZQ          shift and go to state 7
+    ENTERO          shift and go to state 5
+    DECIMAL         shift and go to state 6
+    VARIABLE        shift and go to state 12
+
+    expresion                      shift and go to state 65
+
+state 60
+
+    (26) expresion -> PARIZQ expresion PARDER DISTINTO PARIZQ expresion . PARDER
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULT expresion
+    (8) expresion -> expresion . DIV expresion
+    (9) expresion -> expresion . POTENCIA expresion
+    (10) expresion -> expresion . MODULO expresion
+    (15) expresion -> expresion . MENORQUE expresion
+    (16) expresion -> expresion . MAYORQUE expresion
+    (17) expresion -> expresion . MENORIGUAL expresion
+    (18) expresion -> expresion . MAYORIGUAL expresion
+    (19) expresion -> expresion . IGUAL expresion
+    (20) expresion -> expresion . DISTINTO expresion
+
+    PARDER          shift and go to state 66
+    SUMA            shift and go to state 20
+    RESTA           shift and go to state 26
+    MULT            shift and go to state 28
+    DIV             shift and go to state 27
+    POTENCIA        shift and go to state 29
+    MODULO          shift and go to state 17
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 25
+    MAYORIGUAL      shift and go to state 24
+    IGUAL           shift and go to state 19
+    DISTINTO        shift and go to state 18
+
+
+state 61
+
+    (25) expresion -> PARIZQ expresion PARDER IGUAL PARIZQ expresion . PARDER
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULT expresion
+    (8) expresion -> expresion . DIV expresion
+    (9) expresion -> expresion . POTENCIA expresion
+    (10) expresion -> expresion . MODULO expresion
+    (15) expresion -> expresion . MENORQUE expresion
+    (16) expresion -> expresion . MAYORQUE expresion
+    (17) expresion -> expresion . MENORIGUAL expresion
+    (18) expresion -> expresion . MAYORIGUAL expresion
+    (19) expresion -> expresion . IGUAL expresion
+    (20) expresion -> expresion . DISTINTO expresion
+
+    PARDER          shift and go to state 67
+    SUMA            shift and go to state 20
+    RESTA           shift and go to state 26
+    MULT            shift and go to state 28
+    DIV             shift and go to state 27
+    POTENCIA        shift and go to state 29
+    MODULO          shift and go to state 17
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 25
+    MAYORIGUAL      shift and go to state 24
+    IGUAL           shift and go to state 19
+    DISTINTO        shift and go to state 18
+
+
+state 62
+
+    (21) expresion -> PARIZQ expresion PARDER MENORQUE PARIZQ expresion . PARDER
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULT expresion
+    (8) expresion -> expresion . DIV expresion
+    (9) expresion -> expresion . POTENCIA expresion
+    (10) expresion -> expresion . MODULO expresion
+    (15) expresion -> expresion . MENORQUE expresion
+    (16) expresion -> expresion . MAYORQUE expresion
+    (17) expresion -> expresion . MENORIGUAL expresion
+    (18) expresion -> expresion . MAYORIGUAL expresion
+    (19) expresion -> expresion . IGUAL expresion
+    (20) expresion -> expresion . DISTINTO expresion
+
+    PARDER          shift and go to state 68
+    SUMA            shift and go to state 20
+    RESTA           shift and go to state 26
+    MULT            shift and go to state 28
+    DIV             shift and go to state 27
+    POTENCIA        shift and go to state 29
+    MODULO          shift and go to state 17
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 25
+    MAYORIGUAL      shift and go to state 24
+    IGUAL           shift and go to state 19
+    DISTINTO        shift and go to state 18
+
+
+state 63
+
+    (22) expresion -> PARIZQ expresion PARDER MAYORQUE PARIZQ expresion . PARDER
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULT expresion
+    (8) expresion -> expresion . DIV expresion
+    (9) expresion -> expresion . POTENCIA expresion
+    (10) expresion -> expresion . MODULO expresion
+    (15) expresion -> expresion . MENORQUE expresion
+    (16) expresion -> expresion . MAYORQUE expresion
+    (17) expresion -> expresion . MENORIGUAL expresion
+    (18) expresion -> expresion . MAYORIGUAL expresion
+    (19) expresion -> expresion . IGUAL expresion
+    (20) expresion -> expresion . DISTINTO expresion
+
+    PARDER          shift and go to state 69
+    SUMA            shift and go to state 20
+    RESTA           shift and go to state 26
+    MULT            shift and go to state 28
+    DIV             shift and go to state 27
+    POTENCIA        shift and go to state 29
+    MODULO          shift and go to state 17
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 25
+    MAYORIGUAL      shift and go to state 24
+    IGUAL           shift and go to state 19
+    DISTINTO        shift and go to state 18
+
+
+state 64
+
+    (24) expresion -> PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion . PARDER
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULT expresion
+    (8) expresion -> expresion . DIV expresion
+    (9) expresion -> expresion . POTENCIA expresion
+    (10) expresion -> expresion . MODULO expresion
+    (15) expresion -> expresion . MENORQUE expresion
+    (16) expresion -> expresion . MAYORQUE expresion
+    (17) expresion -> expresion . MENORIGUAL expresion
+    (18) expresion -> expresion . MAYORIGUAL expresion
+    (19) expresion -> expresion . IGUAL expresion
+    (20) expresion -> expresion . DISTINTO expresion
+
+    PARDER          shift and go to state 70
+    SUMA            shift and go to state 20
+    RESTA           shift and go to state 26
+    MULT            shift and go to state 28
+    DIV             shift and go to state 27
+    POTENCIA        shift and go to state 29
+    MODULO          shift and go to state 17
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 25
+    MAYORIGUAL      shift and go to state 24
+    IGUAL           shift and go to state 19
+    DISTINTO        shift and go to state 18
+
+
+state 65
+
+    (23) expresion -> PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion . PARDER
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULT expresion
+    (8) expresion -> expresion . DIV expresion
+    (9) expresion -> expresion . POTENCIA expresion
+    (10) expresion -> expresion . MODULO expresion
+    (15) expresion -> expresion . MENORQUE expresion
+    (16) expresion -> expresion . MAYORQUE expresion
+    (17) expresion -> expresion . MENORIGUAL expresion
+    (18) expresion -> expresion . MAYORIGUAL expresion
+    (19) expresion -> expresion . IGUAL expresion
+    (20) expresion -> expresion . DISTINTO expresion
+
+    PARDER          shift and go to state 71
+    SUMA            shift and go to state 20
+    RESTA           shift and go to state 26
+    MULT            shift and go to state 28
+    DIV             shift and go to state 27
+    POTENCIA        shift and go to state 29
+    MODULO          shift and go to state 17
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 25
+    MAYORIGUAL      shift and go to state 24
+    IGUAL           shift and go to state 19
+    DISTINTO        shift and go to state 18
+
+
+state 66
+
+    (26) expresion -> PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER .
+
+    SUMA            reduce using rule 26 (expresion -> PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER .)
+    RESTA           reduce using rule 26 (expresion -> PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER .)
+    MULT            reduce using rule 26 (expresion -> PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER .)
+    DIV             reduce using rule 26 (expresion -> PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER .)
+    POTENCIA        reduce using rule 26 (expresion -> PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER .)
+    MODULO          reduce using rule 26 (expresion -> PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER .)
+    MENORQUE        reduce using rule 26 (expresion -> PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER .)
+    MAYORQUE        reduce using rule 26 (expresion -> PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER .)
+    MENORIGUAL      reduce using rule 26 (expresion -> PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER .)
+    MAYORIGUAL      reduce using rule 26 (expresion -> PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER .)
+    IGUAL           reduce using rule 26 (expresion -> PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER .)
+    DISTINTO        reduce using rule 26 (expresion -> PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER .)
+    PUNTOYCOMA      reduce using rule 26 (expresion -> PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER .)
+    PARDER          reduce using rule 26 (expresion -> PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER .)
+    CORDER          reduce using rule 26 (expresion -> PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER .)
+    LLADER          reduce using rule 26 (expresion -> PARIZQ expresion PARDER DISTINTO PARIZQ expresion PARDER .)
+
+
+state 67
+
+    (25) expresion -> PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER .
+
+    SUMA            reduce using rule 25 (expresion -> PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER .)
+    RESTA           reduce using rule 25 (expresion -> PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER .)
+    MULT            reduce using rule 25 (expresion -> PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER .)
+    DIV             reduce using rule 25 (expresion -> PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER .)
+    POTENCIA        reduce using rule 25 (expresion -> PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER .)
+    MODULO          reduce using rule 25 (expresion -> PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER .)
+    MENORQUE        reduce using rule 25 (expresion -> PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER .)
+    MAYORQUE        reduce using rule 25 (expresion -> PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER .)
+    MENORIGUAL      reduce using rule 25 (expresion -> PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER .)
+    MAYORIGUAL      reduce using rule 25 (expresion -> PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER .)
+    IGUAL           reduce using rule 25 (expresion -> PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER .)
+    DISTINTO        reduce using rule 25 (expresion -> PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER .)
+    PUNTOYCOMA      reduce using rule 25 (expresion -> PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER .)
+    PARDER          reduce using rule 25 (expresion -> PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER .)
+    CORDER          reduce using rule 25 (expresion -> PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER .)
+    LLADER          reduce using rule 25 (expresion -> PARIZQ expresion PARDER IGUAL PARIZQ expresion PARDER .)
+
+
+state 68
+
+    (21) expresion -> PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER .
+
+    SUMA            reduce using rule 21 (expresion -> PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER .)
+    RESTA           reduce using rule 21 (expresion -> PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER .)
+    MULT            reduce using rule 21 (expresion -> PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER .)
+    DIV             reduce using rule 21 (expresion -> PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER .)
+    POTENCIA        reduce using rule 21 (expresion -> PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER .)
+    MODULO          reduce using rule 21 (expresion -> PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER .)
+    MENORQUE        reduce using rule 21 (expresion -> PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER .)
+    MAYORQUE        reduce using rule 21 (expresion -> PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER .)
+    MENORIGUAL      reduce using rule 21 (expresion -> PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER .)
+    MAYORIGUAL      reduce using rule 21 (expresion -> PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER .)
+    IGUAL           reduce using rule 21 (expresion -> PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER .)
+    DISTINTO        reduce using rule 21 (expresion -> PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER .)
+    PUNTOYCOMA      reduce using rule 21 (expresion -> PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER .)
+    PARDER          reduce using rule 21 (expresion -> PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER .)
+    CORDER          reduce using rule 21 (expresion -> PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER .)
+    LLADER          reduce using rule 21 (expresion -> PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER .)
+
+
+state 69
+
+    (22) expresion -> PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER .
+
+    SUMA            reduce using rule 22 (expresion -> PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER .)
+    RESTA           reduce using rule 22 (expresion -> PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER .)
+    MULT            reduce using rule 22 (expresion -> PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER .)
+    DIV             reduce using rule 22 (expresion -> PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER .)
+    POTENCIA        reduce using rule 22 (expresion -> PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER .)
+    MODULO          reduce using rule 22 (expresion -> PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER .)
+    MENORQUE        reduce using rule 22 (expresion -> PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER .)
+    MAYORQUE        reduce using rule 22 (expresion -> PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER .)
+    MENORIGUAL      reduce using rule 22 (expresion -> PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER .)
+    MAYORIGUAL      reduce using rule 22 (expresion -> PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER .)
+    IGUAL           reduce using rule 22 (expresion -> PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER .)
+    DISTINTO        reduce using rule 22 (expresion -> PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER .)
+    PUNTOYCOMA      reduce using rule 22 (expresion -> PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER .)
+    PARDER          reduce using rule 22 (expresion -> PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER .)
+    CORDER          reduce using rule 22 (expresion -> PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER .)
+    LLADER          reduce using rule 22 (expresion -> PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER .)
+
+
+state 70
+
+    (24) expresion -> PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER .
+
+    SUMA            reduce using rule 24 (expresion -> PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER .)
+    RESTA           reduce using rule 24 (expresion -> PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER .)
+    MULT            reduce using rule 24 (expresion -> PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER .)
+    DIV             reduce using rule 24 (expresion -> PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER .)
+    POTENCIA        reduce using rule 24 (expresion -> PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER .)
+    MODULO          reduce using rule 24 (expresion -> PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER .)
+    MENORQUE        reduce using rule 24 (expresion -> PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER .)
+    MAYORQUE        reduce using rule 24 (expresion -> PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER .)
+    MENORIGUAL      reduce using rule 24 (expresion -> PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER .)
+    MAYORIGUAL      reduce using rule 24 (expresion -> PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER .)
+    IGUAL           reduce using rule 24 (expresion -> PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER .)
+    DISTINTO        reduce using rule 24 (expresion -> PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER .)
+    PUNTOYCOMA      reduce using rule 24 (expresion -> PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER .)
+    PARDER          reduce using rule 24 (expresion -> PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER .)
+    CORDER          reduce using rule 24 (expresion -> PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER .)
+    LLADER          reduce using rule 24 (expresion -> PARIZQ expresion PARDER MAYORIGUAL PARIZQ expresion PARDER .)
+
+
+state 71
+
+    (23) expresion -> PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER .
+
+    SUMA            reduce using rule 23 (expresion -> PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER .)
+    RESTA           reduce using rule 23 (expresion -> PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER .)
+    MULT            reduce using rule 23 (expresion -> PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER .)
+    DIV             reduce using rule 23 (expresion -> PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER .)
+    POTENCIA        reduce using rule 23 (expresion -> PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER .)
+    MODULO          reduce using rule 23 (expresion -> PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER .)
+    MENORQUE        reduce using rule 23 (expresion -> PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER .)
+    MAYORQUE        reduce using rule 23 (expresion -> PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER .)
+    MENORIGUAL      reduce using rule 23 (expresion -> PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER .)
+    MAYORIGUAL      reduce using rule 23 (expresion -> PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER .)
+    IGUAL           reduce using rule 23 (expresion -> PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER .)
+    DISTINTO        reduce using rule 23 (expresion -> PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER .)
+    PUNTOYCOMA      reduce using rule 23 (expresion -> PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER .)
+    PARDER          reduce using rule 23 (expresion -> PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER .)
+    CORDER          reduce using rule 23 (expresion -> PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER .)
+    LLADER          reduce using rule 23 (expresion -> PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER .)
+
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for SUMA in state 25 resolved as shift
-WARNING: shift/reduce conflict for RESTA in state 25 resolved as shift
-WARNING: shift/reduce conflict for MULT in state 25 resolved as shift
-WARNING: shift/reduce conflict for DIV in state 25 resolved as shift
-WARNING: shift/reduce conflict for POTENCIA in state 25 resolved as shift
-WARNING: shift/reduce conflict for MODULO in state 25 resolved as shift
-WARNING: shift/reduce conflict for SUMA in state 30 resolved as shift
-WARNING: shift/reduce conflict for RESTA in state 30 resolved as shift
-WARNING: shift/reduce conflict for MULT in state 30 resolved as shift
-WARNING: shift/reduce conflict for DIV in state 30 resolved as shift
-WARNING: shift/reduce conflict for POTENCIA in state 30 resolved as shift
-WARNING: shift/reduce conflict for MODULO in state 30 resolved as shift
+WARNING: shift/reduce conflict for MENORQUE in state 31 resolved as shift
+WARNING: shift/reduce conflict for MAYORQUE in state 31 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 31 resolved as shift
+WARNING: shift/reduce conflict for MAYORIGUAL in state 31 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 31 resolved as shift
+WARNING: shift/reduce conflict for DISTINTO in state 31 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 34 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 34 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 34 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 34 resolved as shift
+WARNING: shift/reduce conflict for POTENCIA in state 34 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 34 resolved as shift
+WARNING: shift/reduce conflict for MENORQUE in state 34 resolved as shift
+WARNING: shift/reduce conflict for MAYORQUE in state 34 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 34 resolved as shift
+WARNING: shift/reduce conflict for MAYORIGUAL in state 34 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 34 resolved as shift
+WARNING: shift/reduce conflict for DISTINTO in state 34 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 35 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 35 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 35 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 35 resolved as shift
+WARNING: shift/reduce conflict for POTENCIA in state 35 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 35 resolved as shift
+WARNING: shift/reduce conflict for MENORQUE in state 35 resolved as shift
+WARNING: shift/reduce conflict for MAYORQUE in state 35 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 35 resolved as shift
+WARNING: shift/reduce conflict for MAYORIGUAL in state 35 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 35 resolved as shift
+WARNING: shift/reduce conflict for DISTINTO in state 35 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 36 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 36 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 36 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 36 resolved as shift
+WARNING: shift/reduce conflict for POTENCIA in state 36 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 36 resolved as shift
+WARNING: shift/reduce conflict for MENORQUE in state 36 resolved as shift
+WARNING: shift/reduce conflict for MAYORQUE in state 36 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 36 resolved as shift
+WARNING: shift/reduce conflict for MAYORIGUAL in state 36 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 36 resolved as shift
+WARNING: shift/reduce conflict for DISTINTO in state 36 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 38 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 38 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 38 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 38 resolved as shift
+WARNING: shift/reduce conflict for POTENCIA in state 38 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 38 resolved as shift
+WARNING: shift/reduce conflict for MENORQUE in state 38 resolved as shift
+WARNING: shift/reduce conflict for MAYORQUE in state 38 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 38 resolved as shift
+WARNING: shift/reduce conflict for MAYORIGUAL in state 38 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 38 resolved as shift
+WARNING: shift/reduce conflict for DISTINTO in state 38 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 39 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 39 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 39 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 39 resolved as shift
+WARNING: shift/reduce conflict for POTENCIA in state 39 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 39 resolved as shift
+WARNING: shift/reduce conflict for MENORQUE in state 39 resolved as shift
+WARNING: shift/reduce conflict for MAYORQUE in state 39 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 39 resolved as shift
+WARNING: shift/reduce conflict for MAYORIGUAL in state 39 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 39 resolved as shift
+WARNING: shift/reduce conflict for DISTINTO in state 39 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 40 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 40 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 40 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 40 resolved as shift
+WARNING: shift/reduce conflict for POTENCIA in state 40 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 40 resolved as shift
+WARNING: shift/reduce conflict for MENORQUE in state 40 resolved as shift
+WARNING: shift/reduce conflict for MAYORQUE in state 40 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 40 resolved as shift
+WARNING: shift/reduce conflict for MAYORIGUAL in state 40 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 40 resolved as shift
+WARNING: shift/reduce conflict for DISTINTO in state 40 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 41 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 41 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 41 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 41 resolved as shift
+WARNING: shift/reduce conflict for POTENCIA in state 41 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 41 resolved as shift
+WARNING: shift/reduce conflict for MENORQUE in state 41 resolved as shift
+WARNING: shift/reduce conflict for MAYORQUE in state 41 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 41 resolved as shift
+WARNING: shift/reduce conflict for MAYORIGUAL in state 41 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 41 resolved as shift
+WARNING: shift/reduce conflict for DISTINTO in state 41 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 45 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 45 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 45 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 45 resolved as shift
+WARNING: shift/reduce conflict for POTENCIA in state 45 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 45 resolved as shift
+WARNING: shift/reduce conflict for MENORQUE in state 45 resolved as shift
+WARNING: shift/reduce conflict for MAYORQUE in state 45 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 45 resolved as shift
+WARNING: shift/reduce conflict for MAYORIGUAL in state 45 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 45 resolved as shift
+WARNING: shift/reduce conflict for DISTINTO in state 45 resolved as shift

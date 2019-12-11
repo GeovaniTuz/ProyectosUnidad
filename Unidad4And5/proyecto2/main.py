@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import ply.yacc as yacc
 from analizador_lexico import tokens
-from analizador_lexico import analizador
+#from analizador_lexico import analizador
 import ply.lex as lex  # inportacion de librerias necesarias
 import re
 
@@ -34,7 +34,6 @@ def p_declaracion_asignar(t):
     nombres[t[1]] = t[3]
 
 
-
 # def p_declaracion_asignar(t):
  #   'declaracion : IDENTIFICADOR ASIGNAR expresion PUNTOCOMA'
   #  nombres[t[1]] = t[3]
@@ -47,18 +46,18 @@ def p_declaracion_taginicio(t):
 
 
 def p_declaracion_tagfinal(t):
-  'declaracion :  TAG_FINAL'
-  t[0] = t[1]
+    'declaracion :  TAG_FINAL'
+    t[0] = t[1]
 
 
 # def p_declaracion_taginicio(p):
  #   'declaracion : TAGINICIO'
-  #  print("Inicio de sintaxis PHP")
+    #  print("Inicio de sintaxis PHP")
 
 
 # def p_declaraxion_tag_final(p):
  #   'declaracion : TAG_FINAL'
-  #  print("Final de sintaxis")
+    #  print("Final de sintaxis")
 
 
 def p_declaracion_expr(t):
@@ -108,11 +107,56 @@ def p_expresion_grupo(t):
     '''
     t[0] = t[2]
 # sintactico de expresiones logicas
+# sintactico de expresiones logicas
+
+
+def p_expresion_logicas(t):
+    '''
+    expresion   :  expresion MENORQUE expresion 
+                |  expresion MAYORQUE expresion 
+                |  expresion MENORIGUAL expresion 
+                |   expresion MAYORIGUAL expresion 
+                |   expresion IGUAL expresion 
+                |   expresion DISTINTO expresion
+                |  PARIZQ expresion PARDER MENORQUE PARIZQ expresion PARDER
+                |  PARIZQ expresion PARDER MAYORQUE PARIZQ expresion PARDER
+                |  PARIZQ expresion PARDER MENORIGUAL PARIZQ expresion PARDER 
+                |  PARIZQ  expresion PARDER MAYORIGUAL PARIZQ expresion PARDER
+                |  PARIZQ  expresion PARDER IGUAL PARIZQ expresion PARDER
+                |  PARIZQ  expresion PARDER DISTINTO PARIZQ expresion PARDER
+    '''
+    if t[2] == "<":
+        t[0] = t[1] < t[3]
+    elif t[2] == ">":
+        t[0] = t[1] > t[3]
+    elif t[2] == "<=":
+        t[0] = t[1] <= t[3]
+    elif t[2] == ">=":
+        t[0] = t[1] >= t[3]
+    elif t[2] == "==":
+        t[0] = t[1] is t[3]
+    elif t[2] == "!=":
+        t[0] = t[1] != t[3]
+    elif t[3] == "<":
+        t[0] = t[2] < t[4]
+    elif t[2] == ">":
+        t[0] = t[2] > t[4]
+    elif t[3] == "<=":
+        t[0] = t[2] <= t[4]
+    elif t[3] == ">=":
+        t[0] = t[2] >= t[4]
+    elif t[3] == "==":
+        t[0] = t[2] is t[4]
+    elif t[3] == "!=":
+        t[0] = t[2] != t[4]
+
+    # print('logica ',[x for x in t])
 
 
 def p_expresion_numero(t):
     'expresion : ENTERO'
     t[0] = t[1]
+
 
 def p_expresion_decimal(t):
     'expresion : DECIMAL'
@@ -139,7 +183,6 @@ def p_expresion_nombre(t):
         print("---------------------------------------------")
 
 
-
 def p_error(t):
     global resultado_gramatica
     if t:
@@ -152,7 +195,7 @@ def p_error(t):
        # print("SINTAXIS ERROR")
        # print(resultado)
     else:
-        resultado = "Error sintactico {:4}".format(t)
+        resultado = "Error sintactico {}".format(t)
        # print(resultado)
     resultado_gramatica.append(resultado)
 
@@ -172,7 +215,6 @@ def prueba_sintactica(data):
                 resultado_gramatica.append(str(gram))
         else:
             print("")
-
     #print("result: ", resultado_gramatica)
     return resultado_gramatica
 
@@ -189,12 +231,29 @@ text = ""
 for linea in archivo:
     text += linea
 
-prueba_sintactica(text)
+if 2 == 2:
+    print("")
+    # print('-------------------------------------------------')
+    #print("         COMPILACION EXITOSA")
+    # print('-------------------------------------------------')
+    prueba_sintactica(text)
+    #print('------    RESULADOS OBTENIDOS     ---------------')
+    # print('-------------------------------------------------')
+    print('\n'.join(list(map(''.join, resultado_gramatica))))
+    # print('-------------------------------------------------')
+
+else:
+    print("")
+    print('-------------------------------------------------')
+    print("          ERROR SINTACTICO")
+    print('-------------------------------------------------')
+
+# prueba_sintactica(text)
 
 # agregamos un pratron
-patronsin = r'[a-zA-Z]'
+#patronsin = r'[a-zA-Z]'
 # se analiza con el patron
-resultadoCOMPLEJO = re.findall(patronsin, text)
+#resultadoCOMPLEJO = re.findall(patronsin, text)
 
 
 #print ("avanzado", text)
@@ -218,28 +277,28 @@ resultadoCOMPLEJO = re.findall(patronsin, text)
 #print(''.join(list(map(''.join, text))))
 # print('')
 
-#print('-------------------------------------------------')
+# print('-------------------------------------------------')
 #print('----------resultado de la gramatica-------------')
-#print('-------------------------------------------------')
+# print('-------------------------------------------------')
 
 #print("es correcto")
 
-print('\n'.join(list(map(''.join, resultado_gramatica))))
+#print('\n'.join(list(map(''.join, resultado_gramatica))))
 #print("SINTAXIS CORRECTA")
 
 
-#if ( $a == $b ) {
-#$suma = 2 * ($c + $d);
-#echo $suma;
+# if ( $a == $b ) {
+# $suma = 2 * ($c + $d);
+# echo $suma;
 
-#} else {
+# } else {
 
-#$suma = $a + $b / 2;
+# $suma = $a + $b / 2;
 
-#}
+# }
 
 #   for ($i=0; $i <$a; $i++)
-  #  {
-#echo $i;
-#}
-#?>
+    #  {
+# echo $i;
+# }
+# ?>
