@@ -13,7 +13,7 @@ resultado_gramatica = []
 # <-- --> -->
 # $a = 2 ;
 precedence = (
-    ('right', 'SI', 'SINO'),
+    ('right', 'SI', 'SINO',),
     ('right', 'ASIGNAR'),
     ('left', 'TAGINICIO'),
     ('right', 'TAG_FINAL'),
@@ -28,12 +28,29 @@ nombres = {}
 # def p_declaracion_decimall(p):
 #    'declaracion : DECIMAL'
 #    print("decimal")
-def p_declaracion_coditionelse(t):
-    'declaracion : SI expresion '
-    t[0] = t[1]
+
+
+
 def p_declaracion_coditionif(t):
-    'declaracion : SINO'
+    'declaracion : SI PARIZQ ENTERO ASIGNAR ENTERO PARDER LLAIZQ VARIABLE PUNTOYCOMA LLADER'
+    t[0] = t[1] #PARA QUE TE ACEPTE LOS SIMBOLOS CAMBIA LAS PALABRAS
+
+
+def p_declaracion_coditionelse(t):
+    'declaracion : SINO LLAIZQ VARIABLE PUNTOYCOMA LLADER'
     t[0] = t[1]
+
+#def p_declaracion_coditionelse(t):
+ #   'declaracion : SI expresion'
+  #  t[0] = t[1]
+                            #PARA USAR DE NUEVO ESTAS --> HABILITA LO QUE ESTA EN COMENTARIO EN EL PHP
+                            #SI AL QUITARLE EL COMENTARIO A ESTAS EXPRESIONES NO FUNCIONA..ACUERDATE DE LA SANGRIA
+#def p_declaracion_coditionif(t):
+ #   'declaracion : SINO'
+  #  t[0] = t[1]
+
+
+
 
 #def p_statement4(p):
 #'''statement : IF condition THEN statement'''
@@ -47,7 +64,7 @@ def p_declaracion_asignar(t):
 
 
 # def p_declaracion_asignar(t):
- #   'declaracion : IDENTIFICADOR ASIGNAR expresion PUNTOCOMA'
+ #   'declaracion : IDENTIFICADOR ASIGNAR expresion PUNTOYCOMA'
   #  nombres[t[1]] = t[3]
 
 

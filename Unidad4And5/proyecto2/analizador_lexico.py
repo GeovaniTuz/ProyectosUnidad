@@ -24,11 +24,11 @@ tokens = [
     'PLUSPLUS',
     'PUNTOYCOMA',
     'PUNTO',
-    'COMA', 'DECIMAL', 'VARIABLE', 'COMENTARIO',
+    'COMA', 'DECIMAL', 'VARIABLE', 'COMENTARIO','ENTRE',
     # Condiones
     'SI', 'SINO',
     # Ciclos
-    'MIENTRAS', 'PARA', 'ECHO',
+    'MIENTRAS', 'PARA',
     # logica
     'AND', 'OR', 'NOT', 'MENORQUE', 'MENORIGUAL', 'MAYORQUE', 'MAYORIGUAL', 'IGUAL', 'DISTINTO',
     # Symbolos
@@ -90,6 +90,9 @@ def t_TAG_FINAL(t):
 #def t_DECIMAL(t):
  #   r'([0-9][.]?[0-9]+)'
   #  return t
+#def t_ENTRE(t):
+ #  r'(\(\s*[\$A-Za-z|0-9]\s*[<|>|!]=\s*[\$A-Za-z|0-9]\)'
+  # return t
 
 
 def t_VARIABLE(t):
@@ -100,11 +103,13 @@ def t_VARIABLE(t):
 def t_SINO(t):
     r'else'
     return t
-
+# r'(else+\s*[\{]\s*[\$A-Za-z|\d.\d]+\s*;\s*[\}])'
 
 def t_SI(t):
     r'if'
+    #r'if\s*\(\s*[\$A-Za-z|0-9]\s*[\<|>|!]=\s*[\$A-Za-z|0-9]\s*\)\s*\{\s*[\$A-Za-z|0-9]+\s*\}'
     return t
+
 
 
 def t_RETURN(t):
@@ -116,10 +121,6 @@ def t_RETURN(t):
     # r'void'
     # return t
 
-
-def t_ECHO(t):
-    r'echo'
-    return t
 
 
 def t_MIENTRAS(t):
