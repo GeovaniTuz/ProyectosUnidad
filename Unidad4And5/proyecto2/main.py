@@ -13,6 +13,7 @@ resultado_gramatica = []
 # <-- --> -->
 # $a = 2 ;
 precedence = (
+    ('right', 'SI', 'SINO'),
     ('right', 'ASIGNAR'),
     ('left', 'TAGINICIO'),
     ('right', 'TAG_FINAL'),
@@ -27,6 +28,17 @@ nombres = {}
 # def p_declaracion_decimall(p):
 #    'declaracion : DECIMAL'
 #    print("decimal")
+def p_declaracion_coditionelse(t):
+    'declaracion : SI expresion '
+    t[0] = t[1]
+def p_declaracion_coditionif(t):
+    'declaracion : SINO'
+    t[0] = t[1]
+
+#def p_statement4(p):
+#'''statement : IF condition THEN statement'''
+#p[0] = statement4(p[2], p[4], "statement4")
+   # nombres[t[1]] = t[3]
 
 # se definde como debe de funcionar
 def p_declaracion_asignar(t):
@@ -68,8 +80,8 @@ def p_declaracion_expr(t):
 
 def p_expresion_operaciones(t):
     '''
-    expresion  :   expresion SUMA expresion
-                |   expresion RESTA expresion
+    expresion  :   expresion SUMA expresion 
+                |   expresion RESTA expresion 
                 |   expresion MULT expresion
                 |   expresion DIV expresion
                 |   expresion POTENCIA expresion
@@ -104,12 +116,17 @@ def p_expresion_grupo(t):
     expresion  : PARIZQ expresion PARDER 
                 | LLAIZQ expresion LLADER
                 | CORIZQ expresion CORDER
+
     '''
     t[0] = t[2]
 # sintactico de expresiones logicas
 # sintactico de expresiones logicas
 
 
+#def p_expresion_ifelse(t):
+    #'expresion : SI PARIZQ expresion PARDER LLAIZQ expresion LLADER'
+    #t[0] = t[2] = t[4] = t[5] = t[7]
+    
 def p_expresion_logicas(t):
     '''
     expresion   :  expresion MENORQUE expresion 
@@ -150,8 +167,10 @@ def p_expresion_logicas(t):
     elif t[3] == "!=":
         t[0] = t[2] != t[4]
 
-    # print('logica ',[x for x in t])
 
+
+    # print('logica ',[x for x in t])
+#t[0] = t[1]
 
 def p_expresion_numero(t):
     'expresion : ENTERO'
@@ -181,6 +200,7 @@ def p_expresion_nombre(t):
         print("¿verificar si se definio o asigno un valor(en caso de operacion arimetica)?")
         t[0] = 0
         print("---------------------------------------------")
+
 
 
 def p_error(t):
@@ -231,22 +251,30 @@ text = ""
 for linea in archivo:
     text += linea
 
-if 2 == 2:
-    print("")
+print('-------------------------------------------------')
+print(" ____    _   _   ____")
+print("|  _ \  | | | | |  _ \ ")
+print("| |_) | | |_| | | |_) |")
+print("|  __/  |  _  | |  __/ ")
+print("|_|     |_| |_| |_|")
+print('-------------------------------------------------')
+                       
+#if 2 == 2:
+   # print("")
     # print('-------------------------------------------------')
     #print("         COMPILACION EXITOSA")
     # print('-------------------------------------------------')
-    prueba_sintactica(text)
-    print('------    RESULADOS OBTENIDOS     ---------------')
-    print('-------------------------------------------------')
-    print('\n'.join(list(map(''.join, resultado_gramatica))))
-    print('-------------------------------------------------')
+prueba_sintactica(text)
+print('------    RESULADOS OBTENIDOS     ---------------')
+print('-------------------------------------------------')
+print('\n'.join(list(map(''.join, resultado_gramatica))))
+print('-------------------------------------------------')
 
-else:
+#else:
     #print("")
-    print('-------------------------------------------------')
-    print("          ERROR SINTACTICO")
-    print('-------------------------------------------------')
+#    print('-------------------------------------------------')
+ #   print("          ERROR SINTACTICO")
+  #  print('-------------------------------------------------')
 
 # prueba_sintactica(text)
 
