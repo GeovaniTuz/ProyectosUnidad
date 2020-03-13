@@ -1,0 +1,121 @@
+<!DOCTYPE html >
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   
+    <title>Busqueda y Reemplazo</title>
+
+</head>
+<body   >
+    <!-- ENTRADA DE TEXTO -->
+    <div>
+        <h4>Entrada de texto:</h4>
+            <textarea id='caja' cols="50">
+                Ejemplo del uso de busqueda y reemplazo
+            </textarea>
+
+            <form >
+                Buscar:
+                <input type="text" id="Busqueda">
+                <br>
+                <br>
+                Reemplazar:
+                <input type="text" id="Reemplazar">
+                <input type="button" value="Ejecutar" onclick="metodos()">
+            </form>
+    <br>
+    <p id="mostrarresult2">
+        Mostrar Reemplazo
+    </p>
+    </div>
+
+
+
+
+    <hr>
+
+<p></p>
+
+    <script>
+        function metodos(){
+            //BUSQUEDA
+var MBBB = document.getElementById('caja').value;
+var letra = document.getElementById('Busqueda').value;
+var ejemplo = document.getElementById('Reemplazar').value;
+
+//var MB2 = MBBB.match(letra);
+
+var MB2 = MBBB.match(letra);
+
+MBBB = MBBB.replace(new RegExp(MB2,"g"),ejemplo);
+            //REEMPLAZO
+
+//var MR2 = MBBB.replace(MB2,ejemplo);
+//var MR2 = MBBB.replace(MBBB,ejemplo);
+
+document.getElementById('mostrarresult2').innerHTML = MBBB;
+
+}
+
+
+
+
+        /**
+        * Funcion para calcular si el numero es multiplo
+        * utilizando el modulo de la division
+        */
+        function multiple(valor, multiple)
+        {
+            resto = valor % multiple;
+            if(resto==0)
+                return true;
+            else
+                return false;
+        }
+
+
+       var matriz = new Array(20);
+       var aumento = 1;
+ 
+         //creamos arrary de una dimensión del tamaño tabla anterior
+          for (var i = 0; i < matriz.length; i++) { 
+          matriz[i] = []; 
+          } 
+         //creamos bidimensional con el array anterior, duplicando en columnas y lo llenamos
+           
+          for (var i = 0; i < matriz.length; i++) { 
+              for (var j = 0; j < matriz.length; j++) { 
+                  
+                  matriz[i][j] = [aumento++]; 
+              }
+          }
+          
+          var abretabla= "<table style'width:100%' >";
+          var cierratabla = "</table>";
+          var abretr = "<tr>", abretd ="<td>";
+          var cierratr = "</tr>", cierratd ="</td>";
+          var color = "<td style='background: red'>";
+          document.write(abretabla);
+          for (var i = 0; i < matriz.length; i++) {
+              document.write(abretr); 
+              for (var j = 0; j < matriz.length; j++)             
+              {
+                if (multiple(i,5) || multiple(j,5)) {
+                  document.write(color + matriz[i][j] + cierratd); 
+              }else{
+                document.write(abretd + matriz[i][j] + cierratd);
+              }
+              } 
+              document.write(cierratr); 
+          } 
+          document.write(cierratabla);
+    </script>
+
+
+
+
+</body>
+
+</html>
