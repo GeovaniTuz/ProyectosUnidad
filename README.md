@@ -5,10 +5,12 @@ NO OLVIDES DEJAR DOCUMENTACION Y LOS ERRORES O LO QUE FALTA.
 Proyectos de unidad
 
 
+
 -----------------------------------------------------------------------------------------------------------------------------------
 Lenguajes y automatas
-  1.-generar codigo intermedio
-    en proceso
+generar codigo intermedio
+ 
+ ya estas el primer ejemplo en python ya funcional
     
     
     
