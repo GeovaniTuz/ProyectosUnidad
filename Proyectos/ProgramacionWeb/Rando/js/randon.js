@@ -1,10 +1,10 @@
-function genera_rando() {
+function numerorandom() {
 
     //mandar msg
-    alert("Genrando Rando");
+    //alert("Genrando Rando");
 
     // perdir datos para rando
-    var text = document.getElementById("randotxt").value;
+    var text = document.getElementById("caja2").value;
 
     //contar palabras del mesage
 
@@ -24,21 +24,41 @@ function genera_rando() {
 
     }
     var pruebapalabra;
+    pruebapalabra = textoTroceado.length;
+    
+    // total de palabras que existen. 
+    console.log(pruebapalabra)
+    //-------------------------------------
+    var contador = [];
+    contador = textoTroceado.length;
+    console.log(contador);
+    document.getElementById('resultadorandom').innerHTML = pruebapalabra;
+    //FIN DEL CONTADOR DE PALABRAS
 
-    try {
-        pruebapalabra = textoTroceado.length;
-        console.log(pruebapalabra);
-    } catch (error) {
-        console.log("El mensaje nom contiene ninguna palabra. Para evitar errores, se asignará el valor de cero");
-        pruebapalabra = 0;
-        console.log(pruebapalabra);
-    }
 
-    var nuevo = pruebapalabra;
-    console.log(nuevo)
-
-    var randonum = Math.floor(Math.random() * nuevo);
+    var randonum = Math.floor(Math.random() * pruebapalabra);
     console.log(randonum);
-}
+    
+    document.getElementById('resultadorandom3').innerHTML = randonum;
 
-//id="randotxt"
+    var iniciolink = "<a href='https://www.w3schools.com/colors/colors_picker.asp'>", finlink = "</a>";
+    var iniciop = "<p>", finp = "</p>", espa = "<br>";
+
+    //document.write(espa);
+
+    document.write(iniciop);
+    for (var i = 0; i < randonum; i++) {
+        var les = iniciolink + contador[i] + finlink;
+       // document.write(iniciolink + contador[i] + finlink);
+        document.write(les);
+
+       
+
+        document.write(espa);
+    }
+    //document.write(finp);
+    // total de palabras que se deben de hacer viculo
+    console.log(i);
+    //FIN DE GENERACION DE NUMERO RANDOM
+
+}
