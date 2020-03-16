@@ -52,7 +52,6 @@
     <p>
         Numero de palabras: <strong id="resultadorandom"> --- </strong>
         Numero random generado: <strong id="resultadorandom3"> --- </strong>
-        En espera de ser usado: <strong id="resultadorandom2"> --- </strong>
         
     </p>
 
@@ -61,8 +60,12 @@
 
 <hr>
 
-    <script>
-      //METODO PARA REEMPLAZAR
+<a href="https://www.w3schools.com/colors/colors_picker.asp" id="referencia" ><strong id="referencia2"> w3school </strong></a>
+
+<hr>
+
+<script type="text/javascript">
+  //METODO PARA REEMPLAZAR
       //************************************************************************************************************************
         function metodos(){
             //BUSQUEDA
@@ -93,9 +96,12 @@ OTRO METODO PARA REEMPLAZAR
 document.getElementById('mostrarresult2').innerHTML = MB;
 
 }
+</script>
 
+<hr>
 
-//METODO PARA MULTIPLOS DE CINCO Y COLOREAR
+<script type="text/javascript">
+  //METODO PARA MULTIPLOS DE CINCO Y COLOREAR
 //***********************************************************************************************************
 
         /**
@@ -148,6 +154,13 @@ document.getElementById('mostrarresult2').innerHTML = MB;
               document.write(cierratr); 
           } 
           document.write(cierratabla);
+</script>
+
+<hr>
+
+
+<script>
+      
 
           //**************************************************************************************************************
           //METODO PARA CONTAR PALABRAS Y DIRECCIONAR PAGINA
@@ -187,31 +200,22 @@ document.getElementById('mostrarresult2').innerHTML = MB;
     var randonum = Math.floor(Math.random() * generaci);
     document.getElementById('resultadorandom3').innerHTML = randonum;
 
-    //ERROR INICIA DE AQUI PARA ABAJO
-
-    var iniciolink = "<a href='https://www.w3schools.com/colors/colors_picker.asp'>", finlink = "</a>";
-    var iniciop = "<p>", finp = "</p>", espa = "<br>";
-    var contador[] = textoTroceado.length;
+    //DETALLES DE ESTA PARTE PARA ABAJO
+    var tomareferencia = document.getElementById('referencia').innerHTML;
+    var elementoarray = new Array(pruebapalabra);
    // var direccion = new Array('https://www.w3schools.com/colors/colors_picker.asp');
-    document.write(espa);
-    document.write(espa);
-    document.write(espa);
+   for (var i = 0; i < randonum;i++) {
+      elementoarray[i] += textoTroceado.length;
 
-    document.write(iniciop);
-    for (var i = 0; i < randonum i++) {
-      contador[i] += i;
-      document.write(iniciolink + contador[i] + finlink);
-      document.write(espa);
       }
-      document.write(finp);
+    document.getElementById('referencia2').innerHTML = elementoarray;
+    
+      
 //FIN DE GENERACION DE NUMERO RANDOM
 
 }
 
     </script>
-
-
-
 
 </body>
 
