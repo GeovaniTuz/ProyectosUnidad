@@ -31,3 +31,6 @@ Buscar palabra y remplazar: listo
 Tabla multiplos de 5: listo
 
 Generar vinculos con randon: Esta en proceso para este apartado ya esta generando la cantida de palabras y el randon. los resultado se puede checar en consola los resutados.
+
+ya se modifico lo que subio marco y se puede checar en la carpeta rando.
+
