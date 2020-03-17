@@ -42,7 +42,7 @@
       <h4>CONTADOR DE PALABRAS Y DIRECCIONAMIENTO</h4>
       <textarea id='caja2' style="height: 10em; width: 40em">
                 Una característica que debe incluiste en un sistema (forma de procesar datos, producir información controlar una actividad, o dar soporte a la gerencia) Determinación de requisitos: (DR) Es el estudio de un sistema para conocer cómo trabaja y dónde es necesario efectuar mejoras. Luego de esto se sabrá si es posible realizar ajustes Analista de requerimientos
-            </textarea>
+            </textarea  >
 
             <form >
                 Generar numero:
@@ -58,9 +58,7 @@
     </div>
 
 
-<hr>
 
-<a href="https://www.w3schools.com/colors/colors_picker.asp" id="referencia" ><strong id="referencia2"> w3school </strong></a>
 
 <hr>
 
@@ -190,27 +188,51 @@ document.getElementById('mostrarresult2').innerHTML = MB;
         //Contamos todos los trozos de cadenas que existen
 
     }
+    var pruebapalabra;
+    pruebapalabra = textoTroceado.length;
     
-        var pruebapalabra = textoTroceado.length;
-        
-        document.getElementById('resultadorandom').innerHTML = pruebapalabra;
-//FIN DEL CONTADOR DE PALABRAS
+    // total de palabras que existen. 
+    console.log(pruebapalabra)
+    //-------------------------------------
+    var contador = [];
+    
+    //console.log(contador);
+    document.getElementById('resultadorandom').innerHTML = pruebapalabra;
+    //FIN DEL CONTADOR DE PALABRAS
 
-    var generaci = pruebapalabra;
-    var randonum = Math.floor(Math.random() * generaci);
+
+    var randonum = Math.floor(Math.random() * pruebapalabra);
+    console.log(randonum);
+    
     document.getElementById('resultadorandom3').innerHTML = randonum;
 
-    //DETALLES DE ESTA PARTE PARA ABAJO
-    var tomareferencia = document.getElementById('referencia').innerHTML;
-    var elementoarray = new Array(pruebapalabra);
-   // var direccion = new Array('https://www.w3schools.com/colors/colors_picker.asp');
-   for (var i = 0; i < randonum;i++) {
-      elementoarray[i] += textoTroceado.length;
+    var iniciolink = "<a href='https://www.w3schools.com/colors/colors_picker.asp'>", finlink = "</a>";
+    var iniciop = "<p>", finp = "</p>", punto = ". ", saltar = "<br>";
+    var elemento = " TEXTO TOMADO DE LA CAJA Y TROCEADO --> ", elemento2 = "Numero random generado: ";
+    //var n = a + "<br>" + b + "<br>" + c + "<br>" + d;
 
-      }
-    document.getElementById('referencia2').innerHTML = elementoarray;
+    //document.write(espa);
+    document.write(iniciop); // INICIO DE LA ETIQUETA P
+    for (var i = 0; i < randonum; i++) {
+      contador = textoTroceado;
+        var les = iniciolink + contador[i] + finlink;
+       // document.write(iniciolink + contador[i] + finlink);
+       // les.toString();
+       //var cade = les.toString();
+         document.write("La palabra es: ", les);
+         document.write(punto);    
+       
+        
+    }
     
-      
+    // total de palabras que se deben de hacer viculo
+    //console.log(i);
+    
+    document.write(saltar + saltar + elemento + contador, saltar + saltar + elemento2 + randonum);
+    //var cade = les.toString();
+
+
+    document.write(finp); //FIN DE LA ETIQUETA P
 //FIN DE GENERACION DE NUMERO RANDOM
 
 }
