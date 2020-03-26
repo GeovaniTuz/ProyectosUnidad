@@ -1,0 +1,3 @@
+1.- Error cuando hay varias operaciones seguidas del mismo nivel
+
+2.- Error al eliminar los paréntesis de la cadena original para poder evaluar lo demás, por lo que errores como t2 = ") + (" son bastante comunes
