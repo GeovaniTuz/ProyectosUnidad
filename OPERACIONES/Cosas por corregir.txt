@@ -1,3 +1,67 @@
-1.- Error cuando hay varias operaciones seguidas del mismo nivel
+1.- Error cuando hay varias operaciones seguidas del mismo nivel (corregido)
+	ya que cundo son del mismo nivel, no importa el orden en el que relice esas operciones, hacerlas corridas formar�a un �nico token, en otras palabras, la generaci�n de tokens solo sirve para darle seguimiento al orden de atenci�n, cosa que no importa al momento de resolver operaciones del mismo nivel
+	Ejemplo: resolver 2*3*4/4
+	Ya que la multiplicaci�n y la divisi�n tienen el mismo orden de importancia, se resolver�an de izquierda a derecha, es decir, el resultado ser�a 6.
+	Si se quisiera que alguna parte se resolviera primero (por ejemplo, indicar que todas las multiplicaciones se hicieran primero y el resultado dividirlo), lo correcto ser�a poner par�ntesis para que se respete ese orden de atenci�n.
+	De todos modos, eso no cambia el resultado, por la ley de "El orden de los factores no altera el producto", lo cual aplica para "sumas y restas" y "multiplicaciones y divisiones" seguidas.
+	En resumen, al tener cualquiera de esos casos de mismo nivel seguidos, da igual c�mo se resuelva, el resultado ser� el mismo, por lo que solo amerita la creaci�n de un token y no de uno por cada multiplicaci�n/divisi�n o suma/resta
+	(Lo mismo sucede si tuviese: 5 + 2 + 4 - 1 + 5; no importa si adici�n atienda primero, como son todas del mismo nivel, el resultado siempre ser� 15)
 
-2.- Error al eliminar los par�ntesis de la cadena original para poder evaluar lo dem�s, por lo que errores como t2 = ") + (" son bastante comunes
+
+2.- Error al eliminar los par�ntesis de la cadena original para poder evaluar lo dem�s, por lo que errores como t2 = ") + (" son bastante comunes (corregido)
+	Se encontr� que solo se tiene el problema al analizar la cadena que se contiene entre los par�ntesis, �sto llama a la misma funci�n por recursividad.
+	Se not� que todos los datos almacenados en los arreglos de esas llamadas recursivas, no modificaban nada de las cadenas originales de la funci�n anterior que las llam�
+	Se opt� por crear variables externas a la funci�n para que, al ser modificadas, los cambios se mantuvieran; justo despu�s de regresar de la recursividad, con los tokens obtenidos y con los respaldos de los cambios, se eliminan los par�ntesis con lo que tengan dentro y se sustituye por el token correspondiente
+	
+	Al salir de la zona que eval�a par�ntesis (Que es la que tiene recursividad), la cadena quedar� con solo multiplicaciones, divisiones, sumas y/o restas. Sin ning�n par�ntesis
+	Eso nos lleva al error corregido anteriormente.
+
+3.- Error en la sustituci�n de tokens (reparado)
+	Cuando se tiene un ejemplo como el siguiente:
+	(2+3)*(3/3 + 2)
+
+	El programa arrojar� elsiguiente resultado:
+
+	t0 = 2+3
+	t1 = 3/3 
+	t2 = t1+ 2 
+	t3 = t0*t1 <- justo en t1 est� el error, deber�a ser t2, porque t2 contiene a la divisi�n y a la suma juntas, t1 solo contiene a la multiplicaci�n
+
+	Cabe destacar que como no se est�n realizando las operaciones, no afecta mucho, solo est� sustituyendo por el token equivocado
+
+	El error estaba en tomar específicamente el primer elemento de la lista tokens. Éste funcionamiento estaba presente porque si se encontraban puras operaciones del mismo nivel dentro de los paréntesis, regresaría un solo token.
+	con eso, el token a reemplazar sería uno, el de justo el principio.
+	Pero al poder haber más operaciones de distintos niveles dentro, el token que se debe poner es el último registrado.
+	Para la corrección, se optó por buscar el último elemento de la lista de tokens antes de sustituirlo a través de:
+
+	var cuantos = tokens.length - 1;
+	pp = tokens[cuantos]; <- consideremos que esta asignación puede regresar un arreglo en el que cada uno de sus elementos sea un arreglo.
+	var porsi = pp.length; <-por eso, a pesar de tener ya el último, debemos buscar "el último del último"
+	pp = pp[porsi].match(/["t"][0-9]+/);
+
+
+4.- Error de ciclos (Reparado durante el error anterior)
+
+	El problema estaba en ejemplos como el siguiente:
+
+	//entrada
+	(2+3)*(3/(3+1))
+
+	donde el programa regresaba:
+	
+	//inicio del programa
+	t0 = 2+3
+	t1 = 3+1
+	t2 = 3/t1
+	//Fin del programa
+
+	Es decir, el programa terminaba antes de donde debería.
+	se encontró que esto era generado por el ciclo for que contiene al análisis de paréntesis, ya que:
+
+	al hacer texto.match(generalparentesis), sus resultados eran:
+	"["2+3" , "3+1"]"
+
+	el ciclo "for" ejecutaba el análisis por cada elemento que agarrara al principio (Los recursivos son aparte)
+	entonces el programa terminaba después de analizar "3+1", siendo que todavía faltaba hacer la multiplicación.
+
+	Se solucionó al implementar un ciclo "While", ya que éste permite analizar la cadena hasta que ya no le queden paréntesis, evitando confusiones como la anterior, las cuales ocurrían por la sustitución y determinación de los resultados iniciales a atender.
